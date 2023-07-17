@@ -1,0 +1,2 @@
+# Guia-de-trabajo-para-microbit
+Se pretende crear una guía para trabajar con la tarjeta micro:bit mediante:  - Programación gráfica con Makecode, Microblocks, Scratch, ... - Programación con MicroPython
