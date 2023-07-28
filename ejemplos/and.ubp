@@ -1,0 +1,12 @@
+module main
+author unknown
+version 1 0 
+description ''
+
+script 68 129 {
+whenStarted
+local 'salir' (booleanConstant true)
+local 'llueve' (booleanConstant true)
+sayIt 'Voy a salir? ' salir ('[data:unicodeString]' 10) 'Esta lloviendo?' llueve ('[data:unicodeString]' 10) 'Necesito un paraguas?' (and salir llueve)
+}
+

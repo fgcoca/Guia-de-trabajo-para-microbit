@@ -1,0 +1,13 @@
+module main
+author unknown
+version 1 0 
+description ''
+
+script 68 109 {
+whenStarted
+local 'n1' (random 1 5)
+local 'n2' (random 1 5)
+local 'busqueda' 3
+sayIt 'n1:' n1 ('[data:unicodeString]' 10) 'n2:' n2 ('[data:unicodeString]' 10) 'Busqueda: ' busqueda ('[data:unicodeString]' 10) 'Es n1 o n2 = 3: ' (or (n1 == busqueda) (n2 == busqueda))
+}
+
