@@ -1,5 +1,16 @@
 # <FONT COLOR=#8B008B>Microblocks</font>
-Se trata de un software que puede trabajar online o localmente y que nos va a permitir programar diferentes placas, entre ellas la micro:bit.
+[MicroBlocks](https://microblocks.fun/) es una herramienta de programación por bloques basada en [Snap!](https://snap.berkeley.edu/). Se trata de un software que puede trabajar online o localmente y que nos va a permitir programar diferentes placas, entre ellas la micro:bit.
+
+<center>
+
+![Logotipo de MicroBlocks](../img/guias/ublocks/logo_uB.png)  
+*Logotipo de MicroBlocks*
+
+*Logotipo descargado de la entrada en [SAP](https://www.sap.com/spain/index.html?url_id=auto_hp_redirect_spain) de [Kathy Giori](https://people.sap.com/kgiori) <br> titulada [Recap of “Sneak Preview into MicroBlocks”](https://blogs.sap.com/2021/01/28/recap-of-sneak-preview-into-microblocks/).*</br>
+
+</center>
+
+**MicroBlocks** es un lenguaje de programación por bloques similar a Scratch que es una excelente herramienta para aprender desde nivel principiante hasta nivel experto y válido para edades que van desde los 8 hasta los 99 años.
 
 En el apartado [Get Started](https://microblocks.fun/get-started) de su web tenemos descrito como trabajar desde un navegador y los distintos sistemas operativos así como los pasos a seguir para configurar nuestra placa y como comenzar a crear programas.
 
@@ -30,6 +41,152 @@ El programa una vez instalado lo tenemos disponible en aplicaciones, como vemos 
 
 ![App MicroBlocks disponible](../img/guias/ublocks/conejito.png)  
 *App MicroBlocks disponible*
+
+</center>
+
+## <FONT COLOR=#007575>**¿Por qué usar MicroBlocks?**</font>
+**MicroBlocks** tiene una característica que lo distingue de otros lenguajes de programación por bloques y es que la programación real ocurre según se desarrolla el programa, lo que podemos denominar como programación en directo o en vivo y, debido a esto, que implica que el código se descarga según se escribe tenemos la otra característica que le dota de independencia o autonomía, ya que cuando demos el programa por bueno, este ya está grabado como firmware en la placa.
+
+Otra de la características importantes que ofrece **MicroBlocks** es la multitarea o posibilidad de desarrollar funcionalidades que trabajan de forma paralela y separada cada tarea. Por ejemplo, reproducir un sonido mientras se controla un servomotor. Esta forma de trabajo hace que el código sea mas sencillo de escribir y de entender.
+
+Cuando trabajamos con **MicroBlocks** la placa que conectemos se comporta como una tarjeta de memoria. No hay necesidad de leer un archivo de proyecto, simplemente conectamos la placa y el script o programa nos aparecerá en el IDE. Es decir, **MicroBlocks** lee el programa que hay en la placa y lo carga de manera automática.
+
+El funcionamiento de **MicroBlocks** se basa en:
+
+* El editor de bloques o IDE que se puede ejecutar online o de manera local.
+* Una máquina virtual que se ejecuta en la placa microcontroladora. Esta máquina virtual es la encargada de ejecutar el programa de usuario y lo hace compilando en código de bytes o instrucciones de bajo nivel muy parecidas al código máquina. Si tenemos habilitados los bloques avanzados podemos ver los bytes generados por el programa, como vemos en la animación siguiente:
+  
+<center>
+
+![Código de bytes](../img/guias/ublocks/bytes.gif)  
+*Código de bytes*
+
+</center>
+
+La parte más importante de la información de bytes es la primera línea, que muestra el número de bytes compilados. Los scripts en MicroBlocks no deben superar los 1000 bytes, de ahí la importancia de esta información.
+
+* El sistema de comunicación entre la placa y el host remoto o el ordenador que hace que el firmware se actualice según se escribe el programa. Este sistema es el encargado de enviar los bytes y comandos para iniciar el programa y procesar mensajes del microcontrolador. Así el editor proporciona realimentación gráfica de lo que sucede en el microcontrolador y directamente puede mostrar valolres en un "bocadillo de conversación" como el de la figura siguiente.
+
+<center>
+
+![Bocadillo de conversación](../img/guias/ublocks/bocadillo.png)  
+*Bocadillo de conversación*
+
+</center>
+
+**MicroBlocks** también dispone de una herramienta de representación gráfica que estudiaremos en su momento.
+
+Una funcionalidad importante del editor es que, además de programar por bloques, administra las **Librerias**, que están escritas en **MicroBlocks**. Existen muchas que iremos viendo poco a poco. Las librerias escritas en **MicroBlocks** pueden ser editadas por los usuarios.
+
+## <FONT COLOR=#007575>**Configuración del equipo**</font>
+Necesitamos un ordenador (¡no un dispositivo móvil!) con un puerto USB, un cable USB y una placa soportada. Podemos ejecutar **MicroBlocks** en un navegador Chromium, Chrome o Edge, o descargarlo como una aplicación independiente para Linux, Chromebook, Windows o MacOS. Las [placas soportadas](https://wiki.microblocks.fun/boards/supported) son:
+
+* BBC [micro:bit](http://microbit.org/) v1 y v2
+* [Calliope mini](https://calliope.cc/calliope-mini/uebersicht)
+* Circuit Playground [Express](https://www.adafruit.com/product/3333) y [Bluefruit](https://www.adafruit.com/product/4333)
+* [Citilab ED1](https://market.citilab.eu/es/producte/placa-ed1/)
+* [Raspberry Pi Pico and Pico W](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html)
+* [Adafruit Clue](https://www.adafruit.com/product/4500)
+* [M5Stack Core](https://m5stack.com/collections/m5-core/products/grey-development-core?variant=16804796006490) Grey
+* ESP8266 y ESP32
+
+Los instaladores están disponibles para las [versiones liberadas](https://microblocks.fun/releases) listas para descargar la apropiada para nuestro sistema operativo. Si estamos trabajando con Chrome o Edge es muy posible que nos advierta de que estamos descargando un archivo que podría dañar nuestro ordenador. Debemos ignorar esta y sucesivas advertencias para proceder con la descarga.
+
+En Linux se descarga un paquete .deb, ublocks-amd64.deb en concreto para esta ocasión que se instala de forma muy sencilla. Con una terminal abierta en el directorio donde está el archivo .deb tecleamos:
+
+~~~
+dpkg -i ~/Descargas/ublocks-amd64.deb
+~~~
+
+Tras breves instantes el programa estará instalado y lo tendremos disponible en aplicaciones, como ya hemos visto antes.
+
+## <FONT COLOR=#007575>**Configuración de la placa**</font>
+El proceso de configuración de las placas soportadas es muy similar en todas ellas y es seguir el proceso que vamos a ver a continuación. En este caso particular se toman las imágenes y animaciones realizando el proceso con una micro:bit V2.21.
+
+Conectamos la placa al ordenador y en el menú de MicroBlocks hacemos clic en el engranaje y seleccionamos la opción 'actualizar firmware de la placa'.
+
+<center>
+
+![actualizar firmware de la placa](../img/guias/ublocks/act_firmw.png)  
+*Actualizar firmware de la placa*
+
+</center>
+
+En el menú de la ventana emergente tenemos que seleccionar el tipo de placa que hemos conectado.
+
+<center>
+
+![Seleccionar placa](../img/guias/ublocks/select_placa.png)  
+*Seleccionar placa*
+
+</center>
+
+Si estamos trabajando con MicroBlocks en un navegador, se nos pedirá que seleccionemos la placa si aún no está conectada.
+
+Si no hay una placa conectada aparecerá el siguiente aviso.
+
+<center>
+
+![No puedo abrir puerto serie](../img/guias/ublocks/no_USB.png)  
+*No puedo abrir puerto serie*
+
+</center>
+
+Si todo está correcto el icono del puerto USB pasa a estar acompañado de un círculo verde que indica la conexión.
+
+<center>
+
+![Conexión por puerto serie realizada](../img/guias/ublocks/conex.png)  
+*Conexión por puerto serie realizada*
+
+</center>
+
+En este video del canal Youtube de MicroBlocks Fun titulado [Quick introduction to MicroBlocks for programming a micro:bit](https://www.youtube.com/watch?v=cf2xsYSTqgY) (Introducción rápida a MicroBlocks para programar un micro:bit) tenemos una introducción rápida a MicroBlocks con micro:bit.
+
+La información en inglés de la [guia de usuario](https://wiki.microblocks.fun/ide) y el [manual de referencia de bloques](https://wiki.microblocks.fun/reference_manual) también pueden resultarnos de gran ayuda.
+
+### <FONT COLOR=#AA0000>Actualizar firmware en ESP32</font>
+Los dispositivos ESP son una categoría especial de [Espressif](https://www.espressif.com/en) que cuentan con capacidad WIFI. En estas placas se borra totalmente el contenido de la memoria flash de la placa y se carga el firmware más reciente. Tras seleccionar ESP32 se inicia la actualización del firmware y aparece información del progreso en la pantalla.
+
+<center>
+
+![Actualizar firmware en ESP32](../img/guias/ublocks/act_firm_esp32.gif)  
+*Actualizar firmware en ESP32*
+
+</center>
+
+### <FONT COLOR=#AA0000>Habilitar/deshabilitar autocarga de librerias</font>
+Una de las cosas buenas del editor MicroBlocks es que siempre trata de simplificar las cosas a los usuarios. Dado que cada placa con microcontrolador tiene diferentes características, funciones y capacidades, MicroBlocks intenta de forma automática complementar las
+funcionalidades básicas cargando las bibliotecas que estime necesarias, siempre que la opción esté habilitada, que se distinguirá porque la opción disponible es desactivar.
+
+<center>
+
+![Autocarga de librerias activada](../img/guias/ublocks/aut_lib_act.png)  
+*Autocarga de librerias activada*
+
+</center>
+
+Cuando se selecciona, este elemento se deshabilita esta funcionalidad y depende del usuario cargar las bibliotecas requeridas.
+
+<center>
+
+![Autocarga de librerias desactivada](../img/guias/ublocks/aut_lib_des.png)  
+*Autocarga de librerias desactivada*
+
+</center>
+
+### <FONT COLOR=#AA0000>Habilitar/deshabilitar PlugShare</font>
+Otra característica muy interesante del editor de MicroBlocks es que cargará automáticamente un proyecto desde el microcontrolador conecvtado, si no hay otro proyecto cargado en el editor. La activación y desactivación de la opción es idéntica a la de la carga de librerías. Si la opción muestra desactivar es que está habilitada por lo que el editor leerá el proyecto desde el dispositivo y luego
+procederá a cargarlo en el editor. Si la opción muestra activar es que la funcionalidad no está habilitada.
+
+Esta función es muy importante porque permite a los usuarios compartir proyectos simplemente intercambiando sus dispositivos físicos y conectándolos a un ordenador. No hay que compartir archivos.
+
+Podríamos denominar a esta funcionalidad como "conecta y comparte".
+
+<center>
+
+![PlugShare activado](../img/guias/ublocks/plug_act.png)  
+*PlugShare activado*
 
 </center>
 
@@ -229,6 +386,9 @@ Este menú contextual ofrece mas opciones si hemos seleccionado 'Mostrar bloques
 
 </center>
 
+* **Copiar en el portapapeles**. Es una operación que crea una copia de los conjuntos de bloques seleccionados en el portapapeles. Estos se pueden pegar dentro del mismo proyecto o en un proyecto diferente. También es posible copiar/pegar entre el editor online y el local.
+* **Copiar al Portapapeles como URL**. Esta característica se utiliza principalmente para incorporar programas MicroBlocks en páginas web, ya que el formato está codificado como URL.
+
 ### <FONT COLOR=#AA0000>Menú contextual de área de trabajo</font>
 Es el menú contextual que aparece cuando hacemos un clic derecho sobre cualquier zona vacía del área de trabajo.
 
@@ -270,7 +430,7 @@ Ya tenemos creado el programa y comprobado que funciona, es hora de salvarlo en 
 
 </center>
 
-El [Primer proyecto](/docs/programas/ublocks/Primer-proyecto.ubp) lo podemos descargar desde este enlace.
+El [Primer proyecto](../programas/ublocks/Primer-proyecto.ubp) lo podemos descargar desde este enlace.
 
 Durante el proceso de cambios en el programa podemos comprobar que el conjunto de bloques esta rodeado de una línea verde que indica que el programa se está ejecutando en la micro:bit. Lo apropiado cuando vamos a realizar cambios es detener la ejecución, hacer los cambios y volver a poner la ejecución en marcha.
 

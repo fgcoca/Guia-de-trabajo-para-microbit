@@ -20,6 +20,8 @@
 * [Bot de programación Open Roberta Lab](https://lab.open-roberta.org/).
 * [Thonny](https://thonny.org/). Sencillo IDE para Python.
 
+* Guía [Programiz](https://www.programiz.com/python-programming) para aprender Python programando. Incluye un interesante [compilador online](https://www.programiz.com/python-programming/online-compiler/) y otros muchos recursos.
+
 * Web [Ardutaller](https://www.ardutaller.com.es/principal) de Francisco Soldado.
 * [MicroBlocks Wiki](https://wiki.microblocks.fun/ide)
 

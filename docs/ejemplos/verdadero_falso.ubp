@@ -1,0 +1,22 @@
+module main
+author unknown
+version 1 0 
+description ''
+
+script 65 72 {
+whenStarted
+forever {
+  local 'variable' (random 1 3)
+  if (variable == 1) {
+    sayIt 'varaible = 1. Rama IF'
+    waitMillis 1000
+  } true {
+    sayIt 'varaible = 2. Rama ELSE IF'
+    waitMillis 1000
+  } else {
+    sayIt 'varaible = 3. Rama ELSE'
+    waitMillis 1000
+  }
+}
+}
+

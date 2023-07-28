@@ -36,12 +36,14 @@ nav:
   - Guía de MakeCode: guias/mkcode.md
   - Guía de MicroBlocks: guias/mblocks.md
   - Python:
-    - Referencia rápida: guias/rapida.md
+    - Introducción: guias/intro.md
     - Guía de MicroPython: guias/pyt.md
     - Experiencia inmediata: guias/outofthebox.md
   - Flasheo directo: directo.md
   - Actividades:
     - A01. Hola mundo: actividades/A01.md
+    - A02. Imágenes: actividades/A02.md
+    - A03. Botones: actividades/A03.md
   - Listado de programas: programas/lista.md
   - Miscelanea:
     - Autor: Miscelanea/about.md 

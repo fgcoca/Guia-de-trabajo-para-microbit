@@ -222,5 +222,5 @@ Los números pueden tener mas de una cifra y si queremos mostrarlos como cadena 
 
 El primer proyecto lo tenemos disponible en los enlaces siguientes:
 
-* [Primer proyecto .hex](/docs/programas/upy/Primer-proyecto.hex)
-* [Primer proyecto .py](/docs/programas/upy/Primer_proyecto.py)
+* [Primer proyecto .hex](../programas/upy/Primer-proyecto.hex)
+* [Primer proyecto .py](../programas/upy/Primer_proyecto-main.py)

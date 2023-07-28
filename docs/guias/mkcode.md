@@ -83,7 +83,7 @@ Aunque es posible utilizar el botón 'Descargar' para grabar directamente el pro
 
 </center>
 
-El [Primer proyecto](/docs/programas/makecode/Primer-proyecto.hex) lo podemos descargar desde este enlace.
+El [Primer proyecto](../programas/makecode/Primer-proyecto.hex) lo podemos descargar desde este enlace.
 
 Una vez descargado el .hex y conectada la micro:bit a un puerto USB procedemos a grabar el programa en la micro:bit para comprobar que funciona exactamente igual que en la simulación. El proceso lo vemos en la animación siguiente.
 

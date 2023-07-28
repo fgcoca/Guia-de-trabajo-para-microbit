@@ -76,6 +76,22 @@ sudo udevadm control --reload-rules
 * Cerramos sesión.
 * Tras iniciar sesión de nuevo abrimos Chrome y lo volvemos a intentar.
 
+Los comandos siguientes:
+
+~~~
+snap connections  | grep -v ".*-$"
+mount | grep MICROBIT
+~~~
+
+nos resultarán útiles para comprobar si el navegador ha establecido la conexión y si esta se ha realizado. El segundo nos ayuda a montar la unidad "MICROBIT" si no se monta al conectar una placa micro:bit. En la figura siguiente vemos un posible resultado.
+
+<center>
+
+![Comandos snap connections y mount](../img/configura/consultas.png)  
+*Comandos snap connections y mount*
+
+</center>
+
 ## <FONT COLOR=#007575>**Sistema de prueba**</font>
 Mediante el hilo indicado en la webgrafia y utilizando la información obtenida de [WebUSB Troubleshooting](https://support.microbit.org/support/solutions/articles/19000105428-webusb-troubleshooting) ha quedado resuelto el tema de utilizar [webUSB con Chromium](directo.md) y se propone un método de prueba de errores que a mi entender nos puede resultar bastante útil en un momento determinado.
 
@@ -104,6 +120,4 @@ while True:
     sleep(1000)
 ~~~
 
-En el fichero [10_archivos_hex_python.zip](/docs/programas/upy/coleccion_errores/10_archivos_hex_python.zip) tenemos los 10 archivos hexadecimal generados y probados. El primero de los cuales (python0-main.py) también lo tenemos en formato texto.
-
-<b><font color=#FF0000>En los enlaces a ficheros, en lugar de hacer clic para abrir el enlace, debemos hacer clic en el botón derecho y escoger 'Guardar enlace como'</font></b>
+En el fichero [10_archivos_hex_python.zip](../programas/upy/coleccion_errores/10_archivos_hex_python.zip) tenemos los 10 archivos hexadecimal generados y probados. El primero de los cuales (python0-main.py) también lo tenemos en formato texto.
