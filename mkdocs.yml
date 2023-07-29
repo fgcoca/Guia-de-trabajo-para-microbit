@@ -31,15 +31,14 @@ extra:
 # 5. Navegación
 nav:
   - Introducción: index.md
-  - Solución de problemas con descargas webUSB: problemas.md
   - Configurar nuestra micro:bit: configura.md
+  - Solución de problemas: problemas.md
   - Guía de MakeCode: guias/mkcode.md
   - Guía de MicroBlocks: guias/mblocks.md
   - Python:
     - Introducción: guias/intro.md
     - Guía de MicroPython: guias/pyt.md
     - Experiencia inmediata: guias/outofthebox.md
-  - Flasheo directo: directo.md
   - Actividades:
     - A01. Hola mundo: actividades/A01.md
     - A02. Imágenes: actividades/A02.md
