@@ -1,0 +1,16 @@
+module main
+author unknown
+version 1 0 
+description ''
+variables aleatorio aleatorio2 aleatorio3 
+
+script 68 50 {
+whenStarted
+forever {
+  local 'pin' (digitalReadOp 0 true)
+  printIt pin
+  sayIt pin
+  waitMillis 500
+}
+}
+
