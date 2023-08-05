@@ -18,6 +18,7 @@ La información va a estar basada, además de las web citadas en webgrafia, fund
 
 * [WebUSB Troubleshooting](https://support.microbit.org/support/solutions/articles/19000105428-webusb-troubleshooting) de micro:bit Help & Support.
 * [Ticket #64940 error: The transfer timed out. type: transient, user error 504](https://support.microbit.org/support/tickets/64940) de micro:bit Help & Support.
+* En este post de [Matthew Oppenheim](https://mattoppenheim.com/2021/01/07/setting-up-a-micropython-editor-with-the-bbc-microbit-v2-on-linux/) se resuelve el problema con '*50-microbit.rules*' y los permisos de los directorios afectados, como por ejemplo "media" que normalmente es propiedad del superusuario root y no del usuario habitual. En el mismo post hay un enlace a una primera versión donde expone la configuración de mu-editor en Linux.
 
 ## <FONT COLOR=#007575>**Paso a paso inicial**</font>
 

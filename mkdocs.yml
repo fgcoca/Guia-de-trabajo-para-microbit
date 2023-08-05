@@ -39,11 +39,23 @@ nav:
     - Introducción: guias/intro.md
     - Guía de MicroPython: guias/pyt.md
     - Experiencia inmediata: guias/outofthebox.md
+  - Conceptos técnicos: 
+    - Componentes discretos: conceptos/discretos.md
+    - Ley de Ohm: conceptos/ohm.md
+    - Señales: conceptos/signals.md
+    - Componentes avanzados: conceptos/avanzados.md
+  - Conceptos de programación:
+    - MakeCode: programacion/mkcode.md
+    - Python: programacion/python.md
+    - MicroBlocks: programacion/ublocks.md
   - Actividades:
     - A01. Hola mundo: actividades/A01.md
     - A02. Imágenes: actividades/A02.md
     - A03. Botones: actividades/A03.md
+    - A04. Pines: actividades/A04.md
   - Listado de programas: programas/lista.md
+  - Proyectos de ampliación: 
+    - Actividad A03: proyectos/PA03.md
   - Miscelanea:
     - Autor: Miscelanea/about.md 
     - Licencias: Miscelanea/lic.md

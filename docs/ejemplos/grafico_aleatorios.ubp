@@ -1,0 +1,19 @@
+module main
+author unknown
+version 1 0 
+description ''
+variables aleatorio aleatorio2 aleatorio3 
+
+script 50 50 {
+whenStarted
+forever {
+  aleatorio = (random 1 100)
+  waitMillis 150
+  aleatorio2 = (random 1 25)
+  waitMillis 100
+  aleatorio3 = (random 1 120)
+  waitMillis 75
+  printIt aleatorio aleatorio2 aleatorio3
+}
+}
+
