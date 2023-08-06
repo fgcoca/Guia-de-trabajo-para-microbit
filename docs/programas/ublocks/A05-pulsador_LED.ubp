@@ -1,0 +1,28 @@
+module main
+author unknown
+version 1 0 
+description ''
+variables lee 
+
+script 93 50 {
+whenStarted
+comment 'El programa lee el nivel en P0.
+Por defecto según el tipo de montaje elegido es 1'
+forever {
+  comment 'Si P0 está a nivel bajo indica que el
+pulsador se ha accionado y por tanto
+escribe un 1 en P1 encendiendo el LED.
+En caso contrario (else) el pin P1 debe 
+estar en nivel lógico bajo.'
+  if ((digitalReadOp 0) == (booleanConstant false)) {
+    digitalWriteOp 1 true
+    sayIt 'Pulsado'
+  } else {
+    digitalWriteOp 1 false
+    sayIt 'No pulsado'
+  }
+}
+}
+
+script 66 494 (3 == 4)
+

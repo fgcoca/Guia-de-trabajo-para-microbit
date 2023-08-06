@@ -137,3 +137,88 @@ Sin entrar en detalles en la tabla siguiente se dan los valores de tensión dire
 *Tensión y corriente para distintos colores*
 
 </center>
+
+## <FONT COLOR=#007575>**Pulsador**</font>
+Un botón pulsador o abreviadamente pulsador es un componente eléctrico que permite o impide el paso de la corriente eléctrica cuando se acciona. El pulsador solo permanece abierto o cerrado cuando lo presionamos y unicamente mientras lo mantenemos presionado. Al soltarlo vuelve a su posición inicial o de reposo.
+
+En función de como están los contactos cuando el pulsador está en reposo, tenemos dos tipos diferentes: Normalmente Abierto y Normalmente Cerrado. Siendo el mas utilizado es pulsador normalmente abierto.
+
+El funcionamiento del pulsador normalmente abierto es:
+
+- Pulsador en reposo: el pulsador esta abierto y la corriente no puede pasar a través del mismo.
+- Pulsador accionado: se conoce como posición de Trabajo y mientras se mantenga pulsado la corriente puede pasar por el pulsador.
+
+En la tabla siguiente vemos la simbología y algunos ejemplos del aspecto físico de estos elementos del tipo que habitualmente se utiliza con este tipo de placas.
+
+<center>
+
+![Símbolos y aspecto real de un pulsador](../img/conceptos/discretos/aspecto-pulsadores.png)  
+*Símbolos y aspecto real de un pulsador*
+
+</center>
+
+Existen muchos tipos y formas de pulsadores, pero los mas utilizados con este tipo de placas los vemos a continuación. Los de mayor tamaño suelen ir acompañados de una pieza de diferentes colores para colocar por presión en la parte amarilla (puede ser de otros colores) el pulsador y crear una tecla. Se aprecian las dimensiones así como la forma en que van conectados internamente los pines.
+
+<center>
+
+![Pulsadores mas usuales](../img/conceptos/discretos/pulsadores_usuales.png)  
+*Pulsadores mas usuales*
+
+</center>
+
+Mediante la configuración adecuada podemos convertir un pulsador en un elemento de entrada a algún pin de nuestra placa de control. Las configuraciones más básicas posibles con pulsadores las podemos ver en la imagen siguiente.
+
+<center>
+
+![Configuración circuito elemental con pulsador](../img/conceptos/discretos/circuitos-pulsador.png)  
+*Configuración circuito elemental con pulsador*
+
+</center>
+
+### <FONT COLOR=#AA0000>Rebotes</font>
+Cuando accionamos un pulsador, este no cambia de un estado a otro inmediatamente. En el proceso de cambio de estado del pulsador se producen pequeñas vibraciones mecánicas que provocan una serie de efectos transitorios que pueden llegar a convertirse en un problema real. Supongamos que estamos contando pulsaciones, si cada vez que pulsamos esos efectos dan como resultado mas de un pulsación, es evidente que tenemos un problema. Estos efectos se estabilizan muy rapidamente porque duran muy poco tiempo y por tanto a nivel humano no son detectables, pero a nivel de microcontrolador si lo son. El fenomeno también ocurre al soltar el pulsador. Este fenómeno no deseado es lo que se conoce como "rebote".
+
+<center>
+
+![Fenomenos transitorios de rebotes en un pulsador](../img/conceptos/discretos/rebotes.png)  
+*Fenomenos transitorios de rebotes en un pulsador*
+
+</center>
+
+Por lo tanto, es muy posible que, cuando detectamos el estado de un pulsador, obtengamos múltiples acciones de pulsación y liberación en un ciclo de pulsación. Este rebote puede llegar a confundir el funcionamiento del microcontrolador debido a la alta velocidad a la que trabaja. Por eso es conveniente eliminar el efecto de los rebotes en nuestros circuitos. Se puede hacer por hardware, colocando un condensador de 1uF, o incluso de mas capacidad, en paralelo con el pulsador. Tambien se pueden eliminar por software dejando transcurrir unos 150ms entre el momento que se acciona el pulsador y el momento en que la lectura se hace efectiva o bien comprobando el estado del botón varias veces y cuando ha transcurrido un tiempo considerar el estado del botón como estable. Dicho de otro modo, con una serie de lecturas y retardos del estado del pulsador se desechan esas pulsaciones no deseadas.
+
+## <FONT COLOR=#007575>Interruptor</font>
+La diferencia entre un pulsador y un interruptor radica en que el pulsador no mantiene su posición de trabajo si dejamos de accionarlo mientras que el interruptor si mantiene la posición, permaneciendo en la misma hasta que volvamos a accionarlo. Es decir, el interruptor cambia de posición cada vez que lo accionamos siendo totalmente estable cada posición. Hay ocasiones en que visualmente incluso pueden parecer iguales y solo se diferencian en su modo de funcionamiento.
+
+Los interruptores se clasifican en función del tipo de conexión que realizan, como son el número de polos (Pole) y el de circuitos (Throw). Se define el número de polos como el número de circuitos capaz de controlar el interruptor. Puden ser unipolares, para un solo circuito o bipolares para controlar dos circuitos separados. Podemos decir que un interruptor bipolar son dos interruptores unipolares accionados por el mismo actuador. Por otro lado Throw se refiere al número de salidas que tiene cada polo. En base a esto tenemos:
+
+<center>
+
+|Tipo|Procedencia|Significado|Símbolo|
+|:-:|---|---|:-:|
+|SPST|Single Pole, Single Throw|Un polo, un circuito|![](../img/conceptos/discretos/SPST.png)|
+|SPDT|Single Pole, Double Throw|Un polo, dos circuitos|![](../img/conceptos/discretos/SPDT.png)|
+|DPST|Double Pole, Single Throw|Dos polos, un circuito|![](../img/conceptos/discretos/DPST.png)|
+|DPDT|Double Pole, Double Throw|Dos polos, dos circuitos|![](../img/conceptos/discretos/DPDT.png)|
+
+</center>
+
+En la imagen siguiente quedará mas claro el tema de Pole y Throw.
+
+<center>
+
+![SPST, SPDT, DTSP y DPDT](../img/conceptos/discretos/P_T.png)  
+*SPST, SPDT, DTSP y DPDT*
+
+</center>
+
+En el caso de los interruptores también pueden ser Normalmente Abiertos o Normalmente Cerrados y existen de muchos tipos en función de la aplicación que se les va a dar. También existen de mas de dos circuitos e incluso de varios polos.
+
+Por su forma de accionamiento pueden ser: rotatorios, basculantes, deslizantes, tipo DIP, etc. En la imagen vemos el aspecto real de algunos de ellos.
+
+<center>
+
+![Diversos tipos de interruptores](../img/conceptos/discretos/interrup_imag.png)  
+*Diversos tipos de interruptores*
+
+</center>
