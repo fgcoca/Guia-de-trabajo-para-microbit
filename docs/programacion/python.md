@@ -706,3 +706,75 @@ Si conectamos sensores o actuadores analógicos a los pines podemos leer su valo
 pinN.read_analog(valor) #valor puede estar entre 0 y 1023
 ~~~
 
+## <FONT COLOR=#007575>**Números aleatorios**</font>
+Este módulo está basado en el módulo ```random``` de la librería estándar de **Python**. Contiene funciones para generar comportamientos aleatorios.
+
+Para acceder a este módulo es necesario:
+
+~~~py
+import random
+~~~
+
+Vamos a ver sus funciones a continuación.
+
+* **```.getrandbits(n)```**. Retorna un entero con "n" bits aleatorios. La función generadora devuelve como máximo 30 bits, por lo tanto "n" tiene que estar comprendido entre 1 y 30.
+
+~~~py
+random.getrandbits(n)
+~~~
+* **```.seed(n)```**. Inicializa el generador de números aleatorios con un número entero conocido "n". Esto le proporcionará una aleatoriedad determinista reproducible a partir de un estado inicial dado (n).
+
+~~~py
+random.seed(n)
+~~~
+
+* **```.randint(a, b)```**. Devuelve un entero aleatorio **N** tal que $a \space \leq N \leq \space b$.
+
+~~~py
+random.randint(a, b)
+~~~
+
+* **```.randrange(stop)```**. Devuelve un número entero seleccionado aleatoriamente entre cero y stop, que no está incluido.
+
+~~~py
+random.randrange(stop)
+~~~
+
+* **```.randrange(start, stop)```**. Devuelve un número entero seleccionado aleatoriamente comprendido entre start y stop. El límite stop no está incluido.
+
+~~~py
+random.randrange(start, stop)
+~~~
+
+* **```.randrange(start, stop, step)```**. Devuelve un número entero aleatorio entre start y stop separando los valores posibles entre si la distancia establecida por step. Por ejemplo ```randrange(3, 30, 5)``` devolverá un valor aleatorio de los siguientes posibles: 3, 8, 13, 18, 23, 28.
+
+~~~py
+random.randrange(start, stop, step)
+~~~
+
+* **```.choice(secuencia)```**. Devuelve un elemento aleatorio de 'secuencia' que no puede estar vacía. Si 'secuencia' está vacía, genera in ```IndexError```.
+
+~~~py
+random.choice(secuencia)
+~~~
+
+* **```.random()```**. Devuelve un número aleatorio en coma flotante en el rango [0.0, 1.0).
+
+~~~py
+random.random()
+~~~
+
+* **```.uniform(a, b)```**. Devuelve un número aleatorio de coma flotante **N** tal que $a  \leq N \leq  b$ para $a  \leq  b$ y $b  \leq N \leq  a$ para $b  <  a$.
+
+~~~py
+random.uniform(a, b)
+~~~
+
+En la imagen vemos ejemplos ejecutados en la shell.
+
+<center>
+
+![Ejemplos de funciones de random](../img/programacion/python/func_random.png)  
+*Ejemplos de funciones de random*
+
+</center>

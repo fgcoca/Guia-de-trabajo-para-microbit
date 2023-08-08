@@ -1,0 +1,24 @@
+module main
+author unknown
+version 1 0 
+description ''
+variables pines_salida 
+
+script 50 50 {
+whenStarted
+forever {
+  local 'R' (random 0 1023)
+  local 'G' (random 0 1023)
+  local 'B' (random 0 1023)
+  analogWriteOp 2 R
+  analogWriteOp 1 G
+  analogWriteOp 0 B
+  sayIt 'R' 'G' 'B' ('[data:unicodeString]' 10) R G B
+  waitMillis 1000
+  analogWriteOp 2 1023
+  analogWriteOp 1 1023
+  analogWriteOp 0 1023
+  waitMillis 1000
+}
+}
+

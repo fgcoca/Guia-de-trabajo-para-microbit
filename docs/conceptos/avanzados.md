@@ -1,6 +1,18 @@
 # <FONT COLOR=#8B008B>Componentes avanzados</font>
 En este apartado iremos describiendo algunos componentes, sensores, actuadores, etc, que se utilizarán en los montajes.
 
+## <FONT COLOR=#007575>**LED RGB direccionable**</font>
+Comunmente se les conoce como Neopixel, que es una marca registrada por Adafruit Industries. Cada LED que componen la tira o matriz tiene los siguientes cuatro pines:
+
+* Alimentación VDD: 5V. **MUY IMPORTANTE, 5V**
+* Tierra: GND
+* DI (Date Input): pin para recibir información
+* DO (Date Output): pin para enviar inforamción
+
+Cada uno de los LEDs es direccionable de manera individual gracias al circuito electrónico (circuito lógico) que incluyen con una memoria de un byte por color. Los tipos mas comunes son el SK6812, WS2811 o, el mas habitual de todos, el WS2812 cuyo [datasheet](../datasheet/WS2812.pdf) tenemos en el enlace.
+
+El WS2812B incluye un oscilador interno de precisión y un circuito de control de corriente constante programable de 12 V, lo que garantiza de manera efectiva qimgue la intensidad del color sea consistente. El protocolo de transferencia de datos utiliza un único modo de comunicación de multiplexado NZR.
+
 ## <FONT COLOR=#007575>**LCD 1602 I2C**</font>
 Una pantalla LCD (del ingés, Liquid Cristal Display) I2C de 2 líneas de 16 caracteres por línea tiene el aspecto que vemos en la imagen siguiente.
 

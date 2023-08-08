@@ -54,9 +54,9 @@ nav:
     - A03. Botones: actividades/A03.md
     - A04. Pines: actividades/A04.md
     - A05. Botón pulsador: actividades/A05.md
+    - A06. Barra de LEDs: actividades/A06.md
+    - A07. Diodo LED RGB: actividades/A07.md
   - Listado de programas: programas/lista.md
-  - Proyectos de ampliación: 
-    - Actividad A03: proyectos/PA03.md
   - Miscelanea:
     - Autor: Miscelanea/about.md 
     - Licencias: Miscelanea/lic.md
