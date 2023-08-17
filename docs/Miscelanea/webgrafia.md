@@ -21,6 +21,7 @@
 * [Thonny](https://thonny.org/). Sencillo IDE para Python.
 
 * Guía [Programiz](https://www.programiz.com/python-programming) para aprender Python programando. Incluye un interesante [compilador online](https://www.programiz.com/python-programming/online-compiler/) y otros muchos recursos.
+* [Invent to Learn. Making, Tinkering, and Engineering in the Classroom](https://inventtolearn.com/) por Sylvia Libow Martinez & Gary Stager
 
 * Web [Ardutaller](https://www.ardutaller.com.es/principal) de Francisco Soldado.
 * [MicroBlocks Wiki](https://wiki.microblocks.fun/ide)
@@ -31,3 +32,7 @@
 * [Retos de Micro:bit con Python por Pedro Ruiz](https://github.com/pedroruizf/microbit/tree/master/python)
 
 * Consulta realizada en ¿Cómo podemos ayudarte? de micro:bit Help & Support con el [ticket 64940](https://support.microbit.org/support/tickets/64940) referente a un error 504 con una BBC micro:bit V2.00 sobre Ubuntu 22.04.2 LTS con navegador Chromium 114.0.5735.198 version.
+
+* [Tutorial Freenove Ultimate Starter Kit for Micro:bit](https://github.com/Freenove/Freenove_Ultimate_Starter_Kit_for_microbit)
+
+* [Otros tutoriales de Freenove](https://freenove.com/tutorial.html)

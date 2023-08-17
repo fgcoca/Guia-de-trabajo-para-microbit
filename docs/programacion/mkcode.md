@@ -99,20 +99,28 @@ Control de la pantalla LED.
 ## <FONT COLOR=#007575>**Arrays o arreglos**</font>
 Se van a utilizar para agregar, eliminar y sustituir elementos en listas. En MakeCode las listas se nombran indistintamente como array, matriz o lista y tienen su propio menú de bloques que es visible cuando desplegamos 'Avanzado'. Los bloques existentes están clasificados en los siguientes grupos:
 
-1. **Create**
-2. **Leer**
-3. **Modificar**
-4. **Operaciones**
+<a name="item0"></a>
+
+[**Create**](#item1)
+<br> [**Leer**](#item2)</br>
+<br> [**Modificar**](#item3)</br>
+<br> [**Operaciones**](#item4)</br>
 
 Describiremos estos grupos de forma somera porque esta es suficiente para entender lo que hace el bloque. No obstante, algunos se describen de manera mas explicita.
 
-### <FONT COLOR=#AA0000>Create</font>
+<a name="item1"></a>
+
+<FONT COLOR=#AA0000>Create</font>
 
 * **fijar 'nn' a**. Le da a la variable el valor de la entrada, para valores numéricos.
 * **fijar 'tt' a**. Le da a la variable el valor de la entrada, para texto.
 * **matriz vacia**. Crea una lista con los elementos que introduzcamos con el '+'.
 
-### <FONT COLOR=#AA0000>Leer</font>
+[Volver](#item0) 
+
+<a name="item2"></a>
+
+<FONT COLOR=#AA0000>Leer</font>
 
 * **longitud del arreglo**. Devuelve el número de elementos de una lista.
 * **obtener el valor en 'x'**. Obtiene el valor del elemento 'x'.
@@ -121,7 +129,10 @@ Describiremos estos grupos de forma somera porque esta es suficiente para entend
 * **obtener y eliminar el primer valor de (```shift```)**. Elimina y devuelve el primer elemento de una matriz. Se elimina el primer elemento de la matriz, por lo que la matriz se reduce en un elemento.
 * **obtener valor aleatorio**. Devuelve un valor al azar de la matriz.
 
-### <FONT COLOR=#AA0000>Modificar</font>
+[Volver](#item0)
+<a name="item3"></a>
+
+<FONT COLOR=#AA0000>Modificar</font>
 
 * **establecer el valor en 'x' a 'nn'**. Estable el valor del elemento 'x' al valor indicado en 'nn'.
 * **añadir valor 'nn' al final (```push```)**. Añade un nuevo elemento al final de una matriz.
@@ -131,7 +142,10 @@ Describiremos estos grupos de forma somera porque esta es suficiente para entend
 * **insertar en 'x' valor 'nn' (```insertAt```)**. Inserta el valor 'nn' en la posición espeífica indicada por 'x' aumentando la longitud del array en uno. El elemento se agrega a la matriz en la posición que indiquemos. Si ya hay un elemento en esa posición, entonces él y todos los elementos posteriores se desplazan a la posición superior siguiente.
 * **eliminar valor en 'x' (```removeAt```)**. Elimina el elemento que hay en la posición 'x'. El tamaño de la matriz se reduce en uno. El elemento se elimina de la matriz en la posición que indiquemos. Todos los demás elementos posteriores se desplazan hacia abajo a la posición inferior siguiente.
 
-### <FONT COLOR=#AA0000>Operaciones</font>
+[Volver](#item0)
+<a name="item4"></a>
+
+<FONT COLOR=#AA0000>Operaciones</font>
 
 * **bloque encontrar indice de (```IndexOf```)**. Devuelve la posición o índice de la primera aparición de un valor en una matriz. Devuelve un número, que es la posición en la matriz del elemento. El resultado es -1 si no se encuentra ninguna coincidencia.
 * **invertir (```reverse```)**. Invertir los elementos de una matriz.
@@ -174,7 +188,15 @@ Ahora bien, la variables como tal se eliminan de la zona de programa pero no del
 
 ## <FONT COLOR=#007575>**Bucles**</font>
 
-### <FONT COLOR=#AA0000>Bloque for</font>
+<a name="item0B"></a>
+
+[Bloque for](#item1B)
+<br> [Bloque while](#item2B)</br><br>
+[Bloque cada 'nn' ms](#item3B)</br><br>
+[Bloques salir y continuar](#item4B)</br>
+
+<a name="item1B"></a>
+<FONT COLOR=#AA0000>Bloque for</font>
 Son bloques que repiten el código asociado un número determinado de veces, Lo pueden hacer utilizando una variable como índice o estableciendo el número exacto de veces.
 
 El aspecto del bloque para recorrer con una variable lo vemos en la imagen siguiente:
@@ -231,7 +253,11 @@ En la imagen siguiente vemos un programa que utiliza este bloque. Hemos creado u
 
 </center>
 
-### <FONT COLOR=#AA0000>Bloque while</font>
+[Volver](#item0B)
+<a name="item2B"></a>
+
+<FONT COLOR=#AA0000>Bloque while</font>
+
 Se trata de un bloque que repite su bloque de código mientras la condición sea cierta (```True```). Su aspecto lo vemos en la imagen siguiente.
 
 <center>
@@ -254,7 +280,10 @@ Como ejemplo vamos a ver como dibujar una línea diagonal en los LEDs [(0,0) - (
 
 </center>
 
-### <FONT COLOR=#AA0000>Bloque cada 'nn' ms</font>
+[Volver](#item0B)
+<a name="item3B"></a>
+
+<FONT COLOR=#AA0000>Bloque cada 'nn' ms</font>
 Repite el código en segundo plano de forma contnuada en el intervalo de tiempo que se indique. Establecemos la cantidad de tiempo que el bucle espera antes de que el código en su interior se ejecute de nuevo. Esto es similar a un bucle "forever" (por siempre), en el sentido de que se ejecuta continuamente, excepto que hay un intervalo de tiempo establecido para esperar antes de que el bucle se ejecute la próxima vez. El bloque es muy útil si, por ejemplo, queremos estar comprobando cada cierto tiempo si ocurre un evento, como pulsar una tecla, escuchar un sonido, etc.
 
 En la imagen siguiente vemos el aspecto que tiene el bloque.
@@ -266,7 +295,10 @@ En la imagen siguiente vemos el aspecto que tiene el bloque.
 
 </center>
 
-### <FONT COLOR=#AA0000>Bloques salir y continuar </font>
+[Volver](#item0B)
+<a name="item4B"></a>
+
+<FONT COLOR=#AA0000>Bloques salir y continuar </font>
 Son los bloques equivalentes a las sentencias ```break``` y ```continue``` en MicroPython y funcionan exactamente igual, es decir, el bloque 'salir' permite salir de un bucle de forma inmediata y el bloque 'continuar' sirve para saltarse la iteración actual del bucle.
 
 Los bloques tienen el aspecto que vemos en la imagen.
@@ -599,3 +631,363 @@ A continuación vemos los pines que se pueden configurar en el bloque.
 * ![](../img/programacion/mkcode/pines/b/b10.png). Configura el pull del pin indicado. Hay muchos pines que se pueden configurar con pull-up. Por ejemplo, podemos establecer el valor de tensión de un pin a 3.3V o un "1" lógico.
 * ![](../img/programacion/mkcode/pines/b/b11.png). Emite una señal PWM al pin actual.
 * ![](../img/programacion/mkcode/pines/b/b12.png). Establece el pin que se utiliza para un tono musical analógico.
+
+## <FONT COLOR=#007575>**Programar Neopixels**</font>
+Los diodos LED RGB WS2812, o NeoPixel en el lenguaje de Adafruit, integran en un solo chip los diodos LEDs rojo, verde y azul junto con un chip controlador en un único encapsulado y son controlados a través de un único cable. Pueden utilizarse individualmente, encadenados en cadenas más largas o ensamblados en otros formatos.
+
+Existen multitud de formatos basados en Neopixels, algunos son: cosibles (weareables en genral), tiras, matrices, anillos, joyas, etc.
+
+<a name="item0Neo"></a>
+
+[Añadir extensión NeoPixel](#item1Neo)
+<br> [Programar Neopixels](#item2Neo)</br><br>
+[Arcoiris](#item3Neo)</br><br>
+[Rotar LEDs](#item4Neo)</br><br>
+[Encender específico o aleatorio](#item5Neo)</br><br>
+[Trazar diagrama de barras](#item6Neo)</br><br>
+[Dentro de un rango](#item7Neo)</br><br>
+[Cambio sentido desplazamiento por posición](#item8Neo)</br>
+<br>
+[Personalizar colores RGB](#item9Neo)</br>
+
+<a name="item1Neo"></a>
+<FONT COLOR=#AA0000>Añadir extensión NeoPixel</font>
+
+Estando situados en https://makecode.microbit.org/ hacemos clic en Extensiones y se nos mostrará en el navegador un listado de extensiones recomendadas con una barra de búsqueda y otras opciones para ver extensiones por temas. En cada una de ellas nos encontraremos con un enlace 'Learn More' para aprender mas sobre la extensión y acceder a ejemplos que la utilizan.
+
+<center>
+
+![Extensiones para MakeCode](../img/programacion/mkcode/neopix/neo1.png)  
+*Extensiones para MakeCode*
+
+</center>
+
+Si aparece en la pantalla (es mi caso) simplemente hacemos clic sobre la extensión y si no la escribimos en la barra de búsqueda y una vez localizada hacemos clic sobre la misma.
+
+Ahora deberíamos tener un nuevo conjunto de bloques NeoPixel en la caja de herramientas de MakeCode. Estos bloques se guardan con el proyecto actual, pero hay que añadirlos de nuevo para otros proyectos.
+
+<center>
+
+![Extensión Neopixels añadida](../img/programacion/mkcode/neopix/neo2.png)  
+*Extensión Neopixels añadida*
+
+</center>
+
+Ya estamos listos para comenzar a programar con los bloques de la extensión.
+
+[Volver](#item0Neo)
+<a name="item2Neo"></a>
+
+<FONT COLOR=#AA0000>Programar Neopixels</font>
+
+Una vez instalada la extensión NeoPixel, podemos empezar a programar con los bloques específicamente diseñados para controlar los LEDs. Lo primero que hay que hacer es informar a MakeCode sobre el NeoPixel conectado. Esto es lo que se conoce como inicializar o configurar el entorno de programación y hay muchos componentes que lo requieren, los Neopixel son uno de ellos. Esta configuración hay que hacerla en un bloque 'al iniciar'. Hay que indicar:
+
+* Número de LEDs.
+* El pin al que tenemos conectados los NeoPixels.
+* Salvo que estemos usando LEDs blancos el formato será RGB.
+
+El bloque de configuración inicial es:
+
+<center>
+
+![Bloque de configuración inicial](../img/programacion/mkcode/neopix/neo3.png)  
+*Bloque de configuración inicial*
+
+</center>
+
+Con este bloque configurado, MakeCode inicializará el dispositivo NeoPixel cada vez que se ejecute el programa. Si conectamos más de un NeoPixel, MakeCode generará automáticamente bloques de conjuntos como el anterior, y los nombrará strip2, strip3, etc... Lógicamente podemos renombrar las tiras como queramos.
+
+Vamos a describir brevemente unos bloques mínimos para comenzar a trabajar.
+
+* ![](../img/programacion/mkcode/neopix/B/bneo1.png). Establece el color indicado para la tira seleccionada. Por defecto el bloque está configurado con otro bloque que permite escoger entre una gama básica de colores.
+
+<center>
+
+![Colores básicos en el bloque 'color'](../img/programacion/mkcode/neopix/neo4.png)  
+*Colores básicos en el bloque 'color'*
+
+</center>
+
+* ![](../img/programacion/mkcode/neopix/B/bneo2.png). Bloque color con la gama básica de colores para seleccionar.
+* ![](../img/programacion/mkcode/neopix/B/bneo3.png). Bloque para configurar el color en formato [HLS](../conceptos/avanzados.md).
+* ![](../img/programacion/mkcode/neopix/B/bneo4.png). Establecer la luminosidad de los LEDs.
+* ![](../img/programacion/mkcode/neopix/B/bneo6.png). Mostrar la información programada en los Neopixels conectados.
+
+Veamos un primer ejemplo sencillo que nos aclare estos conceptos. Se trata de configuar y poner un anillo de 8 LEDs en diferentes colores a intervalos de 1s. El anillo se alimenta a 5V por lo que escogemos el esquema de montaje de baja potencia y dispositivo con alimentación a 5V.
+
+<center>
+
+![Conexionado para dispositivo 5V y bajo consumo](../img/conceptos/avanzados/conex_5V_bajaI.png)  
+*Conexionado para dispositivo 5V y bajo consumo*
+
+</center>
+
+El programa puede ser similar al siguiente:
+
+<center>
+
+![Ejemplo básico con cambio entre varios colores](../img/programacion/mkcode/neopix/ej_camb_var_colores.png)  
+*Ejemplo básico con cambio entre varios colores*
+
+</center>
+
+Podemos observar como directamente el simulador se ha configurado y conectado según la definición realizada. Se conecta a una tira de 8 LEDs simulados. En la animación observamos al simulador en funcionamiento según el programa anterior. Observamos que el color negro se representa en gris a efectos de la simulación, en la realidad corresponde a todos los LEDs apagados.
+
+[Descargar el programa](../ejemplos/microbit-ej_camb_var_colores.hex)
+
+<center>
+
+![Funcionamiento del ejemplo básico con cambio entre varios colores](../img/programacion/mkcode/neopix/ej_camb_var_colores.gif)  
+*Funcionamiento del ejemplo básico con cambio entre varios colores*
+
+</center>
+
+En el programa se observa el bloque de configuración de la luminosidad como se establece al principio. Se insta al lector a realizar modificaciones del parámetro para ver su efecto en un circuito real.
+
+Vamos a ver otro ejemplo en el que vamos a ir cambiando los colores según el formato HSL, en concreto vamos a recorrer la rueda de colores según el matiz para una saturación del 100% y una luminosidad del 50%. El programa es el siguiente.
+
+[Descargar el programa](../ejemplos/microbit-ej_rueda_S100_L50.hex)
+
+<center>
+
+![Ejemplo básico con cambio entre varios colores](../img/programacion/mkcode/neopix/ej_rueda_S100_L50.png)  
+*Ejemplo básico con cambio entre varios colores*
+
+</center>
+
+[Volver](#item0Neo)
+<a name="item3Neo"></a>
+
+<FONT COLOR=#AA0000>Arcoiris</font>
+
+* ![](../img/programacion/mkcode/neopix/B/bneo7.png). Muestra los 7 colores del arcoiris recorriendo la rueda de color entre 1 y 360. Si cambiamos el rango restringimos la gama de colores.
+* ![](../img/programacion/mkcode/neopix/B/bneo8.png). Desplaza LEDs que se muestran en la cantidad indicada. Si la cantidad se hace negativa el desplazamiento se realiza en sentido contrario.
+
+Veamos un ejemplo en el que se muestran los colores del arcoiris y desaparece uno de ellos cada segundo.
+
+[Descargar el programa](../ejemplos/microbit-arco_1.hex)
+
+El programa es:
+
+<center>
+
+![Arcoiris básico](../img/programacion/mkcode/neopix/arco_1.png)  
+*Arcoiris básico*
+
+</center>
+
+Se recomienda probar con el desplazamiento negativo y con valores diferentes de la unidad.
+
+[Volver](#item0Neo)
+<a name="item4Neo"></a>
+
+<FONT COLOR=#AA0000>Rotar LEDs</font>
+
+* ![](../img/programacion/mkcode/neopix/B/bneo9.png). Va rotando la posición de los LED en la cantidad especificada manteniendo todos los LEDs encendidos.
+
+En el ejemplo anterior vamos a cambiar el bloque desplazar por el de rotar y observar lo que ocurre. Se produce un desplazamiento de los colores de los LEDs según la cantidad indicada. Si esta cantidad se hace negativa el desplazamiento se realiza en sentido contrario.
+
+Muy útil para programar efectos de colores repetitivos.
+
+El programa ahora es:
+
+<center>
+
+![Arcoiris rotando](../img/programacion/mkcode/neopix/arco_rot1.png)  
+*Arcoiris rotando*
+
+</center>
+
+[Volver](#item0Neo)
+<a name="item5Neo"></a>
+
+<FONT COLOR=#AA0000>Encender específico o aleatorio</font>
+
+* ![](../img/programacion/mkcode/neopix/B/bneo10.png). Este bloque permite especificar el color de un píxel concreto.
+
+Un programa como el siguiente parte de todos los LEDs apagados y los va encendiendo de color amarillo uno a uno con un retardo de medio segundo hasta encender los 8 LEDs.
+
+<center>
+
+![Encender específico](../img/programacion/mkcode/neopix/especifico.png)  
+*Encender específico*
+
+</center>
+
+Vamos a modificar el programa anterior para que cada vez que pulsamos el botón A se encienda un LED aleatorio de un determinado color. El programa es el siguiente:
+
+<center>
+
+![Encender aleatorio](../img/programacion/mkcode/neopix/aleatorio.png)  
+*Encender aleatorio*
+
+</center>
+
+[Volver](#item0Neo)
+<a name="item6Neo"></a>
+
+<FONT COLOR=#AA0000>Trazar diagrama de barras</font>
+
+* ![](../img/programacion/mkcode/neopix/B/bneo11.png). El funcionamiento del bloque es básicamente como el de un vúmetro de sonido escribiendo en los LEDs el valor especificado en el rango.
+* ![](../img/programacion/mkcode/neopix/B/bneo12.png). Averigua cuál es el nivel de sonido que escucha el micrófono. Este bloque requiere de una **micro:bit V2**. Si se utiliza con una placa micro:bit v1, aparecerá el código de error 927 en la pantalla.
+
+Un programa como el siguiente registra la lectura del nivel de sonido y en función del valor enciende un número mayor o menor de LEDs.
+
+<center>
+
+![Nivel de sonido con trazar diagrama de barras](../img/programacion/mkcode/neopix/barras_sonido.png)  
+*Nivel de sonido con trazar diagrama de barras*
+
+</center>
+
+[Volver](#item0Neo)
+<a name="item7Neo"></a>
+
+<FONT COLOR=#AA0000>Dentro de un rango</font>
+
+* ![](../img/programacion/mkcode/neopix/B/bneo13.png). Permite establecer como valor de una variable un rango de LEDs de la tira. El objetivo es poder cambiar todo el rango a la vez.
+
+Vamos a crear un programa con dos variables de rango, en una ponemos una configuración de rango de LEDs y en la otra su complementario, es decir, el resto de LEDs. Ahora establecemos un color diferente para ambos rangos cuando pulsamos el botón A y mostramos el resultado. Para el botón B simplemente cambiamos los colores de cada rango. El efecto final es que un grupo de LEDs se encienden de un color y el otro grupo de otro color y al pulsar los botones esos grupos van alternandose.
+
+[Descargar el programa](../ejemplos/microbit-rangos.hex)
+
+El programa es:
+
+<center>
+
+![Dentrro de un rango](../img/programacion/mkcode/neopix/rangos.png)  
+*Dentrro de un rango*
+
+</center>
+
+[Volver](#item0Neo)
+<a name="item8Neo"></a>
+
+<FONT COLOR=#AA0000>Cambio sentido desplazamiento por posición</font>
+
+* ![](../img/programacion/mkcode/neopix/B/bneo14.png). Obtiene el valor de la aceleración (miligramos-fuerza) en una de las tres dimensiones, o la fuerza combinada en todas las direcciones (x, y, y z). Es capaz de encontrar la aceleración del micro:bit, es decir los rápido que se está acelerando o ralentizando.
+
+La aceleración se mide con el miligramos-g, que equivale a la milésima parte de la aceleración de la gravedad "g". Un "g" es la aceleración que produce la gravedad terrestre.
+
+El bloque permite seleccionar entre los siguientes parámetros:
+
+* **x**: aceleración en dirección izquierda y derecha.
+* **y**: aceleración hacia delante y hacia atrás.
+* **z**: aceleración hacia arriba y hacia abajo.
+* **fuerza**: la fuerza resultante de la aceleración de las tres dimensiones (direcciones).
+
+**Repasemos un poco las fuerzas en el espacio**
+
+Todas las fuerzas que nos afectan se se producen en un espacio tridimensional. Si el movimiento de un objeto no es exactamente en la dirección de un eje, necesitamos una forma de calcular su aceleración a partir de los valores medidos para todos los ejes.
+
+Se pueden realizar cálculos de estas fuerzas en el [Espacio euclídeo](https://es.wikipedia.org/wiki/Espacio_eucl%C3%ADdeo) (también llamado espacio euclidiano) que es un tipo de espacio geométrico donde se satisfacen los axiomas de Euclides de la geometría. En el gráfico vemos como se sitúa un punto en un espacio euclídeo de tres dimensiones.
+
+<center>
+
+![Punto en espacio euclídeo 3D](../img/programacion/mkcode/neopix/p_espacio_3D.png)  
+*Punto en espacio euclídeo 3D*
+
+</center>
+
+Si ponemos la micro:bit en una mesa nivelada y la empujamos diagonalmente, obtendremos una aceleración en dos dimensiones. Se puede calcular la aceleración en esa dirección igual que se calcula la hipotenusa en un triángulo rectángulo, es decir:
+
+<center>
+$F_{2D} = \sqrt{a_{x}^{2}+a_{y}^{2}}$
+</center>
+
+Si se levanta la micro:bit de la mesa se añade otra dimensión, la Z, de manera que hay que inserta el valor de aceleración para el eje Z en la ecuación:
+
+<center>
+$F_{3D} = \sqrt{a_{x}^{2}+a_{y}^{2}+a_{z}^{2}}$
+</center>
+
+Este cálculo se denomina norma euclidiana de aceleración.
+
+En el siguiente programa, utilizamos el valor de aceleración (que se encuentra en las herramientas de entrada) para desplazar los píxeles en una dirección o en la contraria cuando la micro:bit se inclina hacia la izquierda o hacia la derecha.
+
+[Descargar el programa](../ejemplos/microbit-acelera_xy.hex)
+
+<center>
+
+![Control sentido rotación con la aceleración xy](../img/programacion/mkcode/neopix/acelera_xy.png)  
+*Control sentido rotación con la aceleración xy*
+
+</center>
+
+El simulador es capaz de responder a los movimientos de inclinación moviendo el ratón sobre la micro:bit a un lado y al otro.
+
+[Volver](#item0Neo)
+<a name="item9Neo"></a>
+
+<FONT COLOR=#AA0000>Personalizar colores RGB</font>
+
+* ![](../img/programacion/mkcode/neopix/B/bneo15.png). Permite establecer los valores RGB para obtener un color determinado.
+
+En el programa siguiente vemos un ejemplo de aplicación de este bloque.
+
+<center>
+
+![Control sentido rotación con la aceleración xy](../img/programacion/mkcode/neopix/B_RGB.png)  
+*Control sentido rotación con la aceleración xy*
+
+</center>
+
+[Descargar el programa](../ejemplos/microbit-B_RGB.hex)
+
+## <FONT COLOR=#007575>**Bloques de Música**</font>
+Los bloques que vamos a describir a continuación requieren de una micro:bit V2. Si se utilizan con una placa micro:bit V1, se generará el **código de error 927** en la pantalla.
+
+Es posible cambiar el pin de salida utilizando en "Inicializar" el bloque ![](../img/programacion/mkcode/musica/M2b.png)
+
+* ![](../img/programacion/mkcode/musica/M1.png). El bloque permite componer, a partir de las notas básicas y el tempo establecido, melodias sencillas o bien seleccionar las de la galería.
+* ![](../img/programacion/mkcode/musica/M2.png). Reproduce un tono en el pin0 durante el tiempo indicado. La frecuencia del tono se establece como un número de ciclos por segundo y la duración del tono se establece como un número de milisegundos. Es habitual utilizar una fracción de tiempo para la duración del tono.
+* ![](../img/programacion/mkcode/musica/M3.png). Reproduce el tono indicado, que se puede seleccionar con el teclado que aparece al pulsar sobre el nombre del tono. Durante el cambio podemos ver un número que es justo el tiempo en milisegundo que dura la nota.
+* ![](../img/programacion/mkcode/musica/M4.png). Silencio durante el tiempo especificado.
+* ![](../img/programacion/mkcode/musica/M5.png). Establecde el volumen de salida predeterminado entre 0 y 255.
+* ![](../img/programacion/mkcode/musica/M6.png). Devuelve el nivel de volumen actual del sintetizador.
+* ![](../img/programacion/mkcode/musica/M7.png). Detiene la reproducción del sonido actual y de cualquier otro en espera de reproducirse. 
+* ![](../img/programacion/mkcode/musica/M8.png). Cambia en tempo en la cantidad indicada. Los valores negativos hacen la melodia mas lenta. El número bmp (beats per minute) indica el número de pulsos en un minuto.
+* ![](../img/programacion/mkcode/musica/M9.png). Establece el tempo a la cantidad indicada. 
+* ![](../img/programacion/mkcode/musica/M10.png). Devuelve la duración de un pulso en milisegundos.
+* ![](../img/programacion/mkcode/musica/M11.png). Devuelve el tempo en pbm
+* ![](../img/programacion/mkcode/musica/M12.png). Reproduce una expresión sonora, que es un conjunto preformateado de tonos que crean un sonido determinado. Hay varios sonidos para elegir.
+* ![](../img/programacion/mkcode/musica/M13.png). Detiene la melodia musical. Las melodías se reproducen en primer (foreground) o segundo (background) plano. Esto permite que haya más de una melodía activa a la vez. Si una melodía está configurada para reproducirse en segundo plano, puede interrumpirse o pausarse temporalmente mientras se reproduce una melodía configurada en primer plano. Si la melodía en primer plano no está configurada para reproducirse siempre (loop), la melodía en segundo plano se reanudará cuando finalice la melodía en primer plano.
+* ![](../img/programacion/mkcode/musica/M14.png). Genera eventos para melodías o eventos musicales.
+* ![](../img/programacion/mkcode/musica/M15.png). Reproduce una expresión de sonido.
+* ![](../img/programacion/mkcode/musica/M16.png). Es un generador de señales de diferentes formas. Hay muchos ajustes diferentes y se puede reproducir la configuración concreta antes de cerrar la ventana. En la animación vemos brevemente como funciona y a continuación se indican los parámetros que describen al sonido.
+
+<center>
+
+![](../img/programacion/mkcode/musica/M16.gif)
+
+</center>
+
+Los parámetros especifican una forma de onda base, el rango de frecuencia, el volumen del sonido y los efectos. Los datos de sonido se crean como un objeto Sonido y pueden reproducirse en el altavoz, los auriculares o en una clavija de salida.
+
+* **waveShape**: forma primaria de la onda:
+    - sinusoidal: forma de onda sinusoidal
+    - diente de sierra: forma de onda diente de sierra
+    - triángulo: forma de onda triangular
+    - square: forma de onda cuadrada
+    - ruido: forma de onda generada por ruido aleatorio
+
+* **startFrequency**: un número que es la frecuencia de la forma de onda cuando comienza la expresión sonora.
+* **endFrequency**: un número que es la frecuencia de la forma de onda cuando la expresión sonora se detiene.
+* **startVolume**: un número que es el volumen inicial de la expresión sonora.
+* **endVolume**: un número el volumen final de la expresión sonora.
+* **duration**: un número la duración en milisegundos de la expresión sonora.
+* **effect**: un efecto para añadir a la forma de onda. Estos efectos son:
+
+    - trémolo: añade ligeros cambios de volumen a la expresión sonora.
+    - vibrato: añade ligeros cambios de frecuencia a la expresión sonora.
+    - warble: similar al vibrato pero con variaciones más rápidas en los cambios de frecuencia.
+
+* **interpolation**: controla la tasa de cambio de frecuencia en la expresión sonora.
+
+    - linear: el cambio de frecuencia es constante durante toda la duración del sonido.
+    - curve: el cambio de frecuencia es más rápido al principio del sonido y se ralentiza hacia el final.
+    - logarithmic: el cambio de frecuencia es rápido durante la primera parte del sonido.
+
+* ![](../img/programacion/mkcode/musica/M17.png). Crea una cadena que es una expresión sonora.
+* ![](../img/programacion/mkcode/musica/M18.png). Obtiene el nivel de volumen actual del sintetizador de sonido.
+* ![](../img/programacion/mkcode/musica/M19.png). Activa/desactiva el altavoz de la micro:bit para reproducir música y sonidos.

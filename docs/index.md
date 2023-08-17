@@ -239,6 +239,10 @@ La alimentación de la micro:bit puede ser a través de los 5V del conector USB 
 
 </center>
 
+Especialmente cuando conectamos elementos externos a nuestra micro:bit es importante tener presentes los **valores límite de corriente** debido a la máxima corriente que puede suministrar la placa de manera segura.
+
+* Corriente máxima para el conector de borde es de 190 mA.
+
 ### <FONT COLOR=#AA0000>Interface</font>
 El chip de interfaz maneja la conexión USB y se usa para actualizar el código nuevo en la micro:bit, enviar y recibir datos en serie de forma bidireccional.
 

@@ -13,6 +13,498 @@ Cada uno de los LEDs es direccionable de manera individual gracias al circuito e
 
 El WS2812B incluye un oscilador interno de precisión y un circuito de control de corriente constante programable de 12 V, lo que garantiza de manera efectiva qimgue la intensidad del color sea consistente. El protocolo de transferencia de datos utiliza un único modo de comunicación de multiplexado NZR.
 
+En la figura siguiente vemos el aspecto de un diodo LED RGB individual en formato inserción y SMD.
+
+<center>
+
+![Aspecto de un diodo LED RGB direccionable](../img/conceptos/avanzados/LED_neop.png)  
+*Aspecto de un diodo LED RGB direccionable*
+
+</center>
+
+<a name="item0neo"></a>
+
+[Aspectos previos](#item1neo)
+<br> [Aspectos técnicos](#item2neo)</br><br>
+[Alimentación: generalidades](#item3neo)</br><br>
+[Alimentación: proyectos portátiles](#item4neo)</br><br>
+[Alimentación: proyectos escritorio](#item5neo)</br><br>
+[Alimentación: requisitos energia](#item6neo)</br>
+
+<a name="item1neo"></a>
+
+<FONT COLOR=#AA0000>Aspectos previos</font>
+
+Para transmitir información digital esta se debe sincronizar mediante una convención especial, la codificación. Dos dispositivos llevan una comunicación por cable convirtiendo la información a transmitir en un flujo de bits (0 y 1) o "Dates" que se suele nombrar con la letra D y que va acompañada de una señal de reloj para sincronizar las transmisiones. La forma convencional de transmisión digital se componen de una línea de datos mas una línea de reloj. Ahora bien, cualquier ligera desviación en la longitud de estas líneas hará que eimgl receptor no cumpla con el tiempo de establecimiento del muestreo de datos, originando errores en los datos. La forma de asegurar que esas líneas son idénticas es que sean la misma línea, lo que hace que aparezcan códigos que fusionan los datos y el reloj, entre los que están los código RZ, NRZ y NRZI que vamos a ver someramente a continuación.
+
+* **Codificación RZ**. El acrónimo de de "Return Zero" o retorno cero y su característica es que se transmiten bits de datos dentro de cada periodo de la señal. En la figura siguiente los datos se representan en rojo y vemos que ocupan una parte del periodo T, siendo cero el resto del tiempo. Este sistema se denomina RZ unipolar o retorno a cero unipolar y como se observa en la figura un nivel bajo indica 0 y un nivel positivo indica 1.
+
+<center>
+
+![Código RZ unipolar](../img/conceptos/avanzados/RZ-uni.png)  
+*Código RZ unipolar*
+
+</center>
+
+El código de retorno a cero se divide en un código de retorno a cero unipolar y un código de retorno a cero bipolar en el que el nivel alto indica 1 y el nivel negativo 0, tal y como vemos en la imagen siguiente:
+
+<center>
+
+![Código RZ bipolar](../img/conceptos/avanzados/RZ-bip.png)  
+*Código RZ bipolar*
+
+</center>
+
+* **Codificación NRZ**. El acrónimo es de "Not Return Zero" o código sin retorno a cero y se diferencia del RZ en que no necesita retornar a cero. En la figura siguiente vemos gráficamente el código.
+
+<center>
+
+![Código NRZ](../img/conceptos/avanzados/NRZ.png)  
+*Código NRZ*
+
+</center>
+
+En el datasheet estos código se denominan T0H y T0L.
+
+El funcionamiento de una agrupación en cascada como la de la figura siguiente se puede resumir diciendo que: el circuito integrado de cada LED puede almacenar 3 bytes (24 bits), un byte para cada color. Solo el primer LED está conectado al Pin de control, en este caso, un pin digital de nuestra placa, que enviará la cadena de todos los colores según el número de pixeles que estén conectados y a su vez el primer LED recibirá la información de todos los colores uno tras otro. La información se transmite de un LED a otro porque cuando un LED recibe 3 bytes nuevos de información entrega al siguiente LED los 3 bytes que contenía anteriormente, de esta manera cuando la placa con el programa termina de mandar todos los colores por el pin de datos el primer LED habría recibido y enviado todos los colores para quedarse finalmente con el color que le corresponde y así el resto de LEDs. De esta forma una tira de LEDs RGB direccionables es un dispositivo digital de salida, es decir su funcionamiento consiste en recibir la información del color a mostrar y mostrarlo.
+
+<center>
+
+![Conexión en cascada de LEDs RGB direccionables](../img/conceptos/avanzados/cascada.png)  
+*Conexión en cascada de LEDs RGB direccionables*
+
+</center>
+
+[Volver](#item0neo)
+<a name="item2neo"></a>
+
+<FONT COLOR=#AA0000>Aspectos técnicos</font>
+
+Los LEDs RGB direccionables se suelen suministrar en tiras de diferentes longitudes y con distinto número de LEDs y a veces se dispone la tira en forma de matriz. En la figura siguiente vemos el aspecto de algunos tipos.
+
+<center>
+
+![Tira y matriz de LEDs RGB direccionables](../img/conceptos/avanzados/tira.png)  
+*Tira y matriz de LEDs RGB direccionables*
+
+</center>
+
+Tienen 3 cables asociados a un conector y dos cables extra para añadir alimentación externa cuando es necesario porque la placa de control no entrega suficiente corriente para alimentar al conjunto. Cuando se trabaja con una tira de pocos LEDs no es necesario añadir esta alimentación externa, ya que placas como Arduino UNO o la ESP32 STEAMakers pueden suministrar la corriente que necesitan.
+
+Cualquier tira de LEDs RGB (sea cual sea su disposición en línea, como matriz, etc) debe utilizarse siempre en la dirección que marca el terminal hembra como entrada y el conector macho como salida. Las podemos ir conectando entre sí pero siempre respetando este sentido de la tira. Junto a cada led RGB está indicada la dirección de la tira mediante un triángulo y también a qué pin debe ir conectado cada cable. Vemos +5V que corresponde a Vcc, GND, y en medio que pone Din o D0 que corresponde al pin digital de entrada de datos que debemos conectar al pin de salida de la placa de control.
+
+También las podemos cortar por cualquiera de las líneas existentes entre cada uno de los LEDs y que está marcado con la línea de corte. El corte debe hacerse dejando la mitad del pad de cobre a un lado y otro de la línea y así poder unir después entre ellas con conectores especializados o soldándolas.
+
+<center>
+
+![Dirección y línea de corte en tira de LEDs RGB direccionables](../img/conceptos/avanzados/direc-corte.png)  
+*Dirección y línea de corte en tira de LEDs RGB direccionables*
+
+</center>
+
+Otra configuración con este tipo de dispositivos lo vemos a continuación:
+
+<center>
+
+![Módulo de 8 LEDs RGB direccionables](../img/conceptos/avanzados/8xneo.png)  
+*Módulo de 8 de LEDs RGB direccionables*
+
+</center>
+
+Estos módulos son enchufables y por tanto ampliables. En la parte posterior están claramente marcados los pines de entrada y los de salida por lo que podemos conectarlos en cascada.
+
+<center>
+
+![Conexionado de tres módulos de 8 LEDs RGB direccionables](../img/conceptos/avanzados/interc_mods_8xneo.png)  
+*Conexionado de tres módulos de 8 LEDs RGB direccionables*
+
+</center>
+
+[Volver](#item0neo)
+<a name="item3neo"></a>
+
+<FONT COLOR=#AA0000>Alimentación de Neopixel</font>
+
+Vamos a comenzar por dar de forma destacada las tres recomendaciones que indican en la guía de Adafruit, que son:
+
+<center>
+
+![](../img/conceptos/avanzados/alim_consejos.png)  
+
+</center>
+
+[Volver](#item0neo)
+<a name="item4neo"></a>
+
+<FONT COLOR=#FFA00FF>Proyectos portátiles</font>
+
+Se configuran con relativamente pocos LEDs y por lo tanto no tienen un excesivo consumo por lo que podemos alimentarlos con pilas o baterías.
+
+* Las baterías recargables de una celda (figura siguiente) de polímero de litio entregan 3,7V que son perfectos para alimentar microcontroladores y unos pocos LEDs direccionables.
+
+<center>
+
+![Baterías Lipo 1S](../img/conceptos/avanzados/1S.png)  
+*Baterías Lipo 1S*
+
+</center>
+
+* Pilas AA o AAA. Se pueden usar tres pilas alcalinas con su correspondiente portapilas. Esto proporciona 4.5V. El inconveniente respecto a las baterías lipo es que son mas grandes y pesadas y la ventaja es que son muy fáciles de conseguir.
+
+* Pilas recargables de hidruro metálico de níquel. En este caso hay que utilizar cuatro unidades de 1.2V con su soporte de cuatro celdas. Esto nos va a proporcionar 4.8V. Tenemos que asegurarnos de usar solamente pilas NiMH porque si colocamos pilas normales de 1.5V estaremos creando una tensión total de 6V y esto es muy probable que rompa el microcontrolador o algún LED.
+
+* Otros medios pueden ser utilizar porwerbanks de la tensión adecuada o alguna de las anteriores de mayor tensión intercalando un convertidor reductor que se adapte a las condiciones de entrada de tensión de que disponemos y que su salida suministre los 5V requeridos. Hay que tener en cuenta el rango de tensión de entrada que requiere el convertidor específico y la corriente máxima de salida.amperimetro
+
+[Volver](#item0neo)
+<a name="item5neo"></a>
+
+<FONT COLOR=#FFA00FF>Proyectos de escritorio</font>
+
+Si estamos hablando de tiras de hasta un metro con una fuente de alimentación conmutada de 5V/2A en CC típica tendremos suficiente.
+
+Si se requiere mas corriente resulta tentador utilizar una fuente de laboratorio, pero hay que mucho cuidado porque pueden producir un gran pico de tensión cuando se encienden. Este pico es mas que suficiente para destruir instantáneamente los LEDs direccionables.
+
+Si se usa una fuente de laboratorio, **NO** conectamos la tira directamente. Primero encendemos la fuente de alimentación, dejamos pasar unos segundo que el voltaje se estabilice, luego conectamos la tira, asegurándonos de conectar en primer lugar GND.
+
+[Volver](#item0neo)
+<a name="item6neo"></a>
+
+<FONT COLOR=#FFA00FF>Requisitos de energia</font>
+
+Cada LED individual consume hasta 60 miliamperios con el máximo brillo blanco (rojo + verde + azul). Sin embargo, en el uso real, es raro que todos los píxeles se enciendan de esa manera. Al mezclar colores y mostrar animaciones, el consumo puntual será mucho menor. Es imposible estimar un número para todas las circunstancias, pero se ha experimentado que usando la tercera parte de los 60 mA (20 mA por píxel) como regla general funciona correctamente. Pero si sabemos con certeza que necesitamos cada píxel con el máximo brillo, tenemos que usar la cifra 60 mA.
+
+Para estimar las necesidades de suministro de energía, basta multiplicar la cantidad de píxeles por 20, o por 60 mA y obtendremos el consumo total en miliamperios. Por ejemplo:
+
+<center>
+
+8 LEDs x 20 mA = 160 mA (muy cercano a los 190 mA máximo de borde de placa en micro:bit)
+
+60 LEDs × 20 mA = 1200 mA = 1.2 A como mínimo
+
+60 LEDs × 60 mA = 3600 mA = 3.6 A como mínimo
+
+256 LEDs x 20 mA = 5120 mA = 5.12 A como mínimo
+
+256 LEDs x 60 mA = 15360 mA = 15.36 A como mínimo
+
+</center>
+
+Parece evidente que en casi todos los casos hay que recurrir a una alimentación externa, ya sea directamente a los LEDs o a través de una placa de expansión alimentada de manera adecuada para que no sea la micro:bit la que entrega la corriente demandada.
+
+La elección de la fuente de alimentación depende de nosotros pero es evidente que la máxima seguridad y fiabilidad se consigue con una fuente de alimentación de dimensiones más generosas, y esto es lo que recomendamos. La mayoría de las fuentes de alimentación pueden entregar un poco de corriente adicional durante períodos breves de tiempo e incluso algunas contienen un fusible térmico y simplemente se apagarán si se sobrecargan. Por lo tanto, aunque técnicamente pueden funcionar, digamos que no es recomendable abusar de ellas.
+
+Un factor a tener en cuenta es que si vamos a alimentar con baterías estas se vuelven progresivamente mas pesadas, costosas y peligrosas, así que por razones de seguridad habría que minimizar el tamaño de las baterías.
+
+Por otro lado tenemos que tener en cuenta la sección del conductor que será más barato y menos pesado cuanto menor sea esta, es decir, cuanta menor corriente deba soportar y que cuanto menor sea la corriente menor será el calor generado.
+
+En general podemos decir que:
+
+* La regla general de los "60 miliamperios" es solo eso... una regla general, no ciencia pura.
+* Al animar y mezclar colores, el consumo de corriente será menor. A veces mucho menos.
+* Incluso cuando se establece el color en 0 (LEDs apagados), la lógica del controlador dentro de cada Pixel usa una pequeña cantidad de corriente por debajo de 1 miliamperio por píxel, pero con muchos píxeles esto debería también sumarse.
+
+La biblioteca NeoMatrix utiliza la corrección gamma para seleccionar niveles de brillo que son visualmente (aunque no numéricamente) equidistantes. Hay 32 niveles para rojo y azul, 64 niveles para verde. La función Color() realiza la conversión necesaria; no necesitamos hacer ningún cálculo. Acepta valores de rojo, verde y azul de 8 bits y devuelve un color de 16 bits con corrección gamma.
+
+La respuesta final a todo esto es que usualmente los LEDs no estarían encendidos todos juntos, por lo que elegir una fuente de alimentación se vuelve una adivinanza. Podemos asumir para nuestros proyectos que el 75% de los pixels están encendidos en cualquier momento y que cada uno tiene solo un color, con lo que las corrientes anteriores quedan así:
+
+<center>
+
+60 LEDs: 45×20 mA = 0.9 A
+
+256 LEDs: 192 x 20 mA = 3.84 A
+
+512 LEDs: 384 x 20 mA = 7.68 A
+
+</center>
+
+La única forma 100% segura de saber con certeza el consumo es programar las luces y medir el consumo de corriente con un amperímetro.
+
+## <FONT COLOR=#007575>**Placas de expansión para micro:bit**</font>
+Aunque existen muchas versiones de distintos fabricantes en nuestro caso vamos a describir tres de ellas. Basicamente la funcionalidad de ampliación de pines es la misma en todas ellas y se distinguen porque incluyen diferentes funcionalidades, distribución de pines o drivers para motores.
+
+<a name="item0exp"></a>
+
+[Freenove](#item1exp)
+<br> [Keyestudio](#item2exp)</br><br>
+[DFROBOT](#item3exp)</br>
+
+<a name="item1exp"></a>
+
+<FONT COLOR=#AA0000>Freenove</font>
+
+Tiene el siguiente aspecto:
+
+<center>
+
+![Extension board de Freenove](../img/conceptos/avanzados/EB_free.png)  
+*Extension board de Freenove*
+
+</center>
+
+La placa viene preparada con:
+
+* Un conector para alimentación externa de 7 a 12V
+* Un puerto USB-Micro para conectarla al ordenador
+* Un puerto USB-A colocado en vertivcal para conectar la micro:bit
+* Un diodo LED D1 indicador de 5V
+* Un diodo LED D2 indicador de 3.3V
+
+Para los mas expertos (requiere bastantes conocimientos de electrónica) aquí dejo el [esquema de la placa de control](../datasheet/Esquema_ControlBoard.pdf)
+
+[Volver](#item0exp)
+<a name="item2exp"></a>
+
+<FONT COLOR=#AA0000>Keyestudio</font>
+
+Una micro:bit por si sola no tiene potencia suficiente para controlar directamente motores DC. La placa [KS4033 Keyestudio Micro bit DRV8833 Motor Driver Expansion Board](https://www.keyestudio.com/products/keyestudio-micro-bit-drv8833-motor-driver-expansion-board) incorpora un driver para motores DC con un chip DRV8833CPWP que entrega una corriente máxima de 700mA. Además, dispone de cuatro modos de control del motor: rotación en sentido horario, rotación en sentido antihorario, arranque y parada. PWM soporta frecuencias de hasta 100 kHz. Los motores van en el conector azul con clemas atornilladas para mayor facilidad y fiabilidad del conexionado. La placa también incorpora interfaces de 3 pines para conectar otros sensores.
+
+Los pines A1, A2, B2 y B1 del conector azul de la placa de expansión son controlados por P13, P12, P15 y P16 de la placa micro:bit.
+
+<center>
+
+![Extension board de Keyestudio](../img/conceptos/avanzados/EB_key.png)  
+*Extension board de Keyestudio*
+
+</center>
+
+Las especificaciones técnicas de la placa son:
+
+* Tensión de entrada VM: 5 a 10.8V DC
+* Corriente de funcionamiento de la parte motriz: ≤700mA
+* Configuración de salida para motor: doble puente en h
+* Temperatura de trabajo: 0 a 50 ºC
+
+A continuación vemos un diagrama típico de conexionado de motores y la alimentación de los mismos.
+
+<center>
+
+![Conexionado de la extension board de Keyestudio](../img/conceptos/avanzados/Conex_EB_key.png)  
+*Conexionado de la extension board de Keyestudio*
+
+</center>
+
+[Volver](#item0exp)
+<a name="item3exp"></a>
+
+<FONT COLOR=#AA0000>DFROBOT</font>
+
+Esta placa de expansión de [DFROBOT](https://www.dfrobot.com/product-1738.html) con montaje vertical de la micro:bit tiene capacidad para controlar cuatro motores DC o dos motores paso a paso. Utiliza el controlador HR8833 con una corriente máxima de funcionamiento de 1,5A.
+
+La placa de expansión incorpora en los conectores P, 9 pines GPIO de fácil conexionado pues incorporan Vcc y GND, En los conectores S hay disponibles 8 conexiones para servos, además de los conectores atornillados de motores.También dispone de un hub de dos conectores I2C. La placa soporta alimentación externa de 3.5V a 5.5V a través del conector DC de 2.1mm o de la clema para cables atornillados que se pueden conectar directamente a un portapilas con 3 pilas AA o AAA. La placa incorpora interruptor de encendido/apagado de la alimentación externa.
+
+<center>
+
+![Extension board de DFROBOT](../img/conceptos/avanzados/EB_dfrobot.png)  
+*Extension board de DFROBOT*
+
+</center>
+
+Tiene las siguientes especificaciones:
+
+* Tensión de alimentación: 3.5 a 5.5V DC
+* Tensión de salida digital: 0V / 3.3V
+* Tensión de salida analógica: 0 a 3.3V DC
+* Interface micro:bit: P0 P1 P2 P8 P12 P13 P14 P15 P16
+* Interface servo: 8
+* Interface motor: 4 motores DC / 2 motores paso a paso
+
+## <FONT COLOR=#007575>**Conexionado con placa de expansión**</font>
+Usaremos para explicarlo la placa de Freenove que es bastante completa en este aspecto. Tenemos varios casos posibles de conexionado según necesidades.
+
+* **Directo**. Si el dispositivo externo no requiere tensiones diferentes de 3.3V y el consumo previsto es bajo. El conexionado puede ser:
+
+<center>
+
+![Conexionado directo](../img/conceptos/avanzados/conex_direct.png)  
+*Conexionado directo*
+
+</center>
+
+* **Baja potencia y alimentación externa**. Si el dispositivo externo utiliza un voltaje de 5V, pero la potencia necesaria no es grande, se puede utilizar el siguiente sistema:
+
+<center>
+
+![Conexionado para dispositivo 5V y bajo consumo](../img/conceptos/avanzados/conex_5V_bajaI.png)  
+*Conexionado para dispositivo 5V y bajo consumo*
+
+</center>
+
+Los reguladores AMS1117 que incorpora la placa tienen capacidad de suministrar hasta 1A de corriente máxima para la alimentación de 3.3V.
+
+* **Externa** . Si el dispositivo externo utiliza un voltaje de 5V y el consumo es elevado se puede utilizar el siguiente sistema:
+
+<center>
+
+![Conexionado para dispositivo 5V y consumo elevado](../img/conceptos/avanzados/conex_extern.png)  
+*Conexionado para dispositivo 5V y consumo elevado*
+
+</center>
+
+## <FONT COLOR=#007575>**Modelo de color HSL**</font>
+El modelo **HSL** o a veces **HSI** (siglas del inglés Hue, Saturation, Lightness o Intensity; traducido por, ‘matiz, saturación, luminosidad o intensidad’), define un modelo de color en términos de sus componentes constituyentes.
+
+En el modelo de color **HSV**, un color se define por su matiz o tono (H), su saturación (S) y su luminosidad o intensidad (L). Ahora las siglas no significan colores como en RGB, sino parámetros.
+
+La variedad de colores se obtiene cambiando los tres canales de color de tono (H), saturación (S) y luminosidad (L) y superponiéndolos entre sí. Este modo de color cubre los colores que puede percibir la visión humana.
+
+Se suele representar mediante la rueda de color, como vemos a continuación:
+
+<center>
+
+![Rueda de color HSL](../img/conceptos/avanzados/rueda_HSL.png)  
+*Rueda de color HSL*
+
+</center>
+
+* **Tono, matiz o Hue (H)**. En el círculo cromático el grado 0 (o 360º si hemos dado una vuelta completa) del Hue es el color rojo. El circulito rodeado corresponde al ángulo en la rueda de color. Cada ángulo representa un color. En esa posición la saturación S por defecto tomma su valor máximo de 100, y el brillo (L) es de 50. Nos podemos mover con estas condiciones por la rueda y obtener los distintos colores para esos valores de saturación o brillo.
+
+<center>
+
+![Cambios de tono (H) en la rueda de color HSL](../img/conceptos/avanzados/cambios_H_rueda_HSL.gif)  
+*Cambios de tono (H) en la rueda de color HSL*
+
+</center>
+
+* **Saturación o Saturation (S)**. Indica la intensidad de un tono concreto. Los valores varian entre 0 y 100, siendo 100 el máximo de saturación posible y 0 el mínimo, que dará como resultado, gris. El parámetro cambia sus valores moviendose dentro del triángulo en la línea del díametro del círculo que corresponde a la posición del ángulo determinado por H.
+
+<center>
+
+![Cambios de saturación (S) en la rueda de color HSL](../img/conceptos/avanzados/cambios_S_rueda_HSL.gif)  
+*Cambios de saturación (S) en la rueda de color HSL*
+
+</center>
+
+Observamos que al acercarnos al gris el valor de H se restablece a su valor por defecto. Hasta ese punto el tono se mantiene en el valor definido.
+
+* **Luminosidad o Lightness (L)**. El parámetro se refiere a como de claro u oscuro es un color. Si queremos aclarar un color nos moveremos hacia el blanco y si quiero oscurecerlo hacia el negro.
+
+<center>
+
+![Cambios de luminosidad (L) en la rueda de color HSL](../img/conceptos/avanzados/cambios_L_rueda_HSL.gif)  
+*Cambios de luminosidad (L) en la rueda de color HSL*
+
+</center>
+
+Hay un parámetro que suele acompañar a la rueda de color que es el Alfa (A), que puede variar entre 0 y 100 y se refiere al grado de opacidad del color, correspondiendo 100 a totalmente opaco y 0 a totalmente transparente.
+
+<FONT COLOR=#AA0000>Convertir RGB a HSL</font>
+
+Nos vamos a basar en un ejemplo descrito por los valores R=90, G=220, B=80 correspondiente a un tono verde oscuro.
+
+<center>
+
+![R=90, G=220, B=80](../img/conceptos/avanzados/verde_oscuro.png)  
+*R=90, G=220, B=80*
+
+</center>
+
+* **Paso 1. Máximo y Mínimo**. Convertimos los valores RGB a valores en el rango 0-1 dividiendo por 255 cada valor.
+
+<center>
+
+$R = \dfrac{90}{255}= 0.353 \space; \space G = \dfrac{220}{255}= 0.863 \space; \space B = \dfrac{80}{255}= 0.314$
+
+$\boxed{R = 0.353 \space; \space G = 0.863 \space(Max) \space; \space B = 0.314 \space(Min)}$
+
+</center>
+
+* **Paso 2. Luminancia**. Calculamos la Luminancia sumando los valores máximo y mínimo obtenidos en el paso 1 y lo dividimos por 2.
+
+<center>
+
+$L \space = \space \dfrac{0.863 + 0.314}{2} \space= \space 0.5885 \space\approx59 \%$
+
+$\boxed{L \space = \space 0.5885 \space \approx 59 \%}$
+
+</center>
+
+* **Paso 3. Saturación**. A la hora de calcular la saturación S tendremos en cuenta que:
+
+>
+- <b>Si los valores máximo y mínimo son iguales: No hay saturación.
+- Si todos los valores RGB son iguales: Tono gris mas o menos oscuro o claro dependiendo de la luminosidad.
+- Si no hay saturación el Tono será 0º.</b>
+
+Si no se da alguna de las condiciones anteriores sabemos que hay Saturación, que se calcula según sea el nivel de Luminancia:
+
+$\Rightarrow$ **Si $L \leq 0.5$**
+
+<center>
+$S = \dfrac{Max-Min}{Max+Min}$
+</center>
+
+$\Rightarrow$ **Si $L > 0.5$**
+
+<center>
+$S = \dfrac{Max-Min}{2.0-Max-Min}$
+
+$S = \dfrac{0.863-0.314}{2-0.863-0.314} = \dfrac{0.549}{0.823}=0.667 \approx 67 \%$
+
+$\boxed{S = 0.667 \approx 67 \%}$
+
+</center>
+
+* **Paso 4. Tono**. La fórmula del Tono depende de qué canal de color RGB es el valor máximo. Las tres fórmulas diferentes son:
+
+$\Rightarrow$  Si **Rojo** es el máximo, entonces:
+
+<center>
+$H = \dfrac{G-B}{Max-Min}$
+</center>
+
+$\Rightarrow$  Si **Verde** es el máximo, entonces:
+
+<center>
+$H = 2.0 + \dfrac{B-R}{Max-Min}$
+
+$H = 2.0 + \dfrac{0.314-0.353}{0.863-0.314} = 2.0 + \dfrac{(-0.039)}{0.549} = 1.929$
+
+$\boxed{H=1.929}$
+</center>
+
+$\Rightarrow$  Si **Azul** es el máximo, entonces:
+
+<center>
+H = 4.0 + \dfrac{R-G}{Max-Min}$
+</center>
+
+El valor obtenido de H lo multiplicamos por 60 para convertirlo en grados en el círculo cromático. Si resulta un valor negativo de H le sumamos 360.
+
+<center>
+
+$H = 1.929 \times 60 = 115.74 \approx 116 \space grados$
+
+$\boxed{H=116 \space grados}$
+
+</center>
+
+Resultado final:
+
+<center>
+R = 90, G = 220, B = 80
+
+H = 116, S = 67, L = 59
+</center>
+
+<FONT COLOR=#AA0000>Convertir HSL a RGB</font>
+
+En el mismo sitio en que hemos basado la conversión de RGB a HSL de [Nikolai Waldman](https://www.niwa.nu/2013/05/math-behind-colorspace-conversions-rgb-hsl/) está documentado como hacerlo a la inversa, pero nosotros no lo vamos a hacer de este modo.
+
+Se encuentran facilmente en la web páginas con calculadoras que permiten convertir de un modelo a otro con tan solo introducir los valores. Algunas incluso indican las fórmulas de cálculo, que usualmente están basadas en la entrada [HSL and HSV](https://en.wikipedia.org/wiki/HSL_and_HSV#Converting_to_RGB) de la Wikipedia. A título de ejemplo aquí pongo la de [rapidtables](https://www.rapidtables.org/convert/color/hsl-to-rgb.html), que ofrece muchas calculadoras en línea gratuitas
+
+Hay una forma de hacerlo a partir de un programa libre como es Inkscape, publicado bajo licencia **GNU General Public License, version 3** y que hemos utilizado para las animaciones donde se han explicado los conceptos y donde además se pueden obtener otros datos y por supuesto modificarlos.
+
+Es muy sencillo de utilizar y nos ofrece además otras posibilidades interesantes. Veamos como llegar a ello una vez abierto Inkscape con un archivo en blanco.
+
+Dibujamos cualquier cosa y abrimos las opciones de Relleno y borde del objeto y desde ahí ya podemos cambiar el modelo de color, activar la rueda, mover la rueda o los valores lineales, volver a cambiar de modelo, etc y se nos irán mostrando los valores convetidos de uno a otro, como se observa en la animación siguiente cuando cambiamos del modelo HSL a RGB.
+
+<center>
+
+![Modelos de color con Inkscape](../img/conceptos/avanzados/inkscape_HSL.gif)  
+*Modelos de color con Inkscape*
+
+</center>
+
 ## <FONT COLOR=#007575>**LCD 1602 I2C**</font>
 Una pantalla LCD (del ingés, Liquid Cristal Display) I2C de 2 líneas de 16 caracteres por línea tiene el aspecto que vemos en la imagen siguiente.
 
@@ -76,7 +568,7 @@ Para establecer los unos de la tabla anterior basta con cortocircuitar los dos p
 
 </center>
 
-#### <FONT COLOR=#AA0000>Cambiar dirección LCD CON micro interruptores</font>
+### <FONT COLOR=#AA0000>Cambiar dirección LCD CON micro interruptores</font>
 La parte posterior de la LCD 1602 de Keyestudio con micro interruptores para cambiar su dirección física tiene el aspecto de la imagen siguiente. Nos fijaremos especialmente en el recuadro azul donde están los microinterruptores que permiten cambiar el estado del bit y encima de los mismo está la información de la dirección física que se asigna a cada combinación. La tabla es exactamente la misma que en el caso anterior.
 
 <center>
@@ -159,7 +651,7 @@ Pero es evidente que necesitamos un control mas completo del motor en el que se 
 
 Existen muchos drivers diferentes que consiguen estos objetivos y casi todos basan su funcionamiento en el denominado puente en H estando su principal diferencia en el circuito integrado que utilizan y la corriente máxima que es capaz de entregar.
 
-#### <FONT COLOR=#AA0000>Puente en H con interruptores</font>
+* <FONT COLOR=#AA0000>Puente en H con interruptores</font>
 Vamos a explicar el funcionamiento de un puente en H utilizando para ello un circuito creado con interruptores y el principio básico de que en los motores DC el sentido de giro depende de la polaridad de alimentación. En la figura siguiente tratamos de expresar el hecho de que cambiando la polaridad de la batería cambia el sentido de giro del motor.
 
 <center>
@@ -187,7 +679,7 @@ Veamos las posibles combinaciones que podemos realizar accionando dos interrupto
 
 Es evidente que un puente en H así construido no nos va a servir para mucho mas que para explicar el funcionamiento del sistema, pero si reemplazamos los interruptores por un sistema de control que abra y cierre el circuito de cada interruptor es evidente que si tendremos un sistema de control del sentido de giro muy versátil.
 
-#### <FONT COLOR=#AA0000>Puente en H con transistores</font>
+* <FONT COLOR=#AA0000>Puente en H con transistores</font>
 Si a un transistor lo hacemos trabajar en conmutación su comportamiento es muy similar al de un interruptor asimilando el estado de corte del transistor al de interruptor abierto y el de saturación al de cerrado. Es entonces posible sustituir los interruptores por transistores y tendremos una configuración de puente en H como la de la figura siguiente. Este es un circuito simplificado donde además se ha añadido una lógica de control básica que permite explicar el funcionamiento.
 
 <center>
@@ -247,7 +739,7 @@ A continuación vemos las partes de un servo típico.
 
 </center>
 
-### <FONT COLOR=#AA0000>Control de un servomotor</font>
+* <FONT COLOR=#AA0000>Control de un servomotor</font>
 Uno de los problemas que se nos plantean cuando cogemos un servo por primera vez es averiguar cual es su posición. Lo que nosotros hacemos cuando enviamos la señal PWM a la patilla de control del servo es indicarle a que posición queremos que se dirija. El servo a priori, mediante el potenciómetro y la electrónica de control, sabe en que posición está por lo que si le enviamos un dato con el que el servo no pueda posicionarse estará constantemente intentando buscar la posición.
 
 En la imagen vemos las señales de posicionado del servo y los ángulos a los que se debe colocar.
@@ -268,73 +760,3 @@ Una vez que hemos colocado y conectado el servo y lo posicionamos en sus distint
 La velocidad del movimiento está condicionada por el diseño físico del propio servo y este se moverá a su máxima velocidad para cambiar de una posición a otra. Entre los movimientos programados a diferentes ángulos es conveniente programar un pequeño retardo para que al servo le de tiempo de llegar a una posición determinada antes de recibir la orden de moverse a otra. Si no lo hacemos así es muy posible que el servo inicie un movimiento de "vibración" intentando moverse de una posición a la otra.
 
 Es evidente que habrá aplicaciones en las que nos interese controlar la velocidad a la que se mueve el servo y la forma mas sencilla de hacerlo es asociando el ángulo de giro a una variable e ir incrementando esta poco a poco. La velocidad se controla mediante el retardo entre el movimiento debido a un valor de la variable y el siguiente. Aquí debemos tener precaución con el valor del retardo y relacionarlo con el valor de incremento de la variable para que el tiempo sea suficiente para que se haga el movimiento pero no excesivamente largo que haría el movimiento global muy lento. También debemos poner un retardo fuera del bucle que provoca los movimientos para dar tiempo a que el servo retorne a su posición inicial. Lógicamente si queremos que este movimiento de regreso lo haga a velocidad controlada utilizaremos otro bucle decremental para ello.
-
-## <FONT COLOR=#007575>**Placas de expansión para micro:bit**</font>
-Aunque existen muchas versiones de distintos fabricantes en nuestro caso vamos a describir tres de ellas. Basicamente la funcionalidad de ampliación de pines es la misma en todas ellas y se distinguen porque incluyen diferentes funcionalidades, distribución de pines o drivers para motores.
-
-### <FONT COLOR=#AA0000>Freenove</font>
-Tiene el siguiente aspecto:
-
-<center>
-
-![Extension board de Freenove](../img/conceptos/avanzados/EB_free.png)  
-*Extension board de Freenove*
-
-</center>
-
-La placa viene preparada con:
-
-* Un conector para alimentación externa de 7 a 12V
-* Un puerto USB-Micro para conectarla al ordenador
-* Un puerto USB-A colocado en vertivcal para conectar la micro:bit
-* Un diodo LED D1 indicador de 5V
-* Un diodo LED D2 indicador de 3.3V
-
-### <FONT COLOR=#AA0000>Keyestudio</font>
-Una micro:bit por si sola no tiene potencia suficiente para controlar directamente motores DC. La placa [KS4033 Keyestudio Micro bit DRV8833 Motor Driver Expansion Board](https://www.keyestudio.com/products/keyestudio-micro-bit-drv8833-motor-driver-expansion-board) incorpora un driver para motores DC con un chip DRV8833CPWP que entrega una corriente máxima de 700mA. Además, dispone de cuatro modos de control del motor: rotación en sentido horario, rotación en sentido antihorario, arranque y parada. PWM soporta frecuencias de hasta 100 kHz. Los motores van en el conector azul con clemas atornilladas para mayor facilidad y fiabilidad del conexionado. La placa también incorpora interfaces de 3 pines para conectar otros sensores.
-
-Los pines A1, A2, B2 y B1 del conector azul de la placa de expansión son controlados por P13, P12, P15 y P16 de la placa micro:bit.
-
-<center>
-
-![Extension board de Keyestudio](../img/conceptos/avanzados/EB_key.png)  
-*Extension board de Keyestudio*
-
-</center>
-
-Las especificaciones técnicas de la placa son:
-
-* Tensión de entrada VM: 5 a 10.8V DC
-* Corriente de funcionamiento de la parte motriz: ≤700mA
-* Configuración de salida para motor: doble puente en h
-* Temperatura de trabajo: 0 a 50 ºC
-
-A continuación vemos un diagrama típico de conexionado de motores y la alimentación de los mismos.
-
-<center>
-
-![Conexionado de la extension board de Keyestudio](../img/conceptos/avanzados/Conex_EB_key.png)  
-*Conexionado de la extension board de Keyestudio*
-
-</center>
-
-### <FONT COLOR=#AA0000>DFROBOT</font>
-Esta placa de expansión de [DFROBOT](https://www.dfrobot.com/product-1738.html) con montaje vertical de la micro:bit tiene capacidad para controlar cuatro motores DC o dos motores paso a paso. Utiliza el controlador HR8833 con una corriente máxima de funcionamiento de 1,5A.
-
-La placa de expansión incorpora en los conectores P, 9 pines GPIO de fácil conexionado pues incorporan Vcc y GND, En los conectores S hay disponibles 8 conexiones para servos, además de los conectores atornillados de motores.También dispone de un hub de dos conectores I2C. La placa soporta alimentación externa de 3.5V a 5.5V a través del conector DC de 2.1mm o de la clema para cables atornillados que se pueden conectar directamente a un portapilas con 3 pilas AA o AAA. La placa incorpora interruptor de encendido/apagado de la alimentación externa.
-
-<center>
-
-![Extension board de DFROBOT](../img/conceptos/avanzados/EB_dfrobot.png)  
-*Extension board de DFROBOT*
-
-</center>
-
-Tiene las siguientes especificaciones:
-
-* Tensión de alimentación: 3.5 a 5.5V DC
-* Tensión de salida digital: 0V / 3.3V
-* Tensión de salida analógica: 0 a 3.3V DC
-* Interface micro:bit: P0 P1 P2 P8 P12 P13 P14 P15 P16
-* Interface servo: 8
-* Interface motor: 4 motores DC / 2 motores paso a paso

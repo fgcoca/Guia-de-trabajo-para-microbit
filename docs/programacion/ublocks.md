@@ -654,14 +654,27 @@ En MicroBlocks es relativamente sencillo trabajar los datos de forma gráfica y 
 
 </center>
 
-### <FONT COLOR=#AA0000>Bloque</font>
+<a name="item0"></a>
+
+[Bloque](#item1)
+<br> [Panel gráfico](#item2)</br><br>
+[Opciones del panel gráfico](#item3)</br>
+
+<a name="item1"></a>
+
+<FONT COLOR=#AA0000>Bloque</font>
+
 Está disponible en el menú 'Salida'.
 
 * ![](../img/programacion/ublocks/graph/bloque.png). Graficará el valor introducido, en el panel de visualización de gráficos de datos. Se puede graficar cualquier tipo de dato: números, valores de pines digitales y analógicos, salidas de sensores, etc. Si tenemos que representar gráficamente más de un dato, hacemos clic en el triángulo negro para mostrar campos de datos adicionales. Se pueden graficar hasta seis valores simultáneos con diferentes colores.
 
 La representación gráfica sólo es posible en el IDE. Por lo tanto, sólo es posible realizar gráficos mientras el microdispositivo está conectado al ordenador. Si intentamos realizar un gráfico mientras no está conectado al ordenador, aparecerá el mensaje "Placa no conectada".
 
-### <FONT COLOR=#AA0000>Panel gráfico</font>
+[Volver](#item0)
+<a name="item2"></a>
+
+<FONT COLOR=#AA0000>Panel gráfico</font>
+
 Se activa desde el icono y tiene el siguiente aspecto:
 
 <center>
@@ -686,7 +699,11 @@ En la animación vemos como funciona lo indicado. El escalado con la lupa del me
 
 </center>
 
-### <FONT COLOR=#AA0000>Opciones del panel gráfico</font>
+[Volver](#item0)
+<a name="item3"></a>
+
+<FONT COLOR=#AA0000>Opciones del panel gráfico</font>
+
 Se accede haciendo clic con el botón derecho del ratón en cualquier zona del panel. Si tenemos el cursor del ratón sobre la zona de las lupas no funcionará.
 
 <center>
@@ -812,3 +829,71 @@ El programa siguiente muestra el tipo de dispositivo conectado y el tipo y núme
 
 </center>
 
+## <FONT COLOR=#007575>**Libreria NeoPixeles**</font>
+Los NeoPixels son pequeños módulos LED que combinan LEDs rojos, verdes y azules montados en un solo encapsulado con un chip controlador. Los NeoPixels pueden ser controlados individualmente por una sola línea de datos desde un dispositivo microcontrolado para crear diferentes colores y patrones. Un solo pin del microcontrolador puede controlar docenas (o incluso cientos) de NeoPixels. Los NeoPixels se encuentran en muchas configuraciones diferentes, como son anillos, barras, matrices y tiras flexibles.
+
+* ![](../img/programacion/ublocks/NeoP//bNeo/b1.png). Configura el pin de conexión de los Neopixels. Este bloque configura un dispositivo NeoPixel especificando cuántos LEDs hay en el dispositivo y qué pin se utilizará para controlarlos. El bloque debe ejecutarse antes de hacer nada con cualquiera de los otros bloques NeoPixel.
+
+El bloque se expande a ![](../img/programacion/ublocks/NeoP//bNeo/b2.png) para el trabajo con Neopixels blancos.
+
+* ![](../img/programacion/ublocks/NeoP//bNeo/b3.png). Establece los colores de los diez primeros NeoPixels. Es especialmente útil cuando se utiliza con placas o tiras con este número de LEDs. La secuencia de numeración (1-10) es de izquierda a derecha y de arriba a abajo. La configuración del color se hace desde la paleta que se muestra sin poder establecer mayor precisión. La paleta muestra los valores RGB en decimal.
+
+<center>
+
+![](../img/programacion/ublocks/NeoP//bNeo/b4.png)
+
+</center>
+
+* ![](../img/programacion/ublocks/NeoP//bNeo/b5.png). Apaga todos los LEDs. Los pone a color negro.
+* ![](../img/programacion/ublocks/NeoP//bNeo/b6.png). Pone todos los LEDs con el color indicado.
+* ![](../img/programacion/ublocks/NeoP//bNeo/b7.png). Pone el número de LED especificado del color indicado. Los LEDs se numeran secuencialmente comenzando por uno.
+* ![](../img/programacion/ublocks/NeoP//bNeo/b8.png). Desplaza la secuencia de colores NeoPixel el número de NeoPixels indicado. Los colores al final de la secuencia se desplazan y se insertan al principio de la secuencia. Si los NeoPixels forman un círculo, los colores giran alrededor del círculo. El argumento determina el número de posiciones que se desplazan los colores. Un valor negativo hará que los NeoPixels roten en la dirección opuesta.
+* ![](../img/programacion/ublocks/NeoP//bNeo/b9.png). Devuelve un color definido especificando los valores de rojo (R), verde (G) y azul (B) entre 0 y255. El bloque puede utilizarse en cualquier bloque que reciba una entrada de color. Los valores inferiores a 40 pueden provocar que el LED no se encienda nada.
+* ![](../img/programacion/ublocks/NeoP//bNeo/b10.png). Devuelve un color aleatorio. El bloque puede utilizarse en cualquier bloque que reciba una entrada de color.
+
+## <FONT COLOR=#007575>**Sonidos**</font>
+
+<a name="item0Ton"></a>
+
+[Tonos](#item1Ton)
+<br> [Politonos](#item2Ton)</br>
+
+En MicroBlocks tenemos tres opciones de reproducción de sonidos o música, un conjunto de librerías englobadas bajo el seudónimo "Sonido", una librería de "Politonos" y otra librería de "Tonos". En "Sonido" nos encontraremos bloques "MultiTone", opciones para reproducir mp3 o WAV, radio AM, etc. No veremos estas librerías por el momento y nos centraremos en "Tonos" y "Politonos".
+
+[Volver](#item0Ton)
+<a name="item1Ton"></a>
+
+<FONT COLOR=#AA0000>Tonos</font>
+
+Añadimos la libreria "**Tonos**" a nuestro entorno y nos encontramos con los siguientes bloques:
+
+* ![](../img/programacion/ublocks/sonido/Btonos/Btonos1.png). Reproduce la nota y la octava y por el tiempo indicados.
+* ![](../img/programacion/ublocks/sonido/Btonos/Btonos2.png). Reproduce la nota indicada por el número de tecla en el teclado del piano (0-127) donde el Do central es 60. Este bloque es útil cuando se realizan transformaciones matemáticas de la música. MIDI es la abreviatura de "Musical Instrument Digital Interface", que se traduce como "Interfaz digital de instrumentos musicales", y es un estándar de la industria para controlar sintetizadores, cajas de ritmos y otros dispositivos musicales electrónicos.
+* ![](../img/programacion/ublocks/sonido/Btonos/Btonos3.png). Reproduce la nota especificada en Hertz (Hz) durante el tiempo indicado.
+* ![](../img/programacion/ublocks/sonido/Btonos/Btonos4.png). Reproduce el tono indicado en Hz.
+* ![](../img/programacion/ublocks/sonido/Btonos/Btonos5.png). Detiene la reproducción del tono actual.
+* ![](../img/programacion/ublocks/sonido/Btonos/Btonos6.png). Especifica el pin al que está conectado un zumbador piezoeléctrico o unos auriculares. En placas con altavoces integrados, se utilizará el altavoz integrado si se omite este bloque.
+
+[Volver](#item0Ton)
+<a name="item2Ton"></a>
+
+<FONT COLOR=#AA0000>Politonos</font>
+
+El formato [RTTTL](https://en.wikipedia.org/wiki/Ring_Tone_Text_Transfer_Language) (del inglés, Ring Tone Text Transfer Language) fue desarrollado por Nokia para codificar tonos de llamada a teléfonos móviles. El formato RTTTL es una cadena dividida en tres secciones: encabezado (nombre o título), valor predeterminado y datos. Por ejemplo, la siguiente cadena de texto se corresponde con la Intro de Donkey Kong:
+
+*d=4,o=5,b=140:8a#,8p,8d6,16p,16f.6,16g.6,16f.6,8a#,8p,8d6,16p,16f.6,16g.6,<br>16f.6,8a#,8p,8d6,16p,16f.6,16g.6,16f.6,8a#,8p,8d6,16p,16f.6,16g.6,16f.6*</br>
+
+Añadimos la libreria "**Politonos**" a nuestro entorno y nos encontramos con los siguientes bloques:
+
+* ![](../img/programacion/ublocks/sonido/BPoli/BPolitonos1.png). Reproduzca la cadena de tono de llamada indicada.
+* ![](../img/programacion/ublocks/sonido/BPoli/BPolitonos2.png). Devuelve el nombre del tono de llamada que se está reproduciendo actualmente.
+
+Para reproducir una melodia simplemente la copiamos en el bloque ```toca el politono```.
+
+Existen páginas de donde se pueden descargar tonos, o incluso podemos hacerlo nosotros mismos. A continuación ponemos algunos enlaces:
+
+* [RTTTL Ringtone Downloads](https://picaxe.com/rtttl-ringtones-for-tune-command/) de Picaxe.
+* Colecciones de [ArcadeTones](http://arcadetones.emuunlim.com/) clasificados por temas.
+* Archivo [NokringTunes.txt](http://microblocks.fun/mbtest/NokringTunes.txt) que contiene más de once mil melodías en formato Nokring. 
+
+Una vez descargado lo abrimos y buscamos la melodia para copiar y pegar en el bloque.

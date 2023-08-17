@@ -1,5 +1,5 @@
 # 1. Información del Taller
-site_name: Guia-de-trabajo-para-micro-bit
+site_name: Guia de trabajo para micro:bit
 site_description: Se pretende crear una guia para trabajar con la tarjeta micro:bit mediante programación gráfica o programando con MicroPython
 site_author: Federico Coca
 site_url: https://fgcoca.github.io/Guia-de-trabajo-para-microbit/
@@ -56,6 +56,9 @@ nav:
     - A05. Botón pulsador: actividades/A05.md
     - A06. Barra de LEDs: actividades/A06.md
     - A07. Diodo LED RGB: actividades/A07.md
+    - A08. Diodos LEDs RGB direccionables: actividades/A08.md
+    - A09. Zumbador o buzzer: actividades/A09.md
+
   - Listado de programas: programas/lista.md
   - Miscelanea:
     - Autor: Miscelanea/about.md 

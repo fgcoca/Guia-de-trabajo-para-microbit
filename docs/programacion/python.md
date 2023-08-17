@@ -62,12 +62,14 @@ En ambos casos de la API existen otras muchas opciones no incluidas. La funciona
 
 </center>
 
-## <FONT COLOR=#007575>**Las listas en Python**</font>
+## <FONT COLOR=#007575>**Estructuras de datos en Python**</font>
+
+### <FONT COLOR=#AA0000>**Las listas (list)**</font>
 Se trata de un tipo de dato que permite almacenar series de datos de cualquier tipo bajo su estructura. Se suelen asociar a las matrices o arrays de otros lenguajes de programación.
 
 En Python las listas son muy versatiles permitiendo almacenar un conjunto arbitrario de datos. Es decir, podemos guardar en ellas lo que sea.
 
-Una lista se crea con [] y sus elementos se separan por comas. Una gran ventaja es que pueden tener datos de diferentes tipos.
+Una lista se crea con ```[]``` y sus elementos se separan por comas. Una gran ventaja es que pueden tener datos de diferentes tipos.
 
 ~~~python
 lista = [1, "Hola", 3.141592, [1 , 2, 3], Image.HAPPY]
@@ -82,14 +84,86 @@ Las de principales propiedades de las listas:
 * Son mutables, ya que sus elementos pueden ser modificados
 * Son dinámicas, ya que se pueden añadir o eliminar elementos
 
-Evidentemente queda muchas cosas que aprender sobre las listas, pero con estos conocimientos tendremos suficiente para hacer lo que pretendemos, que no es otra cosa que animar imágenes.
+Hay dos métodos aplicables:
+
+* **```append```**. Permite agregar elementos a la lista.
+* **```remove```**. Elimina elementos de la lista.
+* **```insert(pos,elem)```**. Inserta el elemento ```elem``` en la posición ```pos``` indicada.
+
+En el ejemplo vemos el funcionamiento.
+
+<center>
+
+![Ejemplo de listas y sus métodos](../img/programacion/python/ejem_listas.png)  
+*Ejemplo de listas y sus métodos*
+
+</center>
+
+Con estos conocimientos tendremos suficiente para hacer lo que pretendemos, que no es otra cosa que animar imágenes.
+
+### <FONT COLOR=#AA0000>**Las tuplas (tuple)**</font>
+Son muy similares a las listas con una diferencia principal con las mismas y es que las tuplas no pueden ser modificadas directamente, lo que implica que no dispone de los métodos vistos para listas. Una tupla permite tener agrupados un número inmutable de elementos.
+
+Una tupla se crea con ```()``` y sus elementos se separan por comas.
+
+~~~python
+tupla = (1, 2, 3)
+~~~
+
+Principales propiedades:
+
+* Se pueden declarar sin usar los paréntesis, pero no se recomienda. No usarlos puede llevarnos a ambigüedades del tipo print(1, 2, 3) y print((1, 2, 3)).
+* Si la tupla tiene un solo elemento esta debe finalizar con coma.
+* Se pueden anidar tuplas, por ejemplo ```tupla2 = tupla1, 4, 5, 6, 7```.
+* Se pueden declarar tuplas vacias, por ejemplo ```tupla3 = ()```.
+* Las tuplas son *iterables* por lo que sus elementos pueden ser accesados mediante la notación de índice del elemento entre corchetes. Si se quiere acceder a un rango de indices se separan por ":" ambos índices.
+* Es posible convertir listas en tuplas simplemente poniendo la lista dentro de los paréntesis de la tupla, por ejemplo, ```tupla_lista = ([1, "Hola", 3.141592, [1 , 2, 3], Image.HAPPY])```
+
+A continuación vemos un ejemplo.
+
+<center>
+
+![Ejemplo de tuplas](../img/programacion/python/ejem_tuplas.png)  
+*Ejemplo de tuplas*
+
+</center>
+
+### <FONT COLOR=#AA0000>**Diccionarios (dict)**</font>
+Estas estructuras contienen la colección de elementos con la forma ```clave:valor``` separados por comas y encerrados entre ```{}```. Las claves son objetos inmutables y los valores pueden ser de cualquier tipo. Sus principales características son:
+
+* En lugar de por índice como en listas y tuplas, en diccionarios se acceder al valor por su clave.
+* Permiten eliminar cualquier entrada.
+* Al igual que las listas, el diccionario permite modificar los valores.
+* El método ```dicc.get()``` accede a un valor por la clave del mismo.
+* El método ```dicc.items()``` devuelve una lista de tuplas ```clave:valor```.
+* El método ```dicc.keys()``` devuelve una lista de las claves.
+* El método ```dicc.values()``` devuelve una lista de los valores.
+* El método ```dicc.update()``` añade elemento ```clave:valor``` al diccionario.
+* El método ```del dicc``` borra el par ```clave:valor```.
+* El método ```dicc.pop()``` borra el par ```clave:valor```.
+
+A continuación vemos un ejemplo.
+
+<center>
+
+![Ejemplo de diccionario](../img/programacion/python/ejem_dicc.png)  
+*Ejemplo de diccionario*
+
+</center>
 
 ## <FONT COLOR=#007575>**Bucles**</font>
 Los **Bucles** son un tipo de estructura de control muy útil cuando queremos repetir un bloque de código varias veces. En Python existen dos tipos de bloques, el bucle ***for*** para contar la cantidad de veces que se ejecuta un bloque de código, y el bucle ***while*** que realiza la acción hasta que la condición especificada no sea cierta.
 
-### <FONT COLOR=#AA0000>While</font>
-La sintaxis de while es la siguiente:
+<a name="item0"></a>
 
+[While](#item1)
+<br> [for](#item2)</br><br>
+[Bucle for decontando](#item3)</br><br>
+[Sentencias break y continue](#item4)</br>
+
+<a name="item2B"></a>
+<FONT COLOR=#AA0000>While</font>
+La sintaxis de while es la siguiente:
 
 ~~~python
 while condicion:
@@ -125,7 +199,11 @@ else:
     print("bucle finalizado")
 ~~~
 
-### <FONT COLOR=#AA0000>for</font>
+[Volver](#item0)
+<a name="item2"></a>
+
+<FONT COLOR=#AA0000>for</font>
+
 Son también bucles pero su acción está dirigida a contar el número de veces que ocurre algo o realizar una acción un determinado número de veces. Es especialmente útil para recorrer los datos de una lista, tupla o diccionario.
 
 La sintaxis de este tipo de bucles en Python es:
@@ -180,7 +258,11 @@ else:
     print("bucle finalizado")
 ~~~
 
-### <FONT COLOR=#AA0000>Bucle for decontando</font>
+[Volver](#item0)
+<a name="item3"></a>
+
+<FONT COLOR=#AA0000>Bucle for decontando</font>
+
 Se trata del mismo bucle ```for``` pero ahora la cuenta la realizamos hacia atrás. Hay dos formas sencillas de hacerlo:
 
 * Utilizando la función ```range()```. Si queremos darle un enfoque Pythonic simplemente configuramos los argumentos de la función de manera que se indique el principio, el final y el incremento, que será logicamente negativo.
@@ -195,7 +277,11 @@ for i in range(20, 0, -2): #imprimere 20, 18, 16, ... 0
 for i in reversed(range(0,21,2)): #imprimere 20, 18, 16, ... 0
 ~~~
 
-### <FONT COLOR=#AA0000>Sentencias ```break``` y ```continue```</font>
+[Volver](#item0)
+<a name="item4"></a>
+
+<FONT COLOR=#AA0000>Sentencias ```break``` y ```continue```</font>
+
 La sentencia ```break``` se utiliza para terminar un bucle de forma inmediata al ser encontrada. En la imagen vemos la sintaxis de la sentencia ```break``` y su funcionamiento.
 
 <center>
@@ -224,11 +310,20 @@ En la figura siguiente vemos dos ejemplos de esta sentencia.
 </center>
 
 ## <FONT COLOR=#007575>**Imágenes**</font>
+<a name="item0img"></a>
+
+[Imágenes DIY](#item1img)
+<br> [Animar imágenes](#item2img)</br>
+
 MicroPython nos ofrece muchas imágenes integradas para mostrar por pantalla y podemos crear efectos interesantes. Mediante la característica de autocompletar se nos van a mostrar todas las definidas que están listadas en la documentación oficial. Ya hemos visto como cargar una imagen, lo que puedo aconsejar en este momento es realizar el ejercicio de mostrar cada una de las disponibles para familiarizarnos con ellas.
 
 Es perfectamente posible crar nuestras propias imágenes configurando cada Pixel o LED de la pantalla. También es posible crear animaciones con imágenes.
 
-### <FONT COLOR=#AA0000>Imágenes DIY</font>
+[Volver](#item0img)
+<a name="item1img"></a>
+
+<FONT COLOR=#AA0000>Imágenes DIY</font>
+
 Crear nuestras propias imágenes va a resultar una tarea sencilla cuando conozcamos la información para hacerlo. Cada pixel (LED) de la pantalla se puede configurar con diez valores que pueden tomar un valor entre 0 (cero) y 9 (nueve). Cuando le damos valor 0 (cero) es decirle literalmente que el brillo es nulo y sin embargo cuando le damos el valor 9 (nueve) lo ponemos al máximo de brillo posible. Podemos jugar con todos los valores intermedios para crear niveles de brillo.
 
 La forma mas sencilla de definir una imagen consiste en utilizar la *clase microbit.Image* para crearla a partir de una cadena o string que devuelva el pictograma. Es decir utilizando el comando *Image(string)* teniendo que constar de dígitos con los valores 0 a 9 indicados. Para verlo rapidamente hacemos el ejemplos de dibujar una X en relieve asignándola a una variable.
@@ -288,7 +383,11 @@ mi_imagen_X = Image("90009:06060:00300:06060:90009")
 display.show(mi_imagen_X)
 ~~~
 
-### <FONT COLOR=#AA0000>Animar imágenes</font>
+[Volver](#item0img)
+<a name="item2img"></a>
+
+<FONT COLOR=#AA0000>Animar imágenes</font>
+
 En micro:bit Python ya disponemos de un par de listas de imágenes incorporadas que se llaman
 
 ~~~python
@@ -778,3 +877,259 @@ En la imagen vemos ejemplos ejecutados en la shell.
 *Ejemplos de funciones de random*
 
 </center>
+
+## <FONT COLOR=#007575>**Módulo NeoPixel**</font>
+
+<a name="item0ModNeo"></a>
+
+[Clases](#item1ModNeo)
+<br> [Operaciones](#item2ModNeo)</br><br>
+[Uso del módulo NeoPixel](#item3ModNeo)</br><br>
+[Ejemplo](#item4ModNeo)</br>
+
+El módulo neopixel permite programar de forma sencilla tiras de LEDs NeoPixel (WS2812) RGB y RGBW direccionables individualmente con la micro:bit. Para utilizar el módulo neopixel, es necesario importarlo con:
+
+~~~py
+import neopixel
+~~~
+
+<hr width=100%  size=10 noshade="noshade">
+
+<FONT COLOR=#BB0000><font size="5"><b>
+
+Nota: </font color></font size></b> Según las pruebas realizadas por el equipo técnico de micro:bit, el módulo NeoPixel de Microbit puede controlar hasta 256 NeoPixels. Por encima de esa cantidad, es posible que se produzcan errores y problemas extraños. La micro:bit por si misma tan sólo puede suministrar 90mA a dispositivos externos, un mayor número de NeoPixels requiere una fuente de alimentación externa que debe tener la masa común con la micro:bit.
+
+Los NeoPixels están diseñados para trabajar a 5V, pero funcionan usando la alimentación de 3V de la BBC micro:bit. **Debemos tener muy presente que el conector de borde de la micro:bit no debe conectarse a nada que suministre 5V**.
+
+<hr width=100%  size=10 noshade="noshade">
+
+Este módulo contiene todo lo necesario para conectarlas a una micro:bit y crear divertidas pantallas, arte y juegos como esta demo.
+
+<center>
+
+Attibución: [adafruit flexible Neopixel matrix](https://www.adafruit.com/product/2547)
+
+</center>
+
+La forma de conectar una tira de neopíxeles a la micro:bit es como se muestra a continuación, suponiendo que vamos a controlar los píxeles desde el pin0. También podemos conectar neopíxeles a los pines 1 y 2.
+
+<center>
+
+![Conexión de neopixeles a micro:bit](../img/programacion/python/conex_neo.png)  
+*Conexión de neopixeles a micro:bit*
+
+*Imagen obtenida de: [Enlace](https://microbit-micropython.readthedocs.io/en/v1.1.1/neopixel.html)*
+
+</center>
+
+La etiqueta de la pinza de cocodrilo indica dónde hay que conectar el otro extremo en la tira de neopixels. En algunas variantes de neopíxeles, el pin VDD puede tener otro nombre, por ejemplo "V+" o "+5V" y sólo es seguro utilizarlo si no hay otros dispositivos de 5V conectados.
+
+<hr width=100%  size=10 noshade="noshade">
+
+<FONT COLOR=#FF00FF><font size="5"><b>
+
+Aviso: </font color></font size></b> El conector de 3v de la micro:bit no se puede utilizar para alimentar a más de 8 Neopixels a la vez. Si estsamos utilizando más de 8 Neopixels, es necesaria una fuente de alimentación externa de 3v a 5v para el pin de alimentación de los Neopixeles.
+
+<hr width=100%  size=10 noshade="noshade">
+
+[Volver](#item0ModNeo)
+<a name="item1ModNeo"></a>
+
+<FONT COLOR=#AA0000>Clases</font>
+
+~~~py
+class neopixel.NeoPixel(pin, n, bpp=3)
+~~~
+
+Inicializa una nueva tira con un número ```n``` de LEDs neopixel controlados a través de la patilla indicada en ```pin```. El tercer argumento sirve para especificar el tipo de neopixel indicando el número de bytes por pixel (```bpp```). Este parámetro vale 4 para neopixels RGBW (LED blanco) y 3 para RGB y GRB. Las siglas RGB y GRB, además de hacer referencia a los colores se refieren al orden en el que están dispuestos los LEDs internamente, siendo RGB el mas normal en productos WS2812.
+
+A cada píxel se le asigna una posición (empezando por 0). Los neopíxeles reciben valores RGB (rojo, verde, azul) o RGBW (rojo, verde, azul, blanco) entre 0 y 255 como una tupla. Por ejemplo, en RGB, ```(255,255,255)``` es blanco. En RGBW, ```(255,255,255,0)``` o ```(0,0,0,255)``` es blanco.
+
+* **```clear()```**. Borra todos los pixeles
+* **```show()```**. Muestra los píxeles. Debe invocarse para que las actualizaciones sean visibles.
+
+[Volver](#item0ModNeo)
+<a name="item2ModNeo"></a>
+
+<FONT COLOR=#AA0000>Operaciones</font>
+
+Escribir el color no actualiza la pantalla, debemos utilizar ```show()``` para hacerlo.
+
+~~~py
+from microbit import *
+import neopixel
+neo = neopixel.NeoPixel(pin0,8,3)
+neo[0] = (255,0,128) # primer LED
+neo[-1] = (0,255,0) #ultimo LED
+neo.show() # solo ahora se muestran los valores actualizados
+~~~
+
+Para leer el color de un pixel concreto basta con hacer referencia a él.
+
+~~~py
+print(neo[0])
+~~~
+
+[Volver](#item0ModNeo)
+<a name="item3ModNeo"></a>
+
+<FONT COLOR=#AA0000>Uso del módulo NeoPixel</font>
+
+Una forma sencilla de interactuar con los Neopixels es considerarlos como una lista de tuplas. Cada tupla representa la mezcla de colores RGB o RGBW de un píxel específico.
+
+Por ejemplo, inicializamos una tira o anillo de 8 neopixels RGB como conectados al pin0 de la siguiente manera:
+
+~~~py
+neo = neopixel.NeoPixel(pin0,8)
+~~~
+
+Establecemos los píxeles indexándolos, como con una lista de Python. Por ejemplo, para establecer el primer píxel en rojo a brillo máximo, se utilizaría:
+
+~~~py
+neo[0] = (255,0,0)
+~~~
+
+O el último pixel a magenta:
+
+~~~py
+neo[-1] = (255,0,255)
+~~~
+
+Para obtener el valor de la tupla del color actual de un píxel lo indexamos. Por ejemplo, para imprimir el valor RGB del primer píxel usamos:
+
+~~~py
+print(neo[0])
+~~~
+
+Finalmente para poner los datos de colores en los neopixeles usamos la función ```neo.show()```:
+
+~~~py
+neo.show()
+~~~
+
+Si no vemos los cambios posiblemente se deba al olvido de este paso final.
+
+[Volver](#item0ModNeo)
+<a name="item4ModNeo"></a>
+
+<FONT COLOR=#AA0000>Ejemplo</font>
+
+~~~py
+from microbit import *
+import neopixel
+"""
+    Muestra de manera continuada colores aleatorios en los LEDs
+    El ejemplo se realiza para un anillo o tira de 8 LEDs WS2812 conectados a pin0
+"""
+from random import randint
+
+# Configuramos los Neopixel en pin0 y tira de 8 pixeles
+neo = neopixel.NeoPixel(pin0, 8)
+num_pixel = 0
+
+while True:
+    # Iteramos sobre cada LED de la tira
+
+    if num_pixel < 7:
+        for num_pixel in range(0, len(neo)):
+            rojo = randint(0, 60)
+            verde = randint(0, 60)
+            azul = randint(0, 60)
+    
+            # Asigna al LED actual un valor aleatorio de rojo, verde y azul entre 0 y 60
+            neo[num_pixel] = (rojo, verde, azul)
+    
+            # Muestra los datos actuales en la tira
+            neo.show()
+            sleep(100)
+        else:
+            neo.clear()
+            sleep(100)
+            num_pixel = 0
+~~~
+
+[Descargar el programa](../ejemplos/8Neo_color_aleatorio-main.py)
+
+## <FONT COLOR=#007575>**Música**</font>
+MicroPython de BBC micro:bit viene acompañado de un potente módulo de música y sonido. Es muy fácil generar pitidos y zumbidos desde el dispositivo conectando un altavoz o unos auriculares con cable, o utilizando el altavoz integrado si estamos con una versión V2.
+
+La forma de conectar unos auriculares está descrita en el apartado de MakeCode. También se puede conectar un zumbador piezoeléctrico pasivo o un altavoz con pinzas de cocodrilo.  Estos elementos pueden estar polarizados por lo que tendremos que comprobar si existe un terminal "+", y si es así conectar al pin0.
+
+<center>
+
+![Conexión de zumbador pasivo](../img/programacion/python/conex_pasivo.png)  
+*Conexión de zumbador pasivo*
+
+</center>
+
+<hr width=100%  size=10 noshade="noshade">
+
+<FONT COLOR=#BB0000><font size="5"><b>
+
+Nota: </font color></font size></b> Debemos asegurarnos de que el zumbador es pasivo y no activo, que tan solo puede reproducir un tono. En el apartado 'Componentes discretos' de [Conceptos técnicos](../conceptos/discretos.md) podemos encontrar como distinguirlos.
+
+<hr width=100%  size=10 noshade="noshade">
+
+Para trabajar con música hacemos:
+
+~~~py
+import music
+music.play(music.NYAN)
+~~~
+
+Tenemos que importar módulo ```music``` que contiene los métodos para crear y controlar el sonido.
+
+La función de autocompletado de MicroPython nos muestra las melodias incorporadas.
+
+<center>
+
+![Melodias que acompañan a MicroPython](../img/programacion/python/melodias_up.png)  
+*Melodias que acompañan a MicroPython*
+
+</center>
+
+En la referencia de la API podemos encontrar mas inforamción en inglés sobre [Music](https://microbit-micropython.readthedocs.io/en/v2-docs/music.html#)
+
+Cada nota tiene un nombre como Do# (C#) o Fa (F), una octava, que indica lo alta o baja que debe tocarse y una duración. Las octavas se indican con un número, siendo 0 la octava más baja, 4 la del Do central y 8 es la más alta. Las duraciones también se expresan con números. Estos valores están relacionados entre sí: por ejemplo, una duración de 4 es el doble que una duración de 2 (y así sucesivamente). Si utilizamos como nombre de nota ```R```, MicroPython reproducirá un silencio de la duración especificada.
+
+Cada nota se expresa como una cadena de caracteres como ésta:
+
+~~~py
+Nombre_nota[octave][:duration] #La1:4 (A1:4) es un La en la octava 1 con una duración de 4
+~~~
+
+Crear listas de notas para hacer una melodia es similar a crear una animación con una lista de imágenes. En el ejemplo vemos como sería la apertura de "Frere Jaques":
+
+~~~py
+import music
+
+frere_jaques_o = ["C4:4", "D4:4", "E4:4", "C4:4", "C4:4", "D4:4", "E4:4", "C4:4",
+        "E4:4", "F4:4", "G4:8", "E4:4", "F4:4", "G4:8"]
+music.play(frere_jaques_o)
+~~~
+
+El ejemplo se puede re-escribir como vemos a continuación ya que los valores de octava y duración se rpiten hasta que se indique un cambio.
+
+~~~py
+import music
+
+frere_jaques_o = ["C4:4", "D", "E", "C", "C", "D", "E", "C", "E", "F", "G:8",
+        "E:4", "F", "G:8"]
+music.play(frere_jaques_o)
+~~~
+
+MicroPython nos permite crear tonos que no son notas musicales. Por ejemplo, este código crea un efecto de sirena de policía:
+
+~~~py
+import music
+
+while True:
+    for frecuencia in range(880, 1760, 16):
+        music.pitch(frecuencia, 6)
+    for frecuencia in range(1760, 880, -16):
+        music.pitch(frecuencia, 6)
+~~~
+
+El método ```music.pitch``` utiliza una frecuencia que puede ser la de una nota musical. En los rangos de ```frecuencia``` se especifican los tonos de los sonidos de una sirena como "valor inicial, valor final y paso". Cuando el paso en positivo sube el tono y cuando es negativo lo baja.
+
+El ejemplo también nos muestra como anidar distintos tipos de bucle.
