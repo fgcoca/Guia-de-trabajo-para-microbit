@@ -1133,3 +1133,23 @@ while True:
 El método ```music.pitch``` utiliza una frecuencia que puede ser la de una nota musical. En los rangos de ```frecuencia``` se especifican los tonos de los sonidos de una sirena como "valor inicial, valor final y paso". Cuando el paso en positivo sube el tono y cuando es negativo lo baja.
 
 El ejemplo también nos muestra como anidar distintos tipos de bucle.
+
+## <FONT COLOR=#007575>**Funciones de la UART**</font>
+
+* ```uart.any()```. Devuelve ```True``` si hay datos en espera, en caso contrario ```False```.
+* ```uart.read([nbytes])```. Leer bytes. Si se especifica ```nbytes```, se leen como máximo esa cantidad de bytes; de lo contrario, se leen tantos bytes como sea posible. El valor de retorno es un objeto bytes o ```None``` si se agota el tiempo de espera. Llamamos objeto bytes a una secuencia de bytes. Dado que los caracteres ASCII caben en un único byte, este tipo de objeto se utiliza a menudo para representar texto simple y ofrece métodos para manipularlo como tal, por ejemplo, puede mostrar el texto utilizando la función print().
+
+~~~py
+msg_bytes = uart.read()
+msg_str = str(msg, 'UTF-8')
+~~~
+
+* ```uart.readinto(buf[, nbytes])```. Lee bytes en el buffer. Si se especifica nbytes, se leen como máximo esa cantidad de bytes. Si no, lee como máximo len(buf) bytes. Valor de retorno: número de bytes leídos y almacenados en buf o ```None``` si se agota el tiempo de espera.
+* ```uart.readline()```. Leer una línea, terminando en un carácter de nueva línea, que se incluye en los bytes devueltos. Valor de retorno: la línea leída o ``None```.
+* ```uart.write(buf)```. Escribe el buffer en el . Valor de retorno: número de bytes escritos o ```None``` si se agota el tiempo de espera. Puede ser un objeto bytes o una cadena:
+
+~~~py
+uart.write('hello world')
+uart.write(b'hello world')
+uart.write(bytes([1, 2, 3]))
+~~~

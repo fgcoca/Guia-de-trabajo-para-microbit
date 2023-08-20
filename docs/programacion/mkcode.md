@@ -991,3 +991,42 @@ Los parámetros especifican una forma de onda base, el rango de frecuencia, el v
 * ![](../img/programacion/mkcode/musica/M17.png). Crea una cadena que es una expresión sonora.
 * ![](../img/programacion/mkcode/musica/M18.png). Obtiene el nivel de volumen actual del sintetizador de sonido.
 * ![](../img/programacion/mkcode/musica/M19.png). Activa/desactiva el altavoz de la micro:bit para reproducir música y sonidos.
+
+## <FONT COLOR=#007575>**Serial**</font>
+Su descripción básica y detallada las podemos encontrar en la entrada [Serial](https://makecode.microbit.org/reference/serial) de la documentación de MakeCode, donde además se desarrollan ejemplos de uso.
+
+* Ejemplo de escribir un número como gráfico de barras con nivel de iluminación. Utilizamos el bloque "plot bar graph" del menú LED. El ejemplo sería:
+
+<center>
+
+![Gráfico de barras con nivel de iluminación](../img/programacion/mkcode/serial/s1.png)  
+*Gráfico de barras con nivel de iluminación*
+
+</center>
+
+El ejemplo nos va a permitir visualizar datos tanto en el simulador como en la placa utilizando los LEDs de la pantalla para dibujar un gráfico de barras en función del nivel de iluminación que reciben ellos mismos. Pero además nos permite ver el funcionamiento en el simulador e incluso en PuTTY.
+
+<center>
+
+![Gráfico de barras con nivel de iluminación](../img/programacion/mkcode/serial/s2.gif)  
+*Gráfico de barras con nivel de iluminación*
+
+</center>
+
+* Ejemplo de visualización de varios datos, como la temperatura y el nivel de iluminación. El programa de ejemplo sería:
+
+<center>
+
+![Temperatura y nivel de iluminación](../img/programacion/mkcode/serial/s3.png)  
+*Temperatura y nivel de iluminación*
+
+</center>
+
+En la gráfica siguiente vemos graficados y en modo texto los datos simulados y la descripción de los tres iconos destacados. El icono de exportación nos guarda una copia de los datos en formato CSV y el icono raw nos los guarda en formato txt.
+
+<center>
+
+![Temperatura y nivel de iluminación](../img/programacion/mkcode/serial/s4.png)  
+*Temperatura y nivel de iluminación*
+
+</center>

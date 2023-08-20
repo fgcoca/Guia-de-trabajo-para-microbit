@@ -44,6 +44,7 @@ nav:
     - Ley de Ohm: conceptos/ohm.md
     - Señales: conceptos/signals.md
     - Componentes avanzados: conceptos/avanzados.md
+    - Comunicación serie: conceptos/serie.md
   - Conceptos de programación:
     - MakeCode: programacion/mkcode.md
     - Python: programacion/python.md
@@ -58,7 +59,7 @@ nav:
     - A07. Diodo LED RGB: actividades/A07.md
     - A08. Diodos LEDs RGB direccionables: actividades/A08.md
     - A09. Zumbador o buzzer: actividades/A09.md
-
+    - A10. Comunicación serie: actividades/A10.md
   - Listado de programas: programas/lista.md
   - Miscelanea:
     - Autor: Miscelanea/about.md 

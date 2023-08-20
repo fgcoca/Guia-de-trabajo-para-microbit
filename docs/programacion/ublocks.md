@@ -897,3 +897,27 @@ Existen páginas de donde se pueden descargar tonos, o incluso podemos hacerlo n
 * Archivo [NokringTunes.txt](http://microblocks.fun/mbtest/NokringTunes.txt) que contiene más de once mil melodías en formato Nokring. 
 
 Una vez descargado lo abrimos y buscamos la melodia para copiar y pegar en el bloque.
+
+## <FONT COLOR=#007575>**Comunicaciones**</font>
+
+* ![](../img/programacion/ublocks/comm/comm1.png). Abre el puerto serie a la velocidad en baudios especificada. Esto es necesario antes de empezar a utilizar la comunicación por puerto serie. El soporte de puerto serie NO está disponible para dispositivos micro:bit v1 debido a la falta de soporte de hardware.
+* ![](../img/programacion/ublocks/comm/comm2png). Cierra el puerto y finaliza las comunicaciones serie.
+* ![](../img/programacion/ublocks/comm/comm3.png). Devuelve una matriz de bytes de datos leídos desde el puerto serie. En los casos en que estos puedan representar valores de caracteres, es necesario convertirlos utilizando la cadena del bloque unicode en letras reales.
+
+<center>
+
+![](../img/programacion/ublocks/comm/comm4.png)
+
+</center>
+
+Las matrices de bytes contienen bytes con valores de 0 a 255.
+
+* ![](../img/programacion/ublocks/comm/comm5.png). Escribe un byte, una cadena o una matriz de bytes en el puerto serie. Los datos a escribir deben ser 128 bytes o menos. En caso de que querer escribir una matriz de bytes en el puerto serie, podemos crearla fácilmente con el bloque ![](../img/programacion/ublocks/comm/comm6.png) del menú Datos. A continuación se muestra una imagen de la salida de ese bloque:
+
+<center>
+
+![](../img/programacion/ublocks/comm/comm7.png)
+
+</center>
+
+* ![](../img/programacion/ublocks/comm/comm8.png). Escribe una matriz de bytes en el puerto serie comenzando en el bytes dado y devuelve el número de bytes escritos. Utilizando este bloque, un bucle de MicroBlocks puede escribir eficientemente una matriz de bytes larga en el puerto serie.
