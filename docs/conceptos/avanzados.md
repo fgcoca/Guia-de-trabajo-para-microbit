@@ -760,3 +760,219 @@ Una vez que hemos colocado y conectado el servo y lo posicionamos en sus distint
 La velocidad del movimiento está condicionada por el diseño físico del propio servo y este se moverá a su máxima velocidad para cambiar de una posición a otra. Entre los movimientos programados a diferentes ángulos es conveniente programar un pequeño retardo para que al servo le de tiempo de llegar a una posición determinada antes de recibir la orden de moverse a otra. Si no lo hacemos así es muy posible que el servo inicie un movimiento de "vibración" intentando moverse de una posición a la otra.
 
 Es evidente que habrá aplicaciones en las que nos interese controlar la velocidad a la que se mueve el servo y la forma mas sencilla de hacerlo es asociando el ángulo de giro a una variable e ir incrementando esta poco a poco. La velocidad se controla mediante el retardo entre el movimiento debido a un valor de la variable y el siguiente. Aquí debemos tener precaución con el valor del retardo y relacionarlo con el valor de incremento de la variable para que el tiempo sea suficiente para que se haga el movimiento pero no excesivamente largo que haría el movimiento global muy lento. También debemos poner un retardo fuera del bucle que provoca los movimientos para dar tiempo a que el servo retorne a su posición inicial. Lógicamente si queremos que este movimiento de regreso lo haga a velocidad controlada utilizaremos otro bucle decremental para ello.
+
+## <FONT COLOR=#007575>**Magnetómetro y acelerómetro**</font>
+La placa BBC micro:bit lleva incorporado un LSM303AGR que es un módulo brújula ultracompacto de alto rendimiento: acelerómetro y magnetómetro. El acelerómetro es capaz de detectar dirección del movimiento en tres ejes y el magnetómetro es capaz de detectar campos magnéticos en tres direcciones.
+
+<center>
+
+![Direcciones de detección de LSM303AGR](../img/conceptos/avanzados/ejes_acel_mag.png)  
+*Direcciones de detección de LSM303AGR*
+
+</center>
+
+### <FONT COLOR=#AA0000>Magnetómetro</font>
+<a name="item0MC"></a>
+
+[MakeCode](#item1MC)
+<br> [Python](#item2MC)</br>
+
+Medir el campo magnético en tes direcciones es posible en dispositivos como la micro:bit por la propiedad que tienen los semiconductores denominada "Efecto Hall". En la entrada [Efecto Hall](https://es.wikipedia.org/wiki/Efecto_Hall) de la wikipedia está descrito con detalle el efecto.
+
+Los magnetómetros se utilizan en sistemas de navegación para establecer las direcciones que deben seguir aviones y barcos.
+
+En BBC micro:bit, la primera vez que grabamos un programa relacionado con el magnetómetro nos va a salir por pantalla el mensaje:
+
+<center>
+
+**Tilt to Fill Screen** (**Inclinar para llenar la pantalla**)
+
+</center>
+
+Una vez que desaparece el texto se ilumina un solo pixel de la pantalla y según inclinemos la micro:bit la pantalla se irá llenando. El objetivo es llenar de punto toda la pantalla. Cuando el proceso de calibración fizaliza con éxito aparece una carita sonriente en la pantalla.
+
+En la ayuda y soporte de microbit nos explican como funciona la calibración en la entrada [Calibrating the micro:bit Compass](https://support.microbit.org/support/solutions/articles/19000008874-calibrating-the-micro-bit-compass-what-does-it-mean-when-the-micro-bit-says-tilt-to-fill-screen-).
+
+<hr width=100%  size=10 noshade="noshade">
+<center>**Calibración de la brújula**</center>
+
+Lo primero que nos indican es que la brújula que incorpora micro:bit debe calibrar la primera vez que se usa para otner mediciones precisas.
+
+La brújula micro:bit está configurada para ser utilizada en posición horizontal, igual que una brújula analógica. La calibración en el dispositivo V2 es un poco más sensible, por lo que es importante calibrar el dispositivo lentamente, desde una posición horizontal y dejar algo de tiempo una vez que el programa se está ejecutando para dejar que los valores se asienten, por ejemplo añadiendo una pausa después de que la rutina de calibración se complete y/o entre lecturas.
+
+Una vez que carguemos un programa que intente leer la brújula, aparecerán las letras y debemos sostener la micro:bit horizontalmente e ir inclínandola sobre el punto intentando rellenar la pantalla. Una vez finalizado el proceso nuestro programa se ejecutará.
+
+La rutina de calibración se ejecuta en segundo plano mientras las letras se desplazan por la pantalla, por lo que es posible empezar a inclinar mientras las palabras se desplazan. Esto acelera la rutina de calibración.
+
+<FONT COLOR=#FF0000>**Consejos**</font>
+<hr width=25%  size=10 noshade="noshade">
+
+* Calibrar en el entorno de uso para obtener la máxima precisión.
+* Si utilizamos batería para alimentarla calibramos con la batería conectada.
+* No fijar o apoyar sobre objetos metálicos por la sensibilidad a los campos magnéticos.
+* Si estamos utilizando un imán con la micro:bit habrá que recalibrar entre actividades.
+* El "valor máximo de campo" para el magnetómetro es de 10.000 gauss (1 Tesla). Pensemos que un imán de nevera es de alrededor de 0,001 Tesla y un imán de un altavoz alrededor de 1 Tesla.
+<hr width=25%  size=10 noshade="noshade">
+
+Al flashear desde el editor MakeCode, la calibración de la brújula se almacena en la memoria, por lo que al resetear o apagar y encender la micro:bit esta reecordará la calibración porque solo se actualiza la parte del programa que cambia. Sin embargo, esta memoria se borra cuando actualizamos con un nuevo programa mediante la técnica de arrastrar y soltar, por lo que tendremos que volver a calibrarla de nuevo. MakeCode dispone de un bloque específico para calibrar.
+
+<center>
+
+![](../img/conceptos/avanzados/calibrarMC.png)
+
+</center>
+
+En el editor online python.microbit y en el editor Mu la calibración de la brújula no se almacena por lo que es necesario realizar el proceso de calibración cada vez que se resetee o restablezca la alimentación de la micro:bit. Para incluir la calibración en un programa disponemos de la instrucción:
+
+~~~py
+compass.calibrate()
+~~~
+
+<hr width=100%  size=10 noshade="noshade">
+
+En el video de Javier Quintana [Calibración brújula microBIT](https://www.youtube.com/watch?v=jvK0ql_u5F0) publicado en youtube podemos apreciar el proceso.
+
+[Volver](#item0MC)
+<a name="item1MC"></a>
+
+<FONT COLOR=#AA0000>MakeCode</font>
+
+Basándonos en la definición de Azimut (o acimut) como el ángulo que forman el norte geográfico y la proyección vertical de un cuerpo sobre el horizonte del observador situado a una determinada latitud, vamos a crear un sencillo ejemplo que nos devuelva el valor del mismo ll micro:bit.
+
+La latitud es el ángulo entre el ecuador y un punto cualquiera del planeta medido a lo largo del meridiano en el que se encuentra dicho punto.
+
+<center>
+
+![Angulo entre el polo norte y la dirección de la micro:bit](../img/conceptos/avanzados/azimut.png)  
+*Angulo entre el polo norte y la dirección de la micro:bit*
+
+</center>
+
+En MakeCode tenemos el bloque ![](../img/conceptos/avanzados/bloque_azimut.png) que nos da un número entre 0 y 359 según la orientación de la micro:bit. 
+
+El programa siguiente nos calcula el ángulo que forma la micro:bit respecto al polo norte magnético con el logo como indicador de la dirección.
+
+[Descargar el programa](../ejemplos/microbit-Ejemplo_azimut.hex)
+
+<center>
+
+![Ejemplo de medida de azimut](../img/conceptos/avanzados/ejem_azimut.png)  
+*Ejemplo de medida de azimut*
+
+</center>
+
+Si activamos Show data en el Simulador y movemos la aguja que simula la brújula podemos ver los datos mas o menos así:
+
+<center>
+
+![Simulación del ejemplo de medida de azimut](../img/conceptos/avanzados/sim_ejem_azimut.png)  
+*Simulación del ejemplo de medida de azimut*
+
+</center>
+
+Si flasheamos el programa en la micro:bit podemos ver los datos reales. Esto siempre después de realizar la calibración del magnetómetro explicada.
+
+<center>
+
+![Datos reales del ejemplo de medida de azimut](../img/conceptos/avanzados/real_ejem_azimut.png)  
+*Datos reales del ejemplo de medida de azimut*
+
+</center>
+
+[Volver](#item0MC)
+<a name="item2MC"></a>
+
+<FONT COLOR=#AA0000>Python</font>
+
+Recordemos que en Python es necesario calibrar el magnetómetro antes de nada. Hacemos un programa como el siguiente:
+
+~~~py
+from microbit import *
+
+compass.calibrate()
+while True:
+    azimut = compass.heading()
+    uart.write(str(azimut)+"\r\n")
+    sleep(1000)
+~~~
+
+Hasta que no finalicemos la calibración no entramos en el bucle ```while```. En la imagen siguiente vemos el programa en el editor Mu junto con los resultados tras realizar la calibración.
+
+<center>
+
+![Ejemplo de medida de azimut en Python](../img/conceptos/avanzados/Mu_ejem_azimut.png)  
+*Ejemplo de medida de azimut en Python*
+
+</center>
+
+[Descargar el programa](../ejemplos/ejem_azimut.py)
+
+### <FONT COLOR=#AA0000>Acelerómetro</font>
+Ya dijimos al principio que el LSM303AGR incorpora también un acelerómetro, pero recordemos brevemente algunos conceptos:
+
+* Se puede decir que la velocidad es una medida de la distancia que recorre un objeto en un tiempo dado.
+* La aceleración es una medida de cómo cambia la velocidad. La aceleración es algo que estamos acostumbrados a sentir en nuestro día a día, por ejemplo cuando avanzamos con un coche o cuando frenamos, o en un autobús, o la gravedad que nos atrae al lugar en el que estamos parados.
+
+Esto tiene su principio en la primera Ley de Newton o ley de inercia, que viene a decir que un cuerpo en reposo, permanecerá en reposo hasta que una fuerza lo haga moverse, y al contrario, un cuerpo en movimiento se mantendrá en movimiento hasta que una fuerza lo detenga.
+
+Técnicamente es posible conseguir fabricar un condensador en el que la energia almacenada en el mismo, que depende de su geometria y de la distancia entre sus placas, pueda traducirse en saber la aceleración que tiene.
+
+Un acelerómetro es un dispositivo capaz de medir la aceleración inercial ($a = dv/dt$) que sufre el componente.
+
+La asegunda Ley de Newton o ley fundamental de la dinámica, nos indica que el cambio de movimiento es proporcional a la fuerza motriz que lo provoca, quedando descrito por su momento:
+
+<center>$p = m \cdot v \space ; \space F =dp/dt \to F = m \cdot a$</center>
+
+Un sensor de este tipo utiliza internamente componentes denominados MEMS (MicroElectroMechanical Systems) que son sistemas que llevan partes móviles en su interior de forma que tenemos un cuerpo sólido, en cuyo interior hay una masa sujeta por muelles al cuerpo exterior. La idea se explica mucho mejor observado la siguiente animación extraida de [https://howtomechatronics.com/](https://howtomechatronics.com/how-it-works/electrical-engineering/mems-accelerometer-gyrocope-magnetometer-arduino/).
+
+<center>
+
+![Principio de funcionamiento de un acelerómetro](../img/conceptos/avanzados/aceler.gif)  
+*Principio de funcionamiento de un acelerómetro*
+
+</center>
+
+Este principio aplicado a tres direcciones es lo que lleva el chip incorporado en la micro:bit, así que dependiendo de como la agitemos lo puede interpretar. Como la gravedad también influye en la separación de las placas es posible dfeterminar la orientación de la placa.
+
+Quizá el ejemplo mas recurrente de todos los posibles aplicando el acelerómetro sea la creación de un dado electrónico consistente en que al agitar la micro:bit se muestre un número aleatorio entre 1 y 6. El programa es tan simple como vemos a continuación:
+
+<center>
+
+![Ejemplo creación de un dado](../img/conceptos/avanzados/ejem_dado.png)  
+*Ejemplo creación de un dado*
+
+</center>
+
+El bloque si agitado inicia un manejador de eventos (parte del programa que se ejecutará cuando algo suceda). Este manejador funciona cuando haces un gesto (como agitar el micro:bit). A su vez gesto significa la forma en que se sostiene la micro:bit, que puede tomar como valores: agitar, logo arriba, logo abajo, pantalla arriba, pantalla abajo, inclinar a la izquierda, inclinar a la derecha, caída libre, 3g, o 6g. En inglés se denominan shake, logo up, logo down, screen up, screen down, tilt left, tilt right, free fall, 3g, or 6g.
+
+Este mismo programa en Python sería:
+
+~~~py
+from microbit import *
+
+import random
+while True:
+    if accelerometer.was_gesture('shake'):
+        dado = random.randint(1, 6)
+        display.clear()
+        display.show(dado)
+~~~
+
+Vemos el ejemplo en funcionamiento en el simulador.
+
+<center>
+
+![Ejemplo creación de un dado](../img/conceptos/avanzados/ejem_dado_py.gif)  
+*Ejemplo creación de un dado*
+
+</center>
+
+El mismo ejemplo se puede resolver a través del bloque "Is gesture" (es un gesto), así:
+
+<center>
+
+![Ejemplo creación de un dado](../img/conceptos/avanzados/ejem_es_un_gesto.png)  
+*Ejemplo creación de un dado*
+
+</center>
+

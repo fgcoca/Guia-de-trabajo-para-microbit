@@ -1153,3 +1153,299 @@ uart.write('hello world')
 uart.write(b'hello world')
 uart.write(bytes([1, 2, 3]))
 ~~~
+
+## <FONT COLOR=#007575>**Magnetómetro y acelerómetro**</font>
+
+### <FONT COLOR=#AA0000>Acelerómetro</font>
+Este objeto permite acceder al acelerómetro de la placa.
+
+Por defecto MicroPython establece el rango del acelerómetro en +/- 2000 mg (siendo g una unidad de aceleración basada en la gravedad estándar), que configura los valores máximo y mínimo devueltos por las funciones del acelerómetro. El rango puede cambiarse mediante microbit.accelerometer.set_range().
+
+El acelerómetro también proporciona funciones de conveniencia para detectar gestos. Los gestos reconocidos se representan como cadenas: arriba (up), abajo (down), izquierda (left), derecha (right), boca arriba (face up), boca abajo (face down), caída libre (freefall), 3g, 6g, 8g, sacudida (shake).
+
+<hr width=100%  size=10 noshade="noshade">
+<FONT COLOR=#FF0000>**Nota**:</font> Los gestos no se actualizan en segundo plano por lo que es necesario realizar llamadas constantes a algún método del acelerómetro para realizar la detección de gestos. Normalmente los gestos pueden ser detectados usando un bucle con un pequeño retardo ```microbit.sleep()```.
+<hr width=100%  size=10 noshade="noshade">
+
+Sus funciones son:
+
+* ```microbit.accelerometer.get_x()```
+* ```microbit.accelerometer.get_y()```
+* ```microbit.accelerometer.get_z()```
+
+    Retorna como un entero positivo o negativo la aceleración medida en el eje correspondiente en mili-g.
+
+* ```microbit.accelerometer.get_values()```
+
+    Devuelve las medidas de aceleración en todos los ejes a la vez, como una tupla de tres elementos de enteros ordenados como X, Y, Z.
+
+* ```microbit.accelerometer.get_strength()```
+
+    Obtiene la medida de la aceleración de todos los ejes combinados, como un entero positivo. Es la suma pitagórica de los ejes X, Y y Z. Devuelve la fuerza de aceleración combinada de todos los ejes, en mili-g.
+
+* ```microbit.accelerometer.current_gesture()```
+
+    Devuelve una cadena con el nombre del gesto actual.
+
+* ```microbit.accelerometer.is_gesture(name)```
+
+    El parámetro ```name``` es una cadena con el nombre del gesto a comprobar. Devuelve un valor booleano que indica si el gesto nombrado está activo actualmente.
+
+* ```microbit.accelerometer.was_gesture(name)```
+
+    El parámetro ```name``` es una cadena con el nombre del gesto a comprobar. Devuelve un valor booleano que indica si el gesto nombrado ha estado activo desde la última vez.
+
+* ```microbit.accelerometer.get_gestures()```
+
+    Se usa para obtener una lista histórica de los gestos registrados. Al llamar a esta función se borra el histórico de gestos antes de devolver el valor. Devuelve una tupla del historial de gestos, el más reciente aparece en último lugar.
+
+* ```microbit.accelerometer.set_range(value)```
+
+    Ajusta el rango de sensibilidad del acelerómetro, en g (gravedad estándar), a los valores más cercanos soportados por el hardware, de forma que redondee a 2, 4 u 8 g. El parámetro ```value``` establece el nuevo rango para el acelerómetro, un entero en g.
+
+A continuación vamos a ver los ejemplos que aparecen en la documentación oficial traducidos.
+
+***Ejemplo 1.*** Una bola 8 mágica que adivina el futuro. Haz una pregunta y agita el dispositivo para obtener una respuesta.
+
+~~~py
+# Magic 8 ball by Nicholas Tollervey. February 2016.
+# Bola mágica 8 por Nicholas Tollervey. Febrero 2016.
+# Ask a question then shake.
+# Haz una pregunta y agita la micro:bit
+# This program has been placed into the public domain.
+# Este programa es de dominio público.
+
+from microbit import *
+import random
+
+respuestas = [
+    "Es cierto",
+    "Es decididamente así",
+    "Sin duda alguna",
+    "Sí, definitivamente.",
+    "Puedes confiar en ello",
+    "Como yo lo veo, sí",
+    "Lo más probable",
+    "Buenas perspectivas",
+    "Si",
+    "Los indicios apuntan a que sí",
+    "Respuesta dudosa inténtalo de nuevo",
+    "Vuelve a preguntar más tarde",
+    "Mejor no te lo digo ahora",
+    "No se puede predecir ahora",
+    "Concéntrate y vuelve a preguntar",
+    "No cuentes con ello",
+    "Mi respuesta es no",
+    "Mis fuentes dicen que no",
+    "Perspectivas no tan buenas",
+    "Muy dudoso",
+]
+
+while True:
+    display.show('8')
+    if accelerometer.was_gesture('shake'):
+        display.clear()
+        sleep(1000)
+        display.scroll(random.choice(respuestas))
+    sleep(10)
+~~~
+
+[Descargar el programa .hex](../ejemplos/Bola8.hex)
+
+[Descargar el programa .py](../ejemplos/Bola8-main.py)
+
+***Ejemplo 2.*** Un juego consistentente en evitar obstáculos moviendo la micro:bit.
+
+~~~py
+# Simple Slalom by Larry Hastings, September 2015
+# Eslalon simple de Larry Hastings, septiembre de 2015.
+# This program has been placed into the public domain.
+# Este programa es de dominio público.
+import microbit as m
+import random
+
+p = m.display.show
+min_x = -1024
+max_x = 1024
+range_x = max_x - min_x
+wall_min_speed = 400
+player_min_speed = 200
+wall_max_speed = 100
+player_max_speed = 50
+speed_max = 12
+
+while True:
+
+    i = m.Image('00000:'*5)
+    s = i.set_pixel
+    player_x = 2
+    wall_y = -1
+    hole = 0
+    score = 0
+    handled_this_wall = False
+    wall_speed = wall_min_speed
+    player_speed = player_min_speed
+    wall_next = 0
+    player_next = 0
+
+    while True:
+        t = m.running_time()
+        player_update = t >= player_next
+        wall_update = t >= wall_next
+        if not (player_update or wall_update):
+            next_event = min(wall_next, player_next)
+            delta = next_event - t
+            m.sleep(delta)
+            continue
+
+        if wall_update:
+            # calculate new speeds
+            speed = min(score, speed_max)
+            wall_speed = wall_min_speed + int((wall_max_speed - wall_min_speed) * speed / speed_max)
+            player_speed = player_min_speed + int((player_max_speed - player_min_speed) * speed / speed_max)
+            wall_next = t + wall_speed
+            if wall_y < 5:
+                # erase old wall
+                use_wall_y = max(wall_y, 0)
+                for wall_x in range(5):
+                    if wall_x != hole:
+                        s(wall_x, use_wall_y, 0)
+        wall_reached_player = (wall_y == 4)
+        if player_update:
+            player_next = t + player_speed
+            # find new x coord
+            x = m.accelerometer.get_x()
+            x = min(max(min_x, x), max_x)
+            # print("x accel", x)
+            s(player_x, 4, 0) # turn off old pixel
+            x = ((x - min_x) / range_x) * 5
+            x = min(max(0, x), 4)
+            x = int(x + 0.5)
+            # print("have", position, "want", x)
+            if not handled_this_wall:
+                if player_x < x:
+                    player_x += 1
+                elif player_x > x:
+                    player_x -= 1
+            # print("new", position)
+            # print()
+        if wall_update:
+            # update wall position
+            wall_y += 1
+            if wall_y == 7:
+                wall_y = -1
+                hole = random.randrange(5)
+                handled_this_wall = False
+            if wall_y < 5:
+                # draw new wall
+                use_wall_y = max(wall_y, 0)
+                for wall_x in range(5):
+                    if wall_x != hole:
+                        s(wall_x, use_wall_y, 6)
+        if wall_reached_player and not handled_this_wall:
+            handled_this_wall = True
+            if (player_x != hole):
+                # collision! game over!
+                break
+            score += 1
+        if player_update:
+            s(player_x, 4, 9) # turn on new pixel
+        p(i)
+    p(i.SAD)
+    m.sleep(1000)
+    m.display.scroll("Score:" + str(score))
+    while True:
+        if (m.button_a.is_pressed() and m.button_a.is_pressed()):
+            break
+        m.sleep(100)
+~~~
+
+[Descargar el programa .hex](../ejemplos/Slalom.hex)
+
+[Descargar el programa .py](../ejemplos/Slalom-main.py)
+
+### <FONT COLOR=#AA0000>Magnetómetro</font>
+Este módulo permite acceder a la brújula electrónica incorporada. Antes de utilizarla, la brújula debe estar calibrada; de lo contrario, las lecturas pueden ser erróneas.
+
+<hr width=100%  size=10 noshade="noshade">
+<FONT COLOR=#FF00FF>**Advertencia**</font>. Calibrar la brújula hará que su programa se detenga hasta que se complete la calibración. La calibración consiste en un pequeño juego para dibujar un círculo en la pantalla LED girando el dispositivo.
+<hr width=100%  size=10 noshade="noshade">
+
+Las funciones son:
+
+* ```microbit.compass.calibrate()```
+
+    Inicia el proceso de calibración. El mensaje Tilt to Fill Screen (Inclinar para llenar la pantalla) se desplazará en la pantalla que el usuario debe rellenar completamente moviendo el dispositivo.
+
+* ```microbit.compass.is_calibrated()```
+
+    Devuelve ```True``` si la brújula se ha calibrado correctamente, y devuelve ```False``` en caso contrario.
+
+* ```microbit.compass.clear_calibration()```
+
+    Deshace la calibración, haciendo que la brújula vuelva a estar descalibrada.
+
+* ```microbit.compass.get_x()```
+* ```microbit.compass.get_y()```
+* ```microbit.compass.get_z()```
+
+    Da la lectura, como un número entero positivo o negativo, de la intensidad del campo magnético en el eje especificado dependiendo de la dirección del campo. La medida se da en nano teslas.
+
+* ```microbit.compass.heading()```
+
+    Da el rumbo de la brújula, calculado a partir de las lecturas anteriores, como un número entero en el rango de 0 a 360, representando el ángulo en grados, en el sentido de las agujas del reloj, con el norte como 0.
+
+* ```microbit.compass.get_field_strength()```
+
+    Devuelve un valor entero de la magnitud del campo magnético alrededor del dispositivo expresada en nano tesla.
+
+El ejemplo de creación de una brújula nos servirá para finalizar estas explicaciones. Antes de nada debemos calibrar la brújula para después mostrar la posición de la micro:bit utilizando las flechas predefinidas.
+
+~~~py
+from microbit import *
+
+# Antes de nada calibtrar
+compass.calibrate()
+
+# Mantener la aguja apuntando aproximadamente en la dirección correcta.
+while True:
+    sleep(100)
+    aguja = ((15 - compass.heading()) // 30) % 12
+    display.show(Image.ALL_CLOCKS[aguja])
+~~~
+
+[Descargar el programa .hex](../ejemplos/Brujula.hex)
+
+[Descargar el programa .py](../ejemplos/Brujula-main.py)
+
+## <FONT COLOR=#007575>**Funciones para la pantalla**</font>
+
+* ```microbit.display.get_pixel(x, y)```. Devuelve el brillo del LED en la columna x y la fila y como un número entero entre 0 (apagado) y 9 (brillante).
+* ```microbit.display.set_pixel(x, y, value)```. Establece el brillo del LED en la columna x y la fila y como un número entero entre 0 y 9.
+* ```microbit.display.clear()```. Apaga (pone el brillo a 0) todos los LEDs.
+* ```microbit.display.show(image)```. Muestra la imagen.
+* ```microbit.display.show(image, delay=400, *, wait=True, loop=False, clear=False)```. Si ```image``` es una cadena, un real o un entero, muestra las letras/dígitos en secuencia. De lo contrario, si ```image``` es una secuencia iterable de imágenes, muestra estas imágenes en secuencia. Cada letra, dígito o imagen se muestra con un ```delay``` de milisegundos entre ellos.
+
+Si ```wait``` es ```True```, esta función se bloqueará hasta que la animación termine, de lo contrario la animación ocurrirá en segundo plano.
+
+Si ```loop``` es ```True```, la animación se repetirá para siempre.
+
+Si ```clear``` es ```True```, la pantalla se borrará después de que las iteraciones hayan terminado.
+
+Los argumentos ```wait```, ```loop``` y ```clear``` deben especificarse utilizando su palabra clave.
+
+* ```microbit.display.scroll(text, delay=150, *, wait=True, loop=False, monospace=False)```. Desplaza el texto horizontalmente en la pantalla. Si el texto es un número entero o flotante, se convierte primero en una cadena mediante str(). El parámetro delay controla la velocidad de desplazamiento del texto.
+
+Si ```wait``` es ```True```, esta función se bloqueará hasta que la animación termine, de lo contrario la animación ocurrirá en segundo plano.
+
+Si ```loop``` es ```True```, la animación se repetirá para siempre.
+
+Si ```monospace``` es ```True```, todos los caracteres ocuparán 5 columnas de píxeles de ancho, de lo contrario habrá exactamente 1 columna de píxeles en blanco entre cada carácter mientras se desplazan.
+
+Los argumentos ```wait```, ```loop``` y ```monospace``` deben especificarse utilizando su palabra clave.
+
+* ```microbit.display.on()```. Enciende la pantalla.
+* ```microbit.display.off()```. Apaga la pantalla. Esto permitirá reutilizar los pines GPIO asociados a la pantalla para otros fines.
+* ```microbit.display.is_on()```. Devuelve ```True``` si la pantalla está encendida, en caso contrario devuelve ```False```.
+* ```microbit.display.read_light_level()```. Utiliza los LEDs de la pantalla en modo de polarización inversa para detectar la cantidad de luz que incide sobre la pantalla. Devuelve un número entero entre 0 (oscuridad) y 255 (máximo brillo) que representa el nivel de luz.
+

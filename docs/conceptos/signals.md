@@ -92,3 +92,23 @@ El protocolo de comunicación I2C sigue la siguiente secuencia:
 * Se acaba la comunicación cuando el master establece la condición de STOP, que se produce cuando SDA, por orden del master pasa de cero a uno y se mantiene en uno durante un tiempo.
 
 Son muchos los dispositivos I2C que se pueden direccionar por este bus I2C, siendo lo más común en los dispositivos para I2C que utilicen direcciones de 7 bits, aunque existen dispositivos de 10 bits, pero es un caso raro. Una dirección de 7 bits implica que se pueden poner hasta 128 (27) dispositivos sobre un bus I2C. Hemos visto que las direcciones son de 8 bits y esto es porque el bit extra de los 7 de la dirección lo emplea el master para informar al slave si va a leer o escribir. Si el bit de lectura/escritura es cero, el dispositivo master está escribiendo en el slave. Si el bit es 1 el master está leyendo desde el slave. La dirección de 7 bit se coloca en los 7 bits más significativos del byte y el bit de lectura/escritura es el bit menos significativo.
+
+## <FONT COLOR=#007575>**Conversión ADC y DAC**</font>
+En un sistema microcontrolado como el de micro:bit (y otros) existe la necesidad de poder trabajar con señales que no sean digitales, como lo son la mayoría de las variables que nos rodean, por lo tanto se hace necesario implementar una conversión de la información de entrada analógica a digital y el dispositivo se encargará también de convertir al contrario.
+
+* La conversión analógica a digital la realiza el dispositivo ADC (Analog to Digital Converter)
+* La conversión digital a analógica la realiza un dispositivo DAC (Digital to Analog Converter)
+
+Ya hemos visto anteriormente como una señal analógica se representa mediante valores discretos y cambian continuamente con el tiempo mientras que una señal digital se representa mediante valores discretos.
+
+Un conversor ADC se utiliza para convertir señales analógicas, como tensiones, en señales digitales o binarias formada por unos y ceros.
+
+El rango del módulo ADC que lleva la micro:bit es de 10 bits, lo que significa que su resolución es de $2^{10}=1024 \space bits$, por lo que su rango (a 3,3V) se dividirá en 1024 partes iguales.
+
+Cualquier valor analógico puede ser mapeado a un valor digital usando la resolución del conversor. Por tanto, cuantos más bits tenga el ADC, de más precisión será el muestreo del analógico y mayor la precisión de la conversión resultante. Así tenemos que:
+
+<center>
+$0 \space (digital) = \dfrac{0 - 3.3}{1024}$
+
+$1 \space (digital) = {\dfrac{3.3}{1024}-\dfrac{2 \times 3.3}{1024}}$
+</center>

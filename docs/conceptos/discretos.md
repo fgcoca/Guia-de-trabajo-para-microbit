@@ -43,6 +43,8 @@ Hay dos cosas importantes en este tipo de componente, la primera es no introduci
 [5 bandas](#item2R)</br><br>
 [6 bandas](#item3R)</br>
 
+### <FONT COLOR=#AA0000>Fijas</font>
+
 La resistencia es un componente electrónico del grupo denominado pasivos que está diseñado para oponerse al paso de la corriente. El valor de la resistencia se expresa en ohmios o sus múltiplos. Se fabrican principalmente de carbón (la mina de un lápiz es una resistencia) o de pelicula metálica y se comercializan en una amplia gama de valores. Su aspecto lo vemos en la imagen.
 
 <center>
@@ -116,6 +118,144 @@ A estas resistencias se añade una sexta banda como última banda para indicar e
 </center>
 
 El valor se obtendría poniendo: 412 x 10³ = 412K +/- 1% y 5 ppm/K
+
+### <FONT COLOR=#AA0000>El potenciómetro</font>
+Se trata de un tipo de resistencia en la que es posible cambiar su valor. Es un dispositivo que normalmente tiene tres terminales. Un potenciómetro suele estar formado por un material resistivo (un hilo de cobre u otro material conductor o un elemento de carbón) y una escobilla (denominada cursor) de contacto móvil. Cuando el cursor se desplaza a lo largo del elemento resistivo, se produce un cambio en la resistencia entre el terminal unido a este y los terminales extremos que es entre los que está la resistencia total fija característica del potenciómetro.
+
+<center>
+
+![Conexión habitual del potenciómetro](../img/conceptos/discretos/conex_usual_pot.png)  
+*Conexión habitual del potenciómetro*
+
+</center>
+
+En la imagen siguiente vemos el aspecto de un modelo concreto de potenciómetro así como los símbolos habituales del mismo. La numeración indica lo siguiente:
+
+* Terminales 1 y 3 son los contactos unidos a los extremos de la resistencia fija o resistencia total del potenciómetro.
+* Terminal 2 es el contacto que va unido al cursor o parte móvil que se desliza sobre la resistencia fija haciendo que la resistencia entre un terminal y el cursor varíe en función de la posición de este.
+
+<center>
+
+![Aspecto y símbolo del potenciómetro](../img/conceptos/discretos/aspecto_simbolo_pot.png)  
+*Aspecto y símbolo del potenciómetro*
+
+</center>
+
+La posición del cursor se determina de forma mecánica y son adecuados para usarlos como elementos de control de tensión (conexión en serie) o de corriente (conexión en paralelo). Los potenciómetros del tipo que estamos viendo (existen de otros muchos tipos) tienen un funcionamiento en forma de rotación con un ángulo de unos 270 grados entre los puntos mas extremos.
+
+### <FONT COLOR=#AA0000>Sensor de luz. LDR.</font>
+
+<a name="item0LDR"></a>
+
+[Detección de luz con la micro:bit](#item1LDR)
+<br> [La fotoresistencia LDR](#item2LDR)</br>
+
+La micro:bit monta en su parte frontal una matriz de 5x5 LEDs que se corresponden con el siguiente esquema:
+
+<center>
+
+![Esquema de la matriz de LEDs](../img/conceptos/discretos/esq_matriz_LEDs.png)  
+*Esquema de la matriz de LEDs*
+
+</center>
+
+Se pueden utilizar estos LEDs en modo de polarización inversa para detectar la cantidad de luz que incide sobre la pantalla. El valor retornado será un número entero entre 0 y 255 y representa el nivel de luz de menor a mayor.
+
+COL1 a COL5 trabajan normalmente como salidas del nRF52 que se utilizan para iluminar selectivamente los LEDs. Aunque COL1, COL3 y COL5 están conectadas a pines aptos para ADC, la detección de luz se hace de manera digital.
+
+ROW1 a ROW5 suelen ser salidas que suministran corriente para los LEDs. Pero también se utilizan como entradas digitales cuando queremos detectar luz.
+
+En resumen, la micro:bit detecta la intensidad de la luz ambiente a través de la matriz de LED. En el modo de polarización directa, la pantalla LED funciona como una pantalla. En el modo de polarización inversa, la pantalla LED funciona como un sensor de luz básico que se puede utilizar para detectar la luz ambiente.
+
+[Volver](#item0LDR)
+<a name="item1LDR"></a>
+
+<FONT COLOR=#BB00FF><font size="5"><b>Detección de luz con la micro:bit</font color></font size></b>
+
+El diodo LED está compuesto por una unión PN de dos materiales semiconductores uno de ellos dopado con cargas de tipo P y el otro con cargas de tipo N. Con la creación de esta unión, y precisamente en esa zona, se crea lo que se denomina barrera de potencial.
+
+<center>
+
+![Barrera de potencial en la unión PN](../img/conceptos/discretos/u_PN.png)  
+*Barrera de potencial en la unión PN*
+
+</center>
+
+Esa unión PN cuando se dispone adecuadamente con distintos materiales tiene la capacidad de emitir luz visible debida al calor generado en la recombinación de electrones.  En los años que van de 1960 a 1990, se utilizaban como materiales para la construcción del LED el Aluminio (Al), Galio (Ga), Indio (In), Arsénico (As) y Fósforo (P) y con ellos se logró la obtención de luz con longitudes de onda entre 660 y 590 nm, con tonos rojos, naranjas y ámbar. Posteriormente se introdujo Nitrógeno (N), junto con el Indio y el Galio, lo que dio paso a la obtención de radiaciones de longitud de onda entre 585 y 430 nm, de tonos verdes y azules. En 1992 se consigue la luz blanca con la ayuda del Fósforo (P) que al ser atravesado por luz azul produce luz blanca. La combinación del Galio con distintos elementos da origen a las diferentes longitudes de onda y por tanto a los diferentes colores.
+
+Cuando un LED se polariza inversamente circula por el mismo una corriente muy pequeña y se puede comprobar que depende de la luz, lo que podemos utilizar para medir el nivel de luminosidad en crudo. Es decir, podemos detectar como de brillante es la luz en el entorno del LED. Si miramos un diodo LED con un lupa o cámara que permita aumentar bastante el zoom podemos llegar a ver la zona que emite luz.
+
+<center>
+
+![Diodo LED muy de cerca](../img/conceptos/discretos/LED_zoom.png)  
+*Diodo LED muy de cerca*
+
+</center>
+
+En la zona tipo P las cargas positivas se pueden mover libremente mientras que en la zona N lo hacen las negativas. Cuando se crea la unión las cargas mas cercanas de cada zona se recombinan creando la denominada barrera de potencial, donde no hay movimiento de cargas. Esto se puede considerar como un aislante que separa a dos conductores, o lo que es lo mismo, un condensador, eso si de muy baja capacidad. Sabemos también que la capacidad de un condensador viene dada por:
+
+<center>$C = \epsilon_{0} \cdot \dfrac{S}{d}$</center>
+
+donde $\epsilon_{0}$ es la permitividad en el vacio, S es la superficie de las placas y d es la distancia que las separa.
+
+Esa barrera de potencial cambia según la luz que incide sobre sobre la misma, aumentando a mayor luminosidad y disminuyendo a menor luminosidad. El aumento de la barrera hace que la disminuya la superficie de las zonas P y N. Un sencillo experimento no permite medir los cambios de esa capacidad demostrando así que un LED puede ser un sensor de luz.
+
+En mi caso voy a utilizar el medidor de componentes [GSM328A](https://github.com/fgcoca/Medidor-componentes-GM328A/wiki) que es un medidor de muy bajo coste (se puede encontrar por menos de 8€) pero que resulta bastante útil para este tipo de tareas.
+
+Siguiendo las instrucciones del manual colocamos el diodo LED en la posición central y rotando el encoder localizamos la posición de medida de baja capacidad y pulsamos para activar.
+
+<center>
+
+![Posicionado del LED y selección de medida en el GSM328A](../img/conceptos/discretos/GSM328_selec.png)  
+*Posicionado del LED y selección de medida en el GSM328A*
+
+</center>
+
+Medidas con diferentes grados de iluminación obtenidos simplemente tapando el LED.
+
+<center>
+
+![Meidas de capacidad del LED con el GSM328A](../img/conceptos/discretos/GSM328_medidas.png)  
+*Meidas de capacidad del LED con el GSM328A*
+
+</center>
+
+En la micro:bit la medida del nivel de iluminación consiste principalmente en medir la capacidad de unos determinados LEDs de la pantalla obteniendo el promedio y devolviendo un número entre 0 y 255.
+
+<center>
+
+![LEDs de la micro:bit implicados en la medida de luminosidad](../img/conceptos/discretos/9_LEDs_luz.png)  
+*LEDs de la micro:bit implicados en la medida de luminosidad*
+
+</center>
+
+[Volver](#item0LDR)
+<a name="item2LDR"></a>
+
+<FONT COLOR=#BB00FF><font size="5"><b>La Fotorresistencia LDR</font color></font size></b>
+
+Existe también un tipo de resistencia especial denominado fotoresistencia o fotoresistor que es un componente electrónico cuya resistencia disminuye de forma exponencial con el aumento de la intensidad de luz incidente. Las siglas LDR vienen de su nombre en inglés, que es Light Dependent Resistor. En la imagen siguiente tenemos el símbolo, el aspecto real de una LDR y su curva característica de variación de resistencia con la iluminación.
+
+<center>
+
+![Símbolo, aspecto y curva característica de la LDR](../img/conceptos/discretos/simbolo_aspecto_curva_LDR.png)  
+*Símbolo, aspecto y curva característica de la LDR*
+
+</center>
+
+La resistencia de una LDR varia en proporción a la luz ambiental detectada. Con esta característica, podemos utilizar una LDR para detectar la intensidad de la luz.
+
+A continuación vemos los circuitos que se utilizan para detectar el cambio del valor de resistencia de una LDR cuando la conectamos a una micro:bit:
+
+<center>
+
+![Circuitos para detectar variaciones de R en la LDR](../img/conceptos/discretos/circuitos_LDR.png)  
+*Circuitos para detectar variaciones de R en la LDR*
+
+</center>
+
+En estos circuitos, cuando el valor de la resistencia de la LDR cambia debido a un cambio en la intensidad de la luz, las tensiones en la LDR y la resistencia fija también cambiarán. Podemos hacer que el valor de la intensidad de la luz se corresponda con esa tensión.
+
 ## <FONT COLOR=#007575>**El diodo semiconductor**</font>
 Son dispositivos que permiten el paso de la corriente electrica en un solo sentido y la bloquean en el contrario. Se suelen conocer también como rectificadores por su capacidad de convertir la corriente alterna en corriente continua pulsatoria. Existen diferentes tipos de diodos y nos centraremos en describir como funcionan los diodos de estado sólido sin entrar en demasiados fundamentos científicos. El símbolo del diodo es un triángulo que viene a indicar el sentido permitido de circulación de corriente y la barrera que se opone en el contrario.
 

@@ -1,0 +1,31 @@
+module main
+author unknown
+version 1 0 
+description ''
+variables valor 
+
+script 88 100 {
+whenStarted
+forever {
+  valor = ('[misc:rescale]' (analogReadOp 3) 0 1023 0 270)
+  if (valor <= 60) {
+    analogWriteOp 0 1023
+    analogWriteOp 1 1023
+    analogWriteOp 2 1023
+  } (and (valor > 60) (valor <= 130)) {
+    analogWriteOp 0 0
+    analogWriteOp 1 1023
+    analogWriteOp 2 1023
+  } (and (valor > 130) (valor <= 200)) {
+    analogWriteOp 0 1023
+    analogWriteOp 1 0
+    analogWriteOp 2 1023
+  } (valor > 200) {
+    analogWriteOp 0 1023
+    analogWriteOp 1 1023
+    analogWriteOp 2 0
+  } else {
+  }
+}
+}
+

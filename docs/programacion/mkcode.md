@@ -1030,3 +1030,87 @@ En la gráfica siguiente vemos graficados y en modo texto los datos simulados y 
 *Temperatura y nivel de iluminación*
 
 </center>
+
+## <FONT COLOR=#007575>**Magnetómetro y acelerómetro**</font>
+Además de los bloques visto en Conceptos técnicos vamos a citar brevemente otros bloques existentes relacionados con el tema.
+
+* ![](../img/programacion/mkcode/compass/b1.png). Obtiene el valor de la aceleración (miligramos-fuerza) en una de las tres dimensiones, o bien la fuerza combinada en todas las direcciones (x, y, y z). La aceleración se mide con el mg, que es 1/1000 de un g, siendo un g la aceleración de la gravedad terrestre. El valor de g es 
+
+<center> $g = 9.81 \space m/s^2 \space = \space m \cdot s^{−2} \space o \space de \space manera \space equivalente \space N/kg \space = \space N \cdot kg^{−1}$.</center>
+
+Recordemos el cálculo euclidiano de las fuerzas. Si estamos trabajando en un plano nivelado y movemos la micro:bit de manera diagonal obtenemos una aceleración en dos dimensiones que se calcula asi:
+
+<center>
+
+$f_{2D} = \sqrt{a_{x}^{2}+a_{y}^{2}}$
+
+</center>
+
+Si levantamos la micro:bit del plano añadimos otra dimensión en la ecuación:
+
+<center>
+
+$f_{3D} = \sqrt{a_{x}^{2}+a_{y}^{2}+a_{z}^{2}}$
+
+</center>
+
+La función retorna un número que es la cantidad de aceleración. Cuando la micro:bit está sobre una superficie plana con la pantalla hacia arriba, x = 0, y = 0, z = -1023, y la fuerza es 1023.
+
+Como ejemplo vamos a crear un indicador del grado movimiento de una superficie a modo de medida del grado de un terremoto. El programa es:
+
+<center>
+
+![Grado de movimiento 3D de la micro:bit](../img/programacion/mkcode/compass/terremoto.png)  
+*Grado de movimiento 3D de la micro:bit*
+
+</center>
+
+* ![](../img/programacion/mkcode/compass/b2.png). Fuerza magnética. Encuentra la cantidad de fuerza magnética (la fuerza de un imán) en una de las tres direcciones. Recordemos siempre que es necesario calibrar la brújula para estar adaptados al lugar donde estemos trabajando con la micro:bit. Devuelve un número de microteslas que es la intensidad de la fuerza magnética. Como ejemplo creamos un detector de metales que mida la intensidad de la fuerza magnética en la dirección X. Visualice un gráfico de barras para mostrar el nivel actual de la fuerza magnética medida por el magnetómetro.
+
+<center>
+
+![Detector de metales](../img/programacion/mkcode/compass/detector.png)  
+*Detector de metales*
+
+</center>
+
+* ![](../img/programacion/mkcode/compass/b3.png). Averigua la inclinación de la micro:bit en diferentes direcciones: Rotation.Pitch (arriba y abajo) o Rotation.Roll (izquierda y derecha). Los conceptos que vemos en la imagen siguiente se refieren a la rotación del eje X (Roll) y la rotación del eje Y (Pitch) y se ha prescindido del eje Z (Yaw). Para aprender mas sobre estos conceptos puedes visitar este enlace al blog de [Luis Llamas](https://mecatronicalab.es/escornabot-control-por-acelerometro/anexo-determinar-la-orientacion/). En la explicación de los conceptos básicos de este tipo de dispositivos se muestra el gráfico de la figura, donde se comparan los conceptos de movimientos angulares aplicados a una aeronave.
+
+<center>
+
+![Movimientos angulares Pitch y Roll](../img/programacion/mkcode/compass/pitch_roll.png)  
+*Movimientos angulares Pitch y Roll*
+
+</center>
+
+En los bloques se ha traducido Pitch como Timbre aunque a mi modo de ver sería mas correcto Cabeceo y Roll se ha traducido por Girar que sería mejor Balanceo. Aunque no lo utilizamos Yaw se suele traducir por Viraje. El valor de retorno en un ángulo en grados entre -180 y 180. Hagamos como ejemplo un sencillo nivel que muestre una carita sonriente si la micro:bit está nivelada.
+
+<center>
+
+![Nivel con Pitch y Roll](../img/programacion/mkcode/compass/nivel.png)  
+*Nivel con Pitch y Roll*
+
+</center>
+
+* ![](../img/programacion/mkcode/compass/b4.png). Establecer el rango del acelerómetro por si necesitamos medir aceleraciones altas o bajas. Los valores posibles son 1g, 2g, 4g u 8g. Veamos un ejemplo en el que se establece que la aceleración más alta que la micro:bit medirá es 4G. Movemos la micro:bit en la dirección elegida hasta detener el programa. El programa no se puede simular.
+
+<center>
+
+![Rango de aceleración](../img/programacion/mkcode/compass/rango.png)  
+*Rango de aceleración*
+
+</center>
+
+## <FONT COLOR=#007575>**Nivel de luz**</font>
+
+* ![](../img/programacion/mkcode/luz/b1.png). Uno de los bloques del menú "Entrada". Averigua el nivel de luz (lo brillante u oscuro que es) en el lugar en el que se encuentre la micro:bit. El nivel de luz 0 significa oscuridad y 255 significa luz brillante. La micro:bit mide la luz a su alrededor utilizando algunos de los LED de la pantalla LED.
+
+La primera vez que se utiliza, la función retornará 0. Posteriormente, dirá el nivel de luz real. Esto se debe a que el sensor de luz tiene que activarse antes de detectar. Trabajar con el bloque es muy sencillo, como vemos en el ejemplo siguiente, donde podemos observar un momento de la simulación.
+
+<center>
+
+![Ejemplo: gráfico de barras con la luminosidad](../img/programacion/mkcode/ejem_luminosidad.png)  
+*Ejemplo: gráfico de barras con la luminosidad*
+
+</center>
+

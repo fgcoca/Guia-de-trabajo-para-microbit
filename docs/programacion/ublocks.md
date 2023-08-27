@@ -921,3 +921,58 @@ Las matrices de bytes contienen bytes con valores de 0 a 255.
 </center>
 
 * ![](../img/programacion/ublocks/comm/comm8.png). Escribe una matriz de bytes en el puerto serie comenzando en el bytes dado y devuelve el número de bytes escritos. Utilizando este bloque, un bucle de MicroBlocks puede escribir eficientemente una matriz de bytes larga en el puerto serie.
+
+## <FONT COLOR=#007575>**Magnetómetro y acelerómetro**</font>
+En MicroBlocks solamente disponemos de unos cuanto bloques relacionados con el tema y los encontramos dentro de la Librería "Sensores básicos". Estos son:
+
+* ![](../img/programacion/ublocks/compass/b1.png) ![](../img/programacion/ublocks/compass/b2.png) ![](../img/programacion/ublocks/compass/b3.png). Estos tres bloques informan de los valores de inclinación en los tres ejes. El rango normal de valores es de -100 a +100, pero los valores pueden alcanzar valores entre -200 y 200 cuando se sacude. (100 equivale a 1G de aceleración).
+
+<center>
+
+![](../img/programacion/ublocks/compass/pitch_roll.png)
+
+</center>
+
+Podemos hacer un sencillo nivel con alguna referencia al eje Z. El nivel funciona igual que en el caso de MakeCode pero si ponemos la micro:bit vertical veremos un cero como valor de Yaw y como se alterna una V con una X en la pantalla.
+
+<center>
+
+![Nivel](../img/programacion/ublocks/compass/nivel.png)
+
+</center>
+
+[Descargar el programa](../ejemplos/nivel_uB.ubp)
+
+* ![](../img/programacion/ublocks/compass/b4.png). Devuelve la aceleración total (o "fuerza G") experimentada por la micro:bit independientemente de la dirección. Siempre es positiva, con un rango de 0 a 346. En el ejemplo vemos el resultado de mover la micro:bit tanto en forma de texto como en forma de gráfico.
+
+<center>
+
+![Midiendo g](../img/programacion/ublocks/compass/acel.png)
+
+</center>
+
+<center>
+
+![Midiendo g](../img/programacion/ublocks/compass/acel.gif)
+
+</center>
+
+[Descargar el programa](../ejemplos/aceleracion_uB.ubp)
+
+* ![](../img/programacion/ublocks/compass/b5.png). Por defecto, el rango completo del acelerómetro es +/- 200, siendo 100 = 1G, que es la aceleración de la gravedad en la Tierra. Esta es la aceleración que experimenta la micro:bit cuando permanece inmóvil sobre una mesa. El rango por defecto es suficiente para medir la inclinación o detectar sacudidas suaves. Pero también puede ser interesante medir aceleraciones mayores, como la rápida deceleración... que se produce cuando chocan objetos. Este bloque avanzado permite cambiar el rango de aceleración máxima para medir esas aceleraciones mayores. Establecer su valor, por ejemplo en 4G hace que se divida por 4 el resultado final. Lo podemos probar facilmente introduciendo el bloque en el ejemplo anterior.
+
+* ![](../img/programacion/ublocks/compass/b6.png). Informa de la intensidad del campo magnético detectado por el acelerómetro. El rango es aproximadamente 0-100000 y el sensor es lo suficientemente sensible como para detectar el campo magnético de la Tierra o el campo magnético de la corriente eléctrica que fluye en un cable, si el cable está cerca del chip. A continuación vemos un ejemplo.
+
+<center>
+
+![Campo magnético](../img/programacion/ublocks/compass/magnet.png)
+
+</center>
+
+[Descargar el programa](../ejemplos/campo_magnetico_uB.ubp)
+
+## <FONT COLOR=#007575>**Sensores básicos**</font>
+El bloque está en una librería que acompaña al programa que tiene por nombre "Sensores básicos" y que tenedremos que añadir a las librerias del proyecto para tenerlos disponibles. La mayoría de ellos ya se han explicado en otros apartados y ahora vamos a ver este en concreto.
+
+* ![](../img/programacion/ublocks/nivel_luz.png). El nivel de luz tiene un rango de 0 a 1023. Los sensores de luz varían en sensibilidad, incluso entre placas micro:bits de la misma versión, por lo que tendremos que experimentar para descubrir el rango de trabajo del sensor de luz de nuestra placa. Este bloque trabaja con las lecturas de los LEDs de la pantalla.
+

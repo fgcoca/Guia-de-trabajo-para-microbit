@@ -60,6 +60,10 @@ nav:
     - A08. Diodos LEDs RGB direccionables: actividades/A08.md
     - A09. Zumbador o buzzer: actividades/A09.md
     - A10. Comunicación serie: actividades/A10.md
+    - A11. Magnetómetro y acelerómetro: actividades/A11.md
+    - A12. Entrada analógica. El potenciómetro: actividades/A12.md
+    - A13. Control con potenciómetro de LED, LED RGB y Neopixel: actividades/A13.md
+    - A14. Nivel de luz. LDR: actividades/A14.md
   - Listado de programas: programas/lista.md
   - Miscelanea:
     - Autor: Miscelanea/about.md 

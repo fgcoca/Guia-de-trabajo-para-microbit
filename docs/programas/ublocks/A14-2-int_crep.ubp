@@ -1,0 +1,44 @@
+module main
+author unknown
+version 1 0 
+description ''
+variables nivel_luz 
+
+script 88 100 {
+whenStarted
+forever {
+  nivel_luz = (analogReadOp 0)
+  sayIt nivel_luz
+  comment 'Con luz incidiendo en la LDR se obtienen valores bajos.
+Con la LDR el valor estará en torno a 1000.
+Podemos establecer el valor de la comparación
+teniendo esto en cuenta..'
+  if (nivel_luz > 500) {
+    digitalWriteOp 1 true
+  } else {
+    digitalWriteOp 1 false
+  }
+}
+}
+
+
+module 'Basic Sensors' Input
+author MicroBlocks
+version 1 1 
+tags tilt acceleration light sensor 
+choices accelerometerRange '1' '2' '4' '8' 
+description 'Provides blocks to read tilt in the three axes, acceleration, temperature and light level. Many boards come with this particular set of sensors, such as the micro:bit, the Circuit Playground Express, the Calliope or the Citilab ED1.'
+
+  spec 'r' '[sensors:tiltX]' 'tilt x'
+  spec 'r' '[sensors:tiltY]' 'tilt y'
+  spec 'r' '[sensors:tiltZ]' 'tilt z'
+  spec 'r' '[sensors:acceleration]' 'acceleration'
+  spec 'r' '[display:lightLevel]' 'light level'
+  spec 'r' '[sensors:temperature]' 'temperature (°C)'
+  spec 'r' '[sensors:magneticField]' 'magnetic field'
+  spec ' ' '_setAccelRange' 'set acceleration range _ g = 100' 'menu.accelerometerRange' '1'
+
+to '_setAccelRange' n {
+  '[sensors:setAccelerometerRange]' (0 + n)
+}
+
