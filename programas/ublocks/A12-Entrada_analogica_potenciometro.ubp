@@ -1,0 +1,16 @@
+module main
+author unknown
+version 1 0 
+description ''
+variables lectura_ADC ADC_voltios inter 
+
+script 50 50 {
+whenStarted
+forever {
+  lectura_ADC = (analogReadOp 0)
+  ADC_voltios = ('[misc:rescale]' lectura_ADC 0 1023 0 3)
+  sayIt 'Valor a convertir: ' lectura_ADC ('[data:unicodeString]' 10) 'Voltaje: ' ADC_voltios
+  printIt 'Voltaje: ' ADC_voltios
+}
+}
+

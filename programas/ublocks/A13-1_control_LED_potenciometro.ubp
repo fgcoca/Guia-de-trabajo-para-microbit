@@ -1,0 +1,12 @@
+module main
+author unknown
+version 1 0 
+description ''
+
+script 86 112 {
+whenStarted
+forever {
+  analogWriteOp 1 (analogReadOp 0)
+}
+}
+
