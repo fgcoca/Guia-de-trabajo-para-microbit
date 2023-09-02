@@ -975,4 +975,46 @@ Podemos hacer un sencillo nivel con alguna referencia al eje Z. El nivel funcion
 El bloque está en una librería que acompaña al programa que tiene por nombre "Sensores básicos" y que tenedremos que añadir a las librerias del proyecto para tenerlos disponibles. La mayoría de ellos ya se han explicado en otros apartados y ahora vamos a ver este en concreto.
 
 * ![](../img/programacion/ublocks/nivel_luz.png). El nivel de luz tiene un rango de 0 a 1023. Los sensores de luz varían en sensibilidad, incluso entre placas micro:bits de la misma versión, por lo que tendremos que experimentar para descubrir el rango de trabajo del sensor de luz de nuestra placa. Este bloque trabaja con las lecturas de los LEDs de la pantalla.
+* ![](../img/programacion/ublocks/temp.png). La temperatura se indica en grados Celsius. El rango del sensor de temperatura suele ser como mínimo de 0 a 50 °C. Estos sensores de temperatura integrados no están calibrados y suelen variar de una placa a otra. Podemos comparar la medida obtenida con nuestra placa con la de un termómetro externo y fiable para poder obtener la temperatura real. Una vez calibrado no será peor que muchos sensores de temperatura integrados, que tienen una precisión de hasta uno o dos grados centígrados.
+
+## <FONT COLOR=#007575>**Libreria de Gráficos y pantallas**</font>
+Si accedemos a agregar libreria nos aparece una ventana donde se ofrecen todas las librerias disponibles, y entre ellas el grupo de "Gráficos y pantallas" que vemos:
+
+<center>
+
+![Grupo de librerias de Gráficos y Pantallas](../img/programacion/ublocks/LCD/lib_g.png)  
+*Grupo de librerias de Gráficos y Pantallas*
+
+</center>
+
+Accediendo al grupo indicado vemos las librerias disponibles y entre las mismas está la que buscamos para la LCD:
+
+<center>
+
+![Libreria LCD Display](../img/programacion/ublocks/LCD/lib_LCD.png)  
+*Libreria LCD Display*
+
+</center>
+
+Una vez añadida la librería se muestran los bloques que tenemos disponibles para trabajar con la LCD:
+
+<center>
+
+![Bloques LCD Display](../img/programacion/ublocks/LCD/bloques_LCD.png)  
+*Bloques LCD Display*
+
+</center>
+
+En MicroBlocks la línea superior es la 1 y la inferior la 2 y las columnas se numeran desde la 1 hasta la 16. Si ponemos como columna inicial la 0 no veremos nada en la pantalla. Curiosamente cuando damos a una fila el valor 0, esta pasa a sustituir a la línea 2.
+
+El ejemplo siguiente nos pone todo esto en claro.
+
+<center>
+
+![Ejemplo hola mundo con LCD](../img/programacion/ublocks/LCD/HM_LCD.png)  
+*Ejemplo hola mundo con LCD*
+
+</center>
+
+[Descargar el programa](../ejemplos/Hola_mundo_LCD.ubp)
 

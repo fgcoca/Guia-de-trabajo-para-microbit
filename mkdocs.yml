@@ -15,7 +15,7 @@ copyright: Copyright &copy; 2020 - 2035 Federico Coca
 # 4. RRSS
 extra:
   social:
-    - icon: fontawesome/brands/twitter 
+    - icon: fontawesome/brands/twitter
       link: https://twitter.com/fgcoca
       name: Twitter de Federico Coca
     - icon: fontawesome/brands/github
@@ -38,6 +38,8 @@ nav:
   - Python:
     - Introducción: guias/intro.md
     - Guía de MicroPython: guias/pyt.md
+    - Programacion Orientada a Objetos: guias/poo.md
+    - La consola serie: guias/consola.md
     - Experiencia inmediata: guias/outofthebox.md
   - Conceptos técnicos: 
     - Componentes discretos: conceptos/discretos.md
@@ -64,6 +66,8 @@ nav:
     - A12. Entrada analógica. El potenciómetro: actividades/A12.md
     - A13. Control con potenciómetro de LED, LED RGB y Neopixel: actividades/A13.md
     - A14. Nivel de luz. LDR: actividades/A14.md
+    - A15. LCD 1602 I2C: actividades/A15.md
+    - A16. Medidas de temperatura: actividades/A16.md
   - Listado de programas: programas/lista.md
   - Miscelanea:
     - Autor: Miscelanea/about.md 

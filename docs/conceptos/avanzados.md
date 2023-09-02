@@ -519,7 +519,7 @@ En realidad el conjunto que vemos en la imagen anterior no es mas que una LCD 2x
 
 Este tipo de pantalla requiere cuatro cables para establecer las conexiones, dos cables SDA (datos) y SCL (reloj) para el bus de comunicaciones I2C y los dos cables de alimentación VCC y GND.
 
-La dirección I2C por defecto de este tipo de módulos puede ser 0x3F o en otros casos 0x27, e incluso hay modelos en los que se puede cambiar. Para un correcto control es muy importante identificar correctamente la dirección I2C de nuestro modulo pues de otra forma nuestro programa no funcionará correctamente.
+La dirección física I2C por defecto de este tipo de módulos depende del circuito integrado utilizado para realizar la conversión paralelo a serie. Los mas habituales son el PCF8574T que tiene la dirección 0x27 o bien el PCF8574AT que tienen la dirección 0x3F. También es habitual que se pueda cambiar la dirección física dentre de un rango de 8 valores (3 bits). Para un correcto control es muy importante identificar correctamente la dirección I2C de nuestro modulo pues de otra forma nuestro programa no funcionará correctamente.
 
 En la siguiente figura se muestra el sistema de distribución de filas y columnas.
 

@@ -1449,3 +1449,23 @@ Los argumentos ```wait```, ```loop``` y ```monospace``` deben especificarse util
 * ```microbit.display.is_on()```. Devuelve ```True``` si la pantalla está encendida, en caso contrario devuelve ```False```.
 * ```microbit.display.read_light_level()```. Utiliza los LEDs de la pantalla en modo de polarización inversa para detectar la cantidad de luz que incide sobre la pantalla. Devuelve un número entero entre 0 (oscuridad) y 255 (máximo brillo) que representa el nivel de luz.
 
+## <FONT COLOR=#007575>**I2C**</font>
+El módulo I²C permite comunicarse con dispositivos conectados a la placa utilizando el protocolo de bus I²C. Puede haber múltiples dispositivos esclavos conectados al mismo tiempo, y cada uno tiene su propia dirección única, que es fija para el dispositivo o configurada en él. La placa actúa como maestro I²C.
+
+Veamos las funciones disponibles:
+
+* ```microbit.i2c.init(freq=100000, sda=pin20, scl=pin19)```. Reinicializa el periférico con la frecuencia de reloj freq especificada en los pines sda y scl especificados.
+
+<hr width=100%  size=10 noshade="noshade">
+Advertencia: En una placa micro:bit V1, cambiar los pines I²C de los predeterminados hará que el acelerómetro y la brújula dejen de funcionar, ya que están conectados internamente a esos pines. Esta advertencia no se aplica a la revisión V2 del micro:bit ya que esta tiene líneas I²C separadas para los sensores de movimiento y el conector de borde.
+<hr width=100%  size=10 noshade="noshade">
+
+* ```microbit.i2c.scan()```. Escanea el bus en busca de dispositivos. Devuelve una lista de direcciones de 7 bits correspondientes a los dispositivos que respondieron al escaneo.
+* ```microbit.i2c.read(addr, n, repeat=False)```. Lee n bytes del dispositivo con dirección addr. Si la repetición es ```True```, no se enviará ningún bit de parada.
+* ```microbit.i2c.write(addr, buf, repeat=False)```. Escribe bytes desde buf al dispositivo con dirección addr. Si repeat es ```True```, no se enviará ningún bit de parada.
+
+## <FONT COLOR=#007575>**Temperatura**</font>
+Existe una única función para leer la temperatura interna de la micro:bit:
+
+* ```microbit.temperature()```. Retorna un entero con la temperatura de la micro:bit en grados Celcius.
+

@@ -1114,3 +1114,103 @@ La primera vez que se utiliza, la función retornará 0. Posteriormente, dirá e
 
 </center>
 
+## <FONT COLOR=#007575>**I2C**</font>
+MakeCode incorpora dos bloques en el menú "Pines" que nos permiten leer y escribir un número en una dirección I2C.
+
+* Leer un número de una dirección I2C utilizando un formato de número especificado. No está soportado en el simulador.
+
+<center>
+
+![](../img/programacion/mkcode/i2c/b1.png)
+
+</center>
+
+* Escribir un número de una dirección I2C utilizando un formato de número especificado. No está soportado en el simulador.
+
+<center>
+
+![](../img/programacion/mkcode/i2c/b2.png)
+
+</center>
+
+La condición repeated se establece para asegurarse de que cuando desee leer varios números del dispositivo a la vez, se pueda hacer sin interrupción. Con la condición en ```True``` se lee sin parada y cuando se lee el último número es cuando se envia la condición a ```False``` y no se realizan mas lectuas. Para lecturas individuales debe estar en ```False```.
+
+Algunos sensores de la micro:bit usan el mismo bus I2C que está conectado a los pines de programas. Esto significa que hay que tener cuidado de **NO** usar una dirección para nuestro dispositivo que sea la misma que cualquiera de las usadas por los sensores en la placa. Tenemos que [revisar](https://tech.microbit.org/software/spec-i2c-protocol/) la lista de direcciones de sensores I2C antes de asignar una a nuestro dispositivo.
+
+Pero nosotros no vamos a trabajar con estos bloques sino añadiendo la extensión [I2C LCD1602](https://makecode.microbit.org/pkg/makecode-extensions/i2clcd1602). Los bloques son secillos de utilizar y su uso básico se explica en el enlace anterior.
+
+<center>
+
+![Bloques de la extensión I2C LCD1602](../img/programacion/mkcode/i2c/bloques.png)  
+*Bloques de la extensión I2C LCD1602*
+</center>
+
+En cuanto a la dirección física del dispositivo indicar que si en el bloque la dejamos a 0 se intentará reconocerla automáticamente. Pero si esto no funciona debemos indicarla nosotros. El número que indica la dirección es decimal, pero en el bloque podemos introducir el hexadecimal que este lo convierte directamente a decimal. Por ejemplo, si no nos reconoce la dirección del dispositivo, pero sabemos que es 0x27 podemos proceder como en la animación siguiente:
+
+<center>
+
+![Especificar dirección física de I2C LCD1602](../img/programacion/mkcode/i2c/especificar_direcc.gif)  
+*Especificar dirección física de*
+</center>
+
+El ejemplo Hola mundo ampliado nos muestra el uso básico de estos bloques.
+
+<center>
+
+![Hola Mundo ampliado con I2C LCD1602](../img/programacion/mkcode/i2c/ejemHM.png)  
+*Hola Mundo ampliado con I2C LCD1602*
+</center>
+
+[Descargar el programa](../ejemplos/microbit-test_LCD_I2C1602.hex)
+
+## <FONT COLOR=#007575>**Temperatura**</font>
+En MakeCode es muy sencillo averiguar la temperatura del lugar donde nos encontremos. La temperatura se mide en grados Celsius (sistema métrico). La micro:bit puede calcular la temperatura aproximada comprobando cuan calientes están sus chips informáticos. En el menú "Entrada" hay un bloque específico para ello.
+
+* ![](../img/programacion/mkcode/temp.png) Devuelve un número que es la temperatura en grados Celsius.
+
+La micro:bit comprueba la temperatura de su CPU (chip principal de la placa). Como la micro:bit no suele calentarse mucho, la temperatura de la CPU suele ser cercana a la temperatura del lugar donde se encuentra. Sin embargo, la micro:bit puede calentarse un poco si la hacemos trabajar duro.
+
+De una manera muy similar a la explicada en la entrada "Detección de luz con la micro:bit" del apartado [Componentes discretos](../conceptos/discretos.md) de Conceptos técnicos, la unión PN puede variar la capacidad que se forma en la barrera de potencia en función de la temperatura, a mayor temperatura mayor capacidad, y estas variaciones se puede utilizar para calcular la temperatura. En el video [Behind the MakeCode Hardware - Temperature Sensor on micro:bit](https://www.youtube.com/watch?v=_T4N8O9xsMA) del canal de [Youtube de MakeCode](https://www.youtube.com/@MicrosoftMakeCode) se explica en detalle.
+
+Pero la micro:bit no lleva ningún sensor de temperatura, sino que dicho sensor está dentro del procesador:
+
+<center>
+
+![Ubicación del procesador en una micro:bit V2](../img/programacion/mkcode/proces_ubica.png)  
+*Ubicación del procesador en una micro:bit V2*
+</center>
+
+En el datasheet del [nRF52833](../datasheet/nRF52833.pdf) en su página 422 nos explica el sensor y el registro que lo acompaña y en la página 428 nos da las especificaciones eléctricas del mismo. A continuación se reproduce traducida la descripción:
+
+>
+El sensor de temperatura mide matriz en el rango de temperatura del dispositivo. Si la aplicación lo requiere, se puede implementar una compensación de linealidad.
+>
+A continuación se enumeran las principales características de TEMP:
+>
+- El rango de temperatura es mayor o igual a la temperatura de funcionamiento del dispositivo.
+- La resolución es de 0,25 grados
+>
+TEMP se inicia activando la tarea START.
+>
+Cuando se completa la medición de temperatura, se genera un evento DATARDY y el resultado de la medición se puede leer en el registro TEMP.
+>
+Para alcanzar la precisión de medida indicada en la especificación eléctrica, debe seleccionarse el oscilador de cristal como fuente de HFCLK. Para obtener más información, consulte RELOJ - Control del reloj en la página 80.
+>
+Cuando finaliza la medición de temperatura, la electrónica analógica TEMP se apaga para ahorrar energía.
+>
+TEMP sólo admite el funcionamiento de una sola vez, lo que significa que cada medición TEMP debe iniciarse explícitamente mediante la tarea START.
+>
+
+Que el sensor de temperatura esté dentro del procesador crea un pequeño problema, y es que estamos midiendo la temperatura dentro del procesador en lugar de en el aire que hay a su alrededor. Y claro, a medida que el procesador ejecuta el código se va calentando, haciendo que el sensor de temperatura dé una medida ligeramente más alta de lo que esperamos si hubiésemos medido en el aire exterior. Aún así la diferencia no es mucho mas grande que el error que tienen algunos sensores externos habituales en este tipo de proyectos, por lo que nos puede valer perfectamente como sensor.
+
+Si vamos a trabajar con un termistor hay que recurrir a cálculos matemáticos tras la lectura del valor analógico de medida devuelto por el termistor. En la entrada El termistor del apartado [Compnentes discretos](../conceptos/discretos.md) de la sección Concetos técnicos lo tenemos descrito.
+
+En cambio para MakeCode podemos encontrar una extensión denominada [Makecode-Extension-Starter-Kit](https://github.com/Freenove/Makecode-Extension-Starter-Kit) que podemos agregar y tendremos disponibles unos cuantos bloques y uno de ellos es justo la lectura de temperatura del termistor.
+
+<center>
+
+![Bloque termistor para MakeCode](../img/programacion/mkcode/bloq_termis.png)  
+*Bloque termistor para MakeCode*
+
+</center>
+

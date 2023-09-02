@@ -256,6 +256,111 @@ A continuación vemos los circuitos que se utilizan para detectar el cambio del 
 
 En estos circuitos, cuando el valor de la resistencia de la LDR cambia debido a un cambio en la intensidad de la luz, las tensiones en la LDR y la resistencia fija también cambiarán. Podemos hacer que el valor de la intensidad de la luz se corresponda con esa tensión.
 
+### <FONT COLOR=#AA0000>El termistor</font>
+El termistor (contracción de térmico y resistor) es una resistencia sensible a la temperatura, es decir, que cuando se produce un cambio de temperatura, la resistencia del termistor varía. Normalmene tiene forma de pequeña gota o perla, disco tipo lenteja o un cilindro encapsulado.
+
+Hay dos tipos de termistores, los que tienen un Coeficiente de Temperatura Negativo (NTC) y lo que tienen un Coeficiente de Temperatura Positivo (PTC). En un termistor NTC cuando la temperatura aumenta su resistencia disminuye y a la inversa, cuando baja la temperatura su resistencia aumenta. Esta característica la podemos aprovechar para medir temperaturas.
+
+En un termistor PTC cuando aumenta la temperatura lo hace su resistencia y cuando disminuy la temperatura también lo hace su resistencia. Este tipo de termistor se usa principalmente como fusible térmico.
+
+El símbolo de un termistor es:
+
+<center>
+
+![Símbolo usuales del termistor](../img/conceptos/discretos/simb_termistor.png)  
+*Símbolo usuales del termistor*
+
+</center>
+
+Existen muchas y variadas formas de encapsulados de termistores y en la [Wikipedia](https://es.wikipedia.org/wiki/Termistor) aparecen clasificados por su forma.
+
+<center>
+
+![Encapsulados de los termistores](../img/conceptos/discretos/encap_termistor.png)  
+*Encapsulados de los termistores*
+
+</center>
+
+La curva característica de un termistor NTC es la siguiente:
+
+<center>
+
+![Curva Resistencia/Temperatura termistor NTC](../img/conceptos/discretos/curva_NTC.png)  
+*Curva Resistencia/Temperatura termistor NTC*
+
+</center>
+
+La ecuación que relaciona el valor de resistencia y la temperatura es:
+
+<center>$R = R_0 \cdot e^{\beta \cdot (\dfrac{1}{T} -\dfrac{1}{T_0})}$</center>
+
+Donde:
+
+* R es la resistencia a temperatura ambiente T
+* $R_0$ es la resistencia a la temperatura ambiente $T_0$
+* $\beta$ es la constante del termistor
+
+La constate $\beta$ viene dada por:
+
+<center>$\beta = \ln\dfrac{\dfrac{R}{R_0}}{\dfrac{1}{T}-\dfrac{1}{T_0}}$</center>
+
+Los valores de resistencia nominal dados a 25ºC para termistores comerciales habituales son de 1K, 10K y 100K, aunque existen de otro valores.
+
+El esquema de conexionado mas sencillo de un termistor es como el siguiente:
+
+<center>
+
+![Esquema base de conexionado de un termistor NTC](../img/conceptos/discretos/esquema_base_NTC.png)  
+*Esquema base de conexionado de un termistor NTC*
+
+</center>
+
+En ese circuito es muy fácil saber el valor de la tensión en P0, ya que por teoría del divisor de tensión tenemos que:
+
+<center>$V_{P_0} = 3.3 \cdot\dfrac{R_t}{R+R_t} \Rightarrow R_t = \dfrac{R}{\dfrac{3.3}{V_{P_0}}-1}$</center>
+
+
+Podemos utilizar el valor analógico medido en el pin P0 para obtener el valor de resistencia del termistor poder obtener la temperatura a partir de la ecuación:
+
+<center>$T = (\dfrac{1}{T_0}+\dfrac{\ln(\dfrac{R}{R_0})}{\beta})^{-1}$</center>
+
+El rango de temperatura en la que el termistor tiene un comportamiento muy estable y de gran sensibilidad se sitúa en torno a los 50ºC sobre una temperatura central. Otras ventajas de este tipo de termistores es que son muy económicos y que tienen un durabilidad muy alta. Sus principales desventajas son que no tienen un comportamiento lineal, su tiempo de respuesta es relativamente lento (entre 7 y 10 segundos) y su rango de temperatura es limitado.
+
+Un ejemplo de termistor NTC es el del [datasheet](https://www.rinconingenieril.es/wp-content/uploads/2017/08/NTC_Vishay.pdf) en el que el fabricante nos suministra los valores de $R_0, \space T_0 \space y \space \beta$. En la tabla extraida del datasheet podemos ver estos datos para distintas resistencias, en nuestro caso trabajamos con una que con $T_0 = 25ºC, \space R_0 = 10K \space y \space \beta = 3977$
+
+<center>
+
+![](../img/conceptos/discretos/NTC_Vishay.png)
+
+</center>
+
+La curva característica de un termistor PTC es la siguiente:
+
+<center>
+
+![Curva Resistencia/Temperatura termistor PTC](../img/conceptos/discretos/curva_PTC.png)  
+*Curva Resistencia/Temperatura termistor PTC*
+
+</center>
+
+El circuito típico de aplicación de un termistor PTC es el siguiente:
+
+<center>
+
+![Esquema base de conexionado de un termistor PTC](../img/conceptos/discretos/esquema_base_PTC.png)  
+*Esquema base de conexionado de un termistor PTC*
+
+</center>
+
+Los termistores tienen diversas utilizaciones y algunas de ellas pueden ser:
+
+* Control de temperatura de extrusor y cama caliente en impresoras 3D de fusión de material.
+* Termostatos.
+* Control de temperatura de aceite en automóviles.
+* Control de temperatura en frigorificos y hornos.
+* Protección contra sobretensiones.
+* Control de temperatura en la carga de baterias.
+
 ## <FONT COLOR=#007575>**El diodo semiconductor**</font>
 Son dispositivos que permiten el paso de la corriente electrica en un solo sentido y la bloquean en el contrario. Se suelen conocer también como rectificadores por su capacidad de convertir la corriente alterna en corriente continua pulsatoria. Existen diferentes tipos de diodos y nos centraremos en describir como funcionan los diodos de estado sólido sin entrar en demasiados fundamentos científicos. El símbolo del diodo es un triángulo que viene a indicar el sentido permitido de circulación de corriente y la barrera que se opone en el contrario.
 
