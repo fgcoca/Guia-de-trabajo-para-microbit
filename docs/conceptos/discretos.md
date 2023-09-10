@@ -944,3 +944,23 @@ El esquema del circuito del altavoz lo vemos en la figura siguiente:
 </center>
 
 Vemos que básicamente está compuesto por un transistor BSS816NW, que es un MOSFET de canal N, de 20V $V_{DS}$ y 1.4A de $I_D$ en encapsulado SOT23. El MLT-8530 es un buzzer electro magnético de 3.6V que trabaja a una frecuencia de 2700 Hz y es capaz de entregar 80 dB @ 5V a 10 cm con una corriente máxima de 95 mA. El diodo de conmutación rápida BAS16LD evita que la alimentación positiva llegue al buzzer y provoque un zumbido continuado.
+
+## <FONT COLOR=#007575>**Micrófonos**</font>
+Un micrófono es un dispositivo de entrada que sirve para transformar ondas sonoras en energia electrica y vicerversa en procesos de grabación.
+
+Existe multitud de tipos de micrófonos para distintas aplicaciones en las que no vamos a entrar. En el [enlace](https://es.wikipedia.org/wiki/Micr%C3%B3fono#:~:text=Un%20micr%C3%B3fono%20funciona%20como%20un,su%20intensidad%2C%20transmitirla%20y%20registrarla.) tienes un amplio artículo sobre los mismos.
+
+Existe un tipo denominado MEMs ("Microelectromechanical systems" en inglés) que también se denominan chips microfónicos y son variantes del micrófono a condensador. El diafragma sensible está grabado sobre la oblea de silicio y suelen integrarse con un amplificador incorporado.
+
+La micro:bit V2 tiene un micrófono MEMS integrado. Puede usarse como una entrada simple (encender luces cuando se aplaude) o tambien se puede medir la cantidad de sonido, por lo que puede hacer un medidor de nivel de ruido o sonómetro básico, tambien podemos hacer que las luces se enciendan en modo disco, al compás de la música. Un micrófono funciona como un transductor o sensor electroacústico y convierte el sonido (ondas sonoras) en una señal eléctrica para aumentar su intensidad, transmitirla y registrarla.
+
+El micrófono está en la parte trasera de la micro:bit, mientras que en la parte delantera hay un nuevo LED, que es el de actividad del micrófono. El LED está junto al orificio que deja pasar el sonido.
+
+<center>
+
+![Esquema circuito micrófono](../img/conceptos/discretos/esq_microV2.png)  
+*Esquema circuito altavoz*
+
+</center>
+
+El SPU0410LR5H-QB consta de un sensor acústico, un búfer de entrada de bajo ruido y un amplificador de salida. El dispositivo tiene un alto rendimiento acústico de banda ancha y RF. Es un micrófono omnidireccional, en el que se considera que su respuesta es como una esfera en tres dimensiones.

@@ -1469,3 +1469,156 @@ Existe una única función para leer la temperatura interna de la micro:bit:
 
 * ```microbit.temperature()```. Retorna un entero con la temperatura de la micro:bit en grados Celcius.
 
+## <FONT COLOR=#007575>**Micrófono, solo en V2**</font>
+Este objeto permite acceder al micrófono integrado disponible en micro:bit V2. Se puede utilizar para responder al sonido. La entrada del micrófono se encuentra en la parte frontal de la placa junto a un LED de actividad del micrófono, que se ilumina cuando el micrófono está en uso.
+
+<center>
+
+![LED de micrófono con actividad](../img/programacion/python/microfono.png)  
+*LED de micrófono con actividad*
+
+</center>
+
+El micrófono puede responder a un conjunto predefinido de **eventos sonoros** que se basan en la amplitud y la longitud de onda del sonido. Están representados por instancias de la clase ```SoundEvent```, accesibles a través de variables en ```microbit.SoundEvent```:
+
+* ```microbit.SoundEvent.QUIET```: Representa la transición de eventos de sonido, de fuerte (```loud```) a silencioso (```quiet```) como hablar tranquilo o música de fondo a bajo volumen.
+* ```microbit.SoundEvent.LOUD```: Representa la transición de eventos de sonido, de silencioso (```quiet```) a fuerte (```loud```) como aplausos o hablar a gritos.
+
+Las funciones disponibles son:
+
+* ```microbit.microphone.current_event()```: Retorna el nombre del último evento sonoro grabado, ```SoundEvent('loud')``` o ```SoundEvent('quiet')```.
+* ```microbit.microphone.was_event(event)```: donde ```event``` es un evento sonoro como ```SoundEvent.LOUD``` o ```SoundEvent.QUIET```. Retorna ```true```  si el sonido se ha escuchado al menos una vez desde la última llamada, en caso contrario ```false```. ```was_event()``` también borra el historial de eventos de sonido antes de retornar.
+* ```microbit.microphone.is_event(event)```: donde ```event``` es un evento sonoro como ```SoundEvent.LOUD``` o ```SoundEvent.QUIET```. Retorna ```true``` si el evento sonoro es el más reciente desde la última llamada, en caso contrario ```false```. No borra el historial de eventos de sonido.
+* ```microbit.microphone.get_events()```: Retorna una tupla del historial de eventos. El más reciente aparece en último lugar. ```get_events()``` también borra el historial de eventos de sonido antes de retornar.
+* ```microbit.microphone.set_threshold(event, value)```: donde ```event``` es un evento sonoro como ```SoundEvent.LOUD``` o ```SoundEvent.QUIET```. ```value``` es el umbral en el rango 0-255. Por ejemplo ```set_threshold(SoundEvent.LOUD, 250)``` sólo se activará si el sonido es muy alto (>= 250).
+* ```microbit.microphone.sound_level()```: Retorna una representación del nivel de presión sonora en el intervalo de 0 a 255.
+
+Un ejemplo que utiliza algunas de las funciones de la API del micrófono es:
+
+~~~py
+'''Prueba básica del micrófono.  
+Boton A: actualizar pantalla cuando se escucha un sonido alto o bajo. 
+Botón B: actualizar la pantalla cuando se escucho un sonido alto o bajo. 
+Al agitarla: se muestran los últimos sonidos escuchados, para intentar esta prueba 
+se hace un sonido fuerte y uno silencioso antes de agitar.'''
+
+from microbit import *
+
+display.clear()
+sound = microphone.current_event()
+
+while True:
+    if button_a.is_pressed():
+        if microphone.current_event() == SoundEvent.LOUD:
+            display.show(Image.SQUARE)
+            uart.write('Es Fuerte\n')
+        elif microphone.current_event() == SoundEvent.QUIET:
+            display.show(Image.SQUARE_SMALL)
+            uart.write('Es Silencio\n')
+        sleep(500)
+    display.clear()
+    if button_b.is_pressed():
+        if microphone.was_event(SoundEvent.LOUD):
+            display.show(Image.SQUARE)
+            uart.write('Fue Fuerte\n')
+        elif microphone.was_event(SoundEvent.QUIET):
+            display.show(Image.SQUARE_SMALL)
+            uart.write('Fue silencioso\n')
+        else:
+            display.clear()
+        sleep(500)
+    display.clear()
+    if accelerometer.was_gesture('shake'):
+        sounds = microphone.get_events()
+        soundLevel = microphone.sound_level()
+        print(soundLevel)
+        for sound in sounds:
+            if sound == SoundEvent.LOUD:
+                display.show(Image.SQUARE)
+            elif sound == SoundEvent.QUIET:
+                display.show(Image.SQUARE_SMALL)
+            else:
+                display.clear()
+            print(sound)
+            sleep(500)
+~~~
+
+Podemos descargar el programa de estos enlaces:
+
+* [Descargar el programa .hex](../ejemplos/Ejemplo_funciones_microfono.hex)
+* [Descargar el programa .py](../ejemplos/Ejemplo_funciones_microfono-main.py)
+
+En la consola serie vemos algunos resultados:
+
+<center>
+
+![Consola de ejemplo de funciones del micrófono](../img/programacion/python/consola_ejem_micr.png)  
+*Consola de ejemplo de funciones del micrófono*
+
+</center>
+
+## <FONT COLOR=#007575>**Radio**</font>
+El módulo de ```radio``` permite que los dispositivos trabajen juntos a través de redes inalámbricas sencillas.
+
+El módulo de radio es conceptualmente muy sencillo:
+
+* Los mensajes broadcast o de difusión tienen una longitud configurable (hasta 251 bytes).
+* Los mensajes recibidos se leen de una cola de tamaño configurable (cuanto mayor sea la cola, más memoria RAM se utilizará). Si la cola está llena, se ignoran los mensajes nuevos. La lectura de un mensaje lo elimina de la cola.
+* Los mensajes se emiten y reciben en un canal preseleccionado (numerado de 0 a 83).
+* Las emisiones tienen un determinado nivel de potencia: más potencia significa más alcance.
+* Los mensajes se filtran por dirección (como un número de casa) y grupo (como un destinatario con nombre en la dirección especificada)
+* La velocidad de transmisión puede ser una de las tres predeterminadas.
+* Se envían y reciben bytes para trabajar con datos arbitrarios.
+* Utilizando ```receive_full``` se obtiene todos los detalles sobre un mensaje entrante: los datos como tales, la intensidad de la señal de recepción y una marca de tiempo en microsegundos cuando llegó el mensaje.
+* Es fácil enviar y recibir mensajes como cadenas.
+
+Para acceder a este módulo se necesita:
+
+* ```import radio```
+
+Las constantes son:
+
+* ```radio.RATE_1MBIT```. Es una constante utilizada para indicar un caudal de 1 Mbit por segundo.
+* ```radio.RATE_2MBIT```. Es una constante utilizada para indicar un caudal de 2 Mbit por segundo.
+
+Las funciones disponibles son:
+
+* ```radio.on()```. Enciende el módulo de radio. Desde MicroPython-on-micro:bit v1.1 la radio se activa por defecto cuando se importa el módulo de radio. En versiones anteriores, para reducir el consumo de energía, esta función tenía que ser llamada explícitamente. Para esos casos ```radio.off()``` puede ser llamada después de la importación.
+* ```radio.off()```. Apaga la radio. Esto ahorra energia y memoria.
+* ```radio.config(**kwargs)```. Configura varios ajustes basados en palabras clave relacionados con la radio. A continuación se enumeran los ajustes disponibles y sus valores predeterminados.
+
+- ```length```. La longitud (por defecto=32) define la longitud máxima, en bytes, de un mensaje enviado por radio. Puede tener una longitud máxima de 251 bytes (254 - 3 bytes para los preámbulos S0, LENGTH y S1).
+
+- ```queue```. La cola (por defecto=3) especifica el número de mensajes que se pueden almacenar en la cola de mensajes entrantes. Si no hay espacio en la cola para mensajes entrantes, el mensaje entrante se descarta.
+
+- ```channel```. El canal (por defecto=7) puede ser un valor entero de 0 a 83 (inclusive) que define un "canal" arbitrario al que se sintoniza la radio. Los mensajes se enviarán a través de este canal y sólo los mensajes recibidos a través de este canal se pondrán en la cola de mensajes entrantes. Cada paso tiene un ancho de 1MHz, basado en 2400MHz.
+
+- ```power```. La potencia (por defecto=6) es un valor entero de 0 a 7 (ambos inclusive) que indica la intensidad de la señal utilizada al emitir un mensaje. Cuanto mayor sea el valor, más potente será la señal, pero más potencia consumirá el dispositivo. La numeración se traduce en posiciones en la siguiente lista de valores dBm (decibelios milivatio): -30, -20, -16, -12, -8, -4, 0, 4.
+
+- ```address```. La dirección (por defecto=0x75626974) es un nombre arbitrario, expresado como una dirección de 32 bits, que se utiliza para filtrar los paquetes entrantes a nivel de hardware, manteniendo sólo aquellos que coinciden con la dirección que establezca. El valor por defecto utilizado por otras plataformas relacionadas con micro:bit es el valor por defecto utilizado aquí.
+
+- ```group```. El grupo (por defecto=0) es un valor de 8 bits (0-255) que se utiliza con la dirección al filtrar los mensajes. Conceptualmente, "dirección" es como una dirección de casa/oficina y "grupo" es como la persona de esa dirección a la que se quiere enviar el mensaje.
+
+- ```data_rate```. La tasa_de_datos (por defecto=radio.RATE_1MBIT) indica la velocidad a la que se produce el flujo de datos. Puede ser uno de los siguientes contantes definidos en el módulo de radio : ```RATE_1MBIT``` o ```RATE_2MBIT```.
+
+<hr width=100%  size=10 noshade="noshade">
+<FONT COLOR=#FF0000>**Nota**</font>
+
+Una velocidad de datos menor de 250 kbit/seg es compatible con micro:bit V1, y puede ser posible con micro:bit V2, pero no se garantiza que funcione en todos los dispositivos. Para acceder a esta característica oculta para la compatibilidad con V1 ponemos 2 en el argumento ```data_rate```.
+<hr width=100%  size=10 noshade="noshade">
+
+Si **no se llama** a ```config``` **se asumen** los valores por defecto descritos anteriormente.
+
+* ```radio.reset()```. Restablece los valores por defecto (como se indica en la documentación de la función de configuración). Ninguno de los siguientes métodos de envío o recepción funcionará hasta que la radio esté encendida.
+* ```radio.send_bytes(message)```. Envía ```message``` conteniendo bytes.
+* ```radio.receive_bytes()```. Recibe el siguiente mensaje entrante en la cola de mensajes. Devuelve ```None``` (Ninguno) si no hay mensajes pendientes. Los mensajes se devuelven como bytes.
+* ```radio.receive_bytes_into(buffer)```. Recibe el siguiente mensaje entrante en la cola de mensajes. Copia el mensaje en el búfer, recortando el final del mensaje si es necesario. Devuelve ```None``` si no hay mensajes pendientes; en caso contrario, devuelve la longitud del mensaje (que puede ser superior a la longitud del búfer).
+* ```radio.send(message)```. Envía una cadena de mensajes. Esto es el equivalente de ```send_bytes(bytes(message, 'utf8'))``` pero con ```b'\x01\x00\x01'``` antepuesto (para hacerlo compatible con otras plataformas que apuntan al micro:bit).
+* ```radio.receive()```. Funciona exactamente igual que ```receive_bytes``` pero devuelve lo que se haya enviado. Es es equivalente a ```str(receive_bytes(), 'utf8')``` pero con una comprobación de que los tres primeros bytes son ```b'\x01\x00\x01'``` (para hacerlo compatible con otras plataformas que puedan tener como objetivo el micro:bit). Elimina los bytes añadidos antes de convertir a cadena Se lanza una excepción ```ValueError``` si falla la conversión a cadena.
+* ```radio.receive_full()```. Devuelve una tupla que contiene tres valores que representan el siguiente mensaje entrante en la cola de mensajes. Si no hay mensajes pendientes se devuelve ```None```.
+ 
+Los tres valores de la tupla representan:
+
+- el siguiente mensaje entrante en la cola de mensajes en bytes.
+- el RSSI (intensidad de la señal): un valor entre 0 (más fuerte) y -255 (más débil) medido en dBm.
+- una marca de tiempo en microsegundos: el valor devuelto por ```time.ticks_us()``` cuando se recibió el mensaje.

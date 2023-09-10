@@ -898,6 +898,357 @@ Existen páginas de donde se pueden descargar tonos, o incluso podemos hacerlo n
 
 Una vez descargado lo abrimos y buscamos la melodia para copiar y pegar en el bloque.
 
+## <FONT COLOR=#007575>**Mis bloques. Ampliación de sonidos**</font>
+
+<a name="item0mis"></a>
+
+[Mis bloques](#item1mis)
+<br> [Ampliación de sonidos](#item2mis)</br>
+
+Aprenderemos a crear nuestros propios bloques (funciones) y ampliaremos el tema de sonidos para ver los que están definidos en el propio programa, algunos de los cuales utilizan la definición de bloques.
+
+[Volver](#item0mis)
+<a name="item1mis"></a>
+
+<FONT COLOR=#BB00FF><font size="5"><b>Mis bloques</font color></font size></b>
+
+Vamos a ver como trabajar con esta interesante funcionalidad. Acceder a ellos es sencillo ya que están en el menú de la aplicación. Basta con hacer clic en el apartado de color azul claro y veremos los dos bloques disponibles. Haciendo clic en cualquiera de ellos se nos abre una pequeña ventana emergente para ponerle un nombre, que por defecto es MyBlock.
+
+<center>
+
+![Mis bloques](../img/programacion/ublocks/mis_b/mis1.png)  
+*Mis bloques*
+
+</center>
+
+Observamos que se pueden crear dos tipos de bloques:
+
+* de comando. ![](../img/programacion/ublocks/mis_b/b1.png). Este bloque es en realidad un botón y al hacer clic sobre el mismo se inicia el proceso de creación de un bloque personalizado (función).
+* reportador. ![](../img/programacion/ublocks/mis_b/b2.png). Este bloque también es un botón. Inicia el proceso de creación de un bloque personalizado (función) que puede devolver un resultado. Junto con este bloque se suelen utilizar los bloques del menú "Control" que veremos mas abajo.
+
+<font size="5"><FONT COLOR=#0000FF><b><u>Descripción</u></b></font color></font size>
+
+La principal diferencia entre el segundo y el primer bloque es que la definición del bloque personalizado que se cree en el segundo podrá devolver un valor mediante el bloque RETURN.
+
+Esta capacidad única permitirá que el bloque personalizado se utilice en cualquier bloque en el que se espere un parámetro de entrada, y pasará el valor que informe a esa operación.
+
+<hr width=100%  size=10 noshade="noshade">
+En cuanto al uso del bloque RETURN:
+
+Cualquier bloque colocado después de él no será ejecutado.
+
+Pueden existir múltiples bloques RETURN, manejando diferentes condiciones y devolviendo sus valores respectivos.
+<hr width=100%  size=10 noshade="noshade">
+
+La creación de un bloque personalizado es un proceso detallado con los siguientes pasos y opciones:
+
+* Asignación de un nombre de bloque personalizado
+* Añadir parámetros y sus etiquetas
+* Modificación de los tipos de parámetros
+* Asignación de valores por defecto a los parámetros
+* Valores de color
+
+Los dos bloques citados de "Control" son los siguientes, que aunque de apariencia son idénticos, en realidad hay diferencias.
+
+* ![](../img/programacion/ublocks/mis_b/b3.png).  Llama al bloque personalizado que se seleccione de la lista 'function name'. La lista de parámetros es opcional.
+* ![](../img/programacion/ublocks/mis_b/b4.png).  Devuelve el resultado de la llamada del bloque personalizado que se seleccione de la lista 'function name'. La lista de parámetros es opcional.
+
+<font size="5"><FONT COLOR=#0000FF><b><u>Operaciones comunes</u></b></font color></font size>
+
+Antes de examinar el proceso de creación de un nuevo bloque personalizado, repasemos algunas de las operaciones habituales disponibles al trabajar con una cabecera de bloque personalizada:
+
+* **MODO DE EDICIÓN**
+
+Cuando se hace clic en la parte púrpura del bloque con sombrero "define" o en la parte azul claro del bloque personalizado con el nombre del bloque, se entra en modo edición. Este modo puede identificarse por el cambio de aspecto de los parámetros de la cabecera, así como por la aparición de los triángulos negros. En la animación siguiente vemos como crear, activar y desactivar la edición y como añadir y eliminar casillas o etiquetas en un bloque.
+
+<center>
+
+![Crear un bloque](../img/programacion/ublocks/mis_b/mis2.gif)  
+*Crear un bloque*
+
+</center>
+
+Cada parámetro añadido debe tener un nombre diferente que MicroBlocks asigna de manera automática pero que podemos cambiar según nuestros intereses simplemente haciendo clic sobre el bloque del nombre.
+
+<center>
+
+![Cambios de nombre de parámetros y edición de un bloque](../img/programacion/ublocks/mis_b/mis3.gif)  
+*Cambios de nombre de parámetros y edición de un bloque*
+
+</center>
+
+El triángulo negro de la derecha sirve para añadir parámetros y etiquetas, mientras que el de la izquierda sirve para borrarlos. Al hacer clic en el mismo, se eliminará el elemento situado más a la derecha (ya sea un parámetro o una etiqueta).
+
+Si hay que borrar una etiqueta situada en el centro de la cabecera del bloque, basta con hacer doble clic para seleccionarla, dejarla vacia, y pulsar la tecla Supr.
+
+* **RENOMBRAR PARÁMETROS Y ETIQUETAS**
+
+Para cambiar el nombre de una etiqueta de un bloque personalizado o de cualquier etiqueta de la cabecera, basta con hacer doble clic para seleccionarla y, a continuación, escribir un nuevo nombre. Dado que el nombre del bloque y las etiquetas son sólo campos de texto, es posible crear nombres con varias palabras separadas por espacios o caracteres de subrayado.
+
+Si se utilizan espacios al crear el nombre de la etiqueta, el nombre de la etiqueta resultante se tratará como etiquetas sucesivas separadas. Aunque aparezcan una tras otra y se perciban como un nombre continuo, en realidad son etiquetas de texto individuales. Esto sólo es importante si va a editarlas posteriormente.
+
+Si se utilizan caracteres de subrayado al crear el nombre de la etiqueta, el nombre de la etiqueta resultante se tratará como una sola etiqueta.
+
+Por lo tanto, dependiendo de cuáles sean nuestras intenciones, puede que encontremos un método u otro más adecuado a nuestras necesidades.
+
+Para cambiar el nombre de un parámetro, hacemos clic en el área ovalada marrón del parámetro y escribimos un nuevo nombre en la ventana de edición.
+
+* **MOSTRAR EL CONTENIDO DE UN BLOQUE PERSONALIZADO**
+
+Una vez creado un bloque personalizado y cerrada su cabecera y definición, este aparecerá automáticamente en el área de bloques de la categoría Mis bloques. Como el bloque recién creado reside en el área Mis bloques, se verá como el formato de control o bloque informador de su definición. Para ver realmente los bloques que componen la definición del bloque personalizado, debemos hacer clic derecho en el bloque y seleccionar "mostrar definición de bloque" en el menú.
+
+<center>
+
+![Mostrar la definición de un bloque](../img/programacion/ublocks/mis_b/mis4.png)  
+*Mostrar la definición de un bloque*
+
+</center>
+
+Al seleccionar esta opción, la definición del bloque personalizado aparecerá en el Área de trabajo, como apreciamos en la siguiente animación.
+
+<center>
+
+![Mostrar la definición de un bloque](../img/programacion/ublocks/mis_b/mis5.gif)  
+*Mostrar la definición de un bloque*
+
+</center>
+
+Si queremos borrar la definición de un bloque de la zona de programa basta con que lo arrastremos a la zona de menú, donde observaremos como aparece un ojo tachado en color gris (indicando ocultar) en lugar de la papelera habitual.
+
+Para elminar completamente la definición del bloque hay que escoger la opción "elimina la definición del bloque"
+
+<font size="5"><FONT COLOR=#0000FF><b><u>Proceso de creación de un bloque personalizado</u></b></font color></font size>
+
+<font size="3"><FONT COLOR=#006400><b>Asignar nombre al bloque</b></font color></font size>
+
+Al hacer clic en el botón añadir bloque, se abre un cuadro de diálogo en el que se introduce el nombre del bloque personalizado.
+
+<center>
+
+![Creación de un bloque personalizado](../img/programacion/ublocks/mis_b/mis6.png)  
+*Creación de un bloque personalizado*
+
+</center>
+
+Tras pulsar el botón "De acuerdo", se coloca una cabecera de definición de bloque personalizada en el área de programación.
+
+<center>
+
+![Bloque personalizado recien creado](../img/programacion/ublocks/mis_b/mis7.png)  
+*Bloque personalizado recien creado*
+
+</center>
+
+Ahora todos los bloques de código que compondrán este bloque personalizado pueden colocarse bajo el bloque de cabecera, y formarán parte de la nueva función programada. Observe también que se ha colocado un nuevo bloque que representa la función personalizada en la ventana de categoría Mis Bloques con el nombre predeterminado de miBloque.
+
+Aunque no siempre es un requisito, algunas funciones necesitarán parámetros para completar su funcionalidad programada. Éstos actuarán como entradas de la función y podrán ser utilizados por los bloques que componen el código de bloque personalizado.
+
+<font size="3"><FONT COLOR=#006400><b>Modificación de los tipos de parámetros</b></font color></font size>
+
+Cuando se añade un parámetro, MicroBlocks le asigna un nombre por defecto (foo, baz, etc) y un tipo por defecto (número/cadena).
+
+<center>
+
+![Tipos de parámetros](../img/programacion/ublocks/mis_b/mis8.png)  
+*Tipos de parámetros*
+
+</center>
+
+Hay varios tipos de parámetros posibles: número/texto, booleano y color. Estos están disponibles para seleccionar en el menú que se abre al hacer clic en el triángulo negro que apunta hacia abajo en el bloque de parámetros oval marrón. Para los parámetros de tipo número/texto, es posible restringir sus tipos a sólo número o sólo texto. A continuación se expone un sencillo bloque que muestra datos de todos los tipos.
+
+<center>
+
+![Ejemplo de tipos de parámetros](../img/programacion/ublocks/mis_b/mis9.png)  
+*Ejemplo de tipos de parámetros*
+
+</center>
+
+Vemos que el nombre de la función parece ```Datos Nombre```. De hecho, el nombre de la función es ```Datos```, mientras que ```Nombre``` es el nombre del primer parámetro. Sin embargo, dado que MicroBlocks no permite la entrada de una etiqueta seguida de otra, ha sido necesario crear primero el parámetro ```nombre```, seguido de un doble clic en el nombre de la función ```Datos``` y añadir " ```Nombre```" (espacio ```Nombre```) al final de la misma.
+
+Esta técnica parece extraña, pero es totalmente correcta, ya que los nombres de función nunca se utilizan específicamente por sí solos como en un lenguaje de programación basado en texto. Los bloques personalizados, al igual que todos los demás, se arrastran y sueltan en el área de programación, independientemente de su nombre. No obstante, no debemos crear varios bloques personalizados en los que el nombre de la primera etiqueta sea idéntico. De hecho, **NO** podremos hacerlo, ya que MicroBlocks asignará un nombre numerado que lo hará único.
+
+<font size="3"><FONT COLOR=#006400><b>Asignar valores por defecto a los parámetros</b></font color></font size>
+
+Como se ve en la imágen anterior de definición de bloque personalizado, la vista final del bloque muestra valores para cada parámetro, "Juan", 55, true, y 16715550 para el color rojo. Estos valores se denominan valores por defecto y son los que hemos asignado al bloque en su cración y se pueden modificar en cualquier momento si los ponemos en modo edición.
+
+Los valores por defecto de los tipos cadena, número y booleano se explican por sí mismos. Sin embargo, el tipo de color necesita alguna explicación mas.
+
+Como puede verse en la muestra de resultados del bloque personalizado, el valor del color rojo se muestra como 16715550. Analicemos este valor y veamos qué representa.
+
+Si se hace clic en el círculo de color rojo del bloque, aparece un panel de color que muestra los valores decimales de R=255, G=015 y B=030 que componen este color rojo en particular.
+
+<center>
+
+![Paleta de colores](../img/programacion/ublocks/mis_b/mis9.png)  
+*Paleta de colores*
+
+</center>
+
+Si cada uno de estos valores decimales se convierte a los equivalentes hexadecimales, se obtiene:
+
+<center>
+
+|Color|Decimal|Hexadecimal!
+|:-:|:-:|:-:|
+|R|255|FF|
+|G|015|0F|
+|B|030|1E|
+
+</center>
+
+Colocamos esos tres valores hexadecimales uno a continuación del otro en el orden RGB para obtener 0xFF0F1E, y este número expresado en el sistema de numeración decimal es el 16715550.
+
+<font size="5"><FONT COLOR=#0000FF><b><u>Ejemplo de creación de bloque personalizado</u></b></font color></font size>
+
+Ya se ha visto que no existen bloques con diferentes iconos predefinidos como ocurre en MakeCode. Vamos a definir algunos de ellos mediante Mis Bloques.
+
+<center>
+
+![Creación de bloques para iconos](../img/programacion/ublocks/mis_b/mis11.png)  
+*Creación de bloques para iconos*
+
+</center>
+
+Ahora resolver el ejercicio de corazón que late tendría el aspecto siguiente:
+
+<center>
+
+![Corazón que late con bloques personalizados](../img/programacion/ublocks/mis_b/mis12.png)  
+*Corazón que late con bloques personalizados*
+
+</center>
+
+En la imagen siguiente tenemos un sencillo ejemplo de uso de función con retorno de valor mediante bloque reportador.
+
+<center>
+
+![Corazón que late con bloques personalizados](../img/programacion/ublocks/mis_b/mis13.png)  
+*Corazón que late con bloques personalizados*
+
+</center>
+
+El program con el bloque multiplicador y los bloques de iconos lo tenemos a continuación.
+
+[Descargar programa](../ejemplos/multiplicador.ubp)
+
+<hr width=100%  size=10 noshade="noshade">
+
+[Volver](#item0mis)
+<a name="item2mis"></a>
+
+<FONT COLOR=#BB00FF><font size="5"><b>Ampliación de sonidos</font color></font size></b>
+
+En este punto, una vez conocido el funcionamiento de "Mis bloques" vamos a retomar el tema de sonido ampliando la información sobre RTTTL vista, aprenderemos a abrir archivos desde el menú "Fichero" relacionados y veremos ejemplos sobre el tema.
+
+<a name="item0ampli"></a>
+
+[Información complementaria de politonos](#item1ampli)
+<br> [Abrir archivo](#item2ampli)</br>
+
+[Volver](#item0ampli)
+<a name="item1ampli"></a>
+
+<font size="5"><FONT COLOR=#0000FF><b><u>Información complementaria de politonos</u></b></font color></font size>
+
+Ya hemos visto como añadir la librería politonos, enlaces para obtenerlos y el uso de los mismos en MicroBlocks, pero vamos a profundizar un poco mas sobre el tema.
+
+El formato RTTTL es una cadena dividia en tres partes: nombre, valor por defecto y datos.
+
+* **nombre**. Es una cadena que describe el nombre del tono de llamada. En principio su longitud máxima es de 10 caracteres y no puede contener el signo de dos puntos (:).
+* **valor por defecto**. Lo forman un conjunto de valores separados por comas que son los que deben cumplirse durane la ejecución del tono de llamada. Cada valor es una clave a la que se asigna con una igualdad un valor, siendo los nombre posibles: **D** (duración), **o** (octava) y **B** (ritmo o tempo)
+* **datos**. Es un conjunto de cadenas de caracteres separadas por comas, estando cada cadena formada por una *duración*, un *tono*, una *octava* y opcionalmente *puntos* que aumentan la duración de la nota a la mitad.
+
+Un ejemplo de tono RTTTL puede ser:
+
+```Abba - Money Money Money: d=4,o=5,b=112:8e7,8e7,8e7,8e7,8e7,8e7,16e6,16a6,16c7,16e7,8d#7,8d#7,8d#7,8d#7,8d#7,8d#7,16f6,16a6,16c7,16d#7,d7,8c7,8a6,8c7,c7,2a6,32a6,32c7,32e7,8a7```
+
+donde se pueden distinguir facilmente las tres partes separadas por dos puntos (:):
+
+* **nombre**. Abba - Money Money Money.
+* **valor por defecto**. d=4,o=5,b=112 (d = duración; o = octava y b = tempo o ritmo). Mas abajo se describen mas estos conceptos.
+* **datos**. Las notas separadas por comas y formadas por una duración, una nota [a (La), b (Si), c (Do), d (Re), e (Mi), f (Fa) o g (Sol)] y la indicación de la octava, que si no se indica se aplica el valor predeterminado.
+
+La duración de las notas es:
+
+* **1** - nota entera
+* **2** - media nota
+* **4** - cuarto de nota
+* **8** - octavo de nota (octava)
+* **16** - dieciseisavo de nota
+* **32** - treintaidosavo de nota
+
+Los tonos pueden ser:
+
+* **P** – descanso o pausa
+* **A** – A (La)
+* **A#** – A♯ B♭ (La#/Si♭)
+* **B** – B/C♭ (Si/Do♭)
+* **C** – C (Do)
+* **C#** – C♯/D♭ (Do♯/Re♭)
+* **D** – D (Re)
+* **D#** – D♯/E♭ (Re♯/Mi♭)
+* **E** – E/F♭ (Mi/Fa♭)
+* **F** – F/E♯ (Fa/Mi♯)
+* **F#** – F♯/G♭ (Fa♯/Sol♭)
+* **G** – G (Sol)
+* **G#** – G♯/A♭ (Sol♯/La♭)
+
+En formato RTTTL se permiten octavas comenzando desde la A por debajo del do medio y subiendo cuatro octavas. Esto se debe a la imposibilidad de los teléfonos móviles para reproducir ciertos tonos de forma audible. Las octavas están numeradas desde el tono
+más bajo hasta el tono más alto de 4 a 7. La octava debe dejarse fuera de la notación en el caso de un descanso o pausa en el patrón.
+
+
+[Volver](#item0ampli)
+<a name="item2ampli"></a>
+
+<font size="5"><FONT COLOR=#0000FF><b><u>Abrir archivo</u></b></font color></font size>
+
+En MicroBlocks tenemos disponibles una serie de ejemplos resueltos a los que se puede acceder des el menú "Fichero" escogiendo la opción "Abre" y dirigiendonos a la carpeta ejemplos, si no estamos ya en ella.
+
+<center>
+
+![Ejemplos de música y sonido en MicroBlocks](../img/programacion/ublocks/sonido/ej_music.png)  
+*Ejemplos de música y sonido en MicroBlocks*
+
+</center>
+
+Podemos abrir cualquiera de los ejemplos de los directorios marcados. En el directorio "Sonido" basicamente hay diferentes ejemplos que trabajan con sonidos y vamos a abrir por ejemplo TempoMeter, que es un programa que si aplaudimos a un ritmo constante nos devuelve el tempo en pulsaciones por minuto (ppm). Además podemos verlo graficamente.
+
+<center>
+
+![Ejemplo de sonido TempoMeter](../img/programacion/ublocks/sonido/ej_tempometer.png)  
+*Ejemplo de sonido TempoMeter*
+
+</center>
+
+En el directorio "Music" hay varios ejemplos en los que se utilizan bloques propios. En la figura vemos el ejemplo HarryPotter mostrando la definición de uno de los bloques.
+
+<center>
+
+![Ejemplo de sonido HarryPotter](../img/programacion/ublocks/sonido/ej_harrypotter.png)  
+*Ejemplo de sonido HarryPotter*
+
+</center>
+
+A simple vista se aprecia la utilidad de las funciones para simplificar el código y hacer mas sencilla la depuración del mismo.
+
+Otro ejemplo con todos los bloques desplegados lo vemos para el caso de Bach Bouree, que se corresponden con la pieza musical integrada como quinto movimiento en la Suite en Mi menor para Laúd BWV 996 Bourrée en mi menor compuesta por Johann Sebastian Bach.
+
+<center>
+
+![Ejemplo de sonido Bach Bouree](../img/programacion/ublocks/sonido/ej_bach.png)  
+*Ejemplo de sonido Bach Bouree*
+
+</center>
+
+El programa sin los bloques expandidos ni los comentarios es tan simple como:
+
+<center>
+
+![Ejemplo de sonido Bach Bouree](../img/programacion/ublocks/sonido/ej_bach1.png)  
+*Ejemplo de sonido Bach Bouree*
+
+</center>
+
 ## <FONT COLOR=#007575>**Comunicaciones**</font>
 
 * ![](../img/programacion/ublocks/comm/comm1.png). Abre el puerto serie a la velocidad en baudios especificada. Esto es necesario antes de empezar a utilizar la comunicación por puerto serie. El soporte de puerto serie NO está disponible para dispositivos micro:bit v1 debido a la falta de soporte de hardware.
@@ -1017,4 +1368,50 @@ El ejemplo siguiente nos pone todo esto en claro.
 </center>
 
 [Descargar el programa](../ejemplos/Hola_mundo_LCD.ubp)
+
+## <FONT COLOR=#007575>**Micrófono, solo en V2**</font>
+En MicroBlocks la librería con los bloques para usar el micrófono se encuentra en "Sensores".
+
+<center>
+
+![Localización libreria](../img/programacion/ublocks/microf/libreria.png)  
+*Localización libreria*
+
+</center>
+
+Esta librería da soporte de micrófono, volumen y recuento de palmadas. El bloque normalmente informa de valores entre -512 y 511, con cero para silencio. En la micro:bit V2, el micrófono debe estar encendido antes de su uso.
+
+Los bloques disponibles son:
+
+<center>
+
+![Bloques para micrófono](../img/programacion/ublocks/microf/bloques.png)  
+*Bloques para micrófono*
+
+</center>
+
+## <FONT COLOR=#007575>**Radio**</font>
+MicroBlocks dispone de libreria para trabajar con radio y que se añade haciendo clic en la opción "+" de la entrada de menú "Librerias" y seleccionándola en la ventana emergente.
+
+<center>
+
+![Libreria radio](../img/programacion/ublocks/radio/lib_radio.png)  
+*Libreria radio*
+
+</center>
+
+Micro:bit y otras placas con chips Nordic soportan un sistema de mensajería por radio peer-to-peer (entre iguales) fácil de usar. En este caso es el mismo sistema que utiliza MakeCode, por lo que los programas MicroBlocks y Makecode pueden intercambiar información por radio.
+
+Un mensaje de radio consiste en una cadena corta de texto, un número, o ambos (un par).
+
+El uso de diferentes códigos de grupo (0-255) permite que varios proyectos de radio funcionen simultáneamente en el aula. Un grupo es un canal de comunicación independiente. Cada microcontrolador envía y recibe mensajes a otros miembros de su propio grupo. Cualquier mensaje intercambiado por otros grupos es ignorado.
+
+Los bloques de esta libreria son:
+
+<center>
+
+![Bloques de la libreria radio](../img/programacion/ublocks/radio/bloq_lib_radio.png)  
+*Bloques de la libreria radio*
+
+</center>
 

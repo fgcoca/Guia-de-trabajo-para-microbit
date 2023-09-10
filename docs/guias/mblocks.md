@@ -78,6 +78,27 @@ La parte más importante de la información de bytes es la primera línea, que m
 
 Una funcionalidad importante del editor es que, además de programar por bloques, administra las **Librerias**, que están escritas en **MicroBlocks**. Existen muchas que iremos viendo poco a poco. Las librerias escritas en **MicroBlocks** pueden ser editadas por los usuarios.
 
+## <FONT COLOR=#007575>**Los cuatro pilares de MicroBlocks**</font>
+Según [Bernat Romagosa](http://romagosa.work/), que forma parte del [equipo de MicroBlocks](https://microblocks.fun/about), este es un software en vivo capaz de trabajar con varias placas diferentes como micro:bit, nodemcu y otras muchas. El lenguaje está desarrollado en torno a cuatro conceptos que consideran esenciales para un lenguaje de programación educativo. Ellos los llaman los cuatro pilares de MicroBlocks:
+
+1. **Vivo**. El primero de estos pilares es que MicroBlocks es un lenguaje de programación "en directo" o "en vivo", lo que significa que puedo arrastrar un bloque a la zona de programa y ver el resultado de cambiarlo en la ejecución en la placa de manera inmediata. Esto significa que no hay que esperar ni ciclos de carga ni compilaciones ni nada de esto. El programa trabaja en tiempo real con la placa.
+2. **Multitarea**. El segundo pilar es que se trata de un lenguaje de programación multitares o que trabaja en paralelo, lo que significa que se pueden ejecutar varias tareas al mismo tiempo.
+3. **Autónomo**. El tercero de los pilares es que MicroBlocks es un lenguaje autónomo, lo que significa que si, en cualquier momento, desconectamos la micro:bit del ordenador y alimentamos de forma externa el programa se seguirá ejecutando tal y como estaba sin modificaciones y sin tener que presionar ningún botón. No hay que esperar ningún ciclo de carga de firmware.
+4. **Portatil**. El cuarto pilar es que se trata de un programa diseñado para que sea portatil por lo que si cambiamos de tipo de placa, esta seguirá ejecutando exactamente el mismo programa. La portabilidad se ha llevado al extremos de que si nos hemos olvidado de guardar nuestro programa en el ordenador, simplemente con conectar la placa este se carga en el IDE o también podemos, con la placa desconectada, escoger la opción de "Recuperar proyecto de la placa" que está en el menú del icono "Fichero". Tengase en cuenta que en este proceso los comentarios se pierden.
+
+Un sencillo ejemplo nos servirá para ver todo esto. Se trata de crear un programa en el que un corazón lata en la pantalla a un intervalo determinado por una variable. Con el botón A disminuiremos el intervalo y con el botón B lo aumentaremos. El programa se debe ir creando en orden, con una placa conectada y ejectándose la tarea principal, para poder ir viendo los cambios que hagamos como se reflejan en la placa inmediatamente. El programa es:
+
+<center>
+
+![Ejemplo cuatro pilares](../img/guias/ublocks/4_pilares.png)  
+*Ejemplo cuatro pilares*
+
+*Basado en [Exploring sound with the micro:bit V2 & MicroBlocks, MicroBlocks Team](https://www.youtube.com/watch?v=bJIswaur8Gg)*
+
+</center>
+
+[Descargar el programa](../ejemplos/Cuatro_pilares.ubp)
+
 ## <FONT COLOR=#007575>**Configuración del equipo**</font>
 Necesitamos un ordenador (¡no un dispositivo móvil!) con un puerto USB, un cable USB y una placa soportada. Podemos ejecutar **MicroBlocks** en un navegador Chromium, Chrome o Edge, o descargarlo como una aplicación independiente para Linux, Chromebook, Windows o MacOS. Las [placas soportadas](https://wiki.microblocks.fun/boards/supported) son:
 
@@ -94,7 +115,7 @@ Los instaladores están disponibles para las [versiones liberadas](https://micro
 
 En Linux se descarga un paquete .deb, ublocks-amd64.deb en concreto para esta ocasión que se instala de forma muy sencilla. Con una terminal abierta en el directorio donde está el archivo .deb tecleamos:
 
-~~~
+~~~py
 dpkg -i ~/Descargas/ublocks-amd64.deb
 ~~~
 
@@ -107,7 +128,7 @@ Conectamos la placa al ordenador y en el menú de MicroBlocks hacemos clic en el
 
 <center>
 
-![actualizar firmware de la placa](../img/guias/ublocks/act_firmw.png)  
+![Actualizar firmware de la placa](../img/guias/ublocks/act_firmw.png)  
 *Actualizar firmware de la placa*
 
 </center>

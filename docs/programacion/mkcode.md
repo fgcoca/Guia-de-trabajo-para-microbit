@@ -1214,3 +1214,217 @@ En cambio para MakeCode podemos encontrar una extensión denominada [Makecode-Ex
 
 </center>
 
+## <FONT COLOR=#007575>**Micrófono, solo en V2**</font>
+MakeCode incorpora los tres bloques que vamos a ver a continuación para el micrófono incorporado a partir de las versiones V2.
+
+* ```on Sound```. Ejecuta algún código cuando el micrófono detecte un sonido. El bloque es:
+
+<center>
+
+![](../img/programacion/mkcode/bloq_onSound.png)  
+
+</center>
+
+El micrófono detectará sonidos altos o bajos. Se puede hacer que el micrófono detecte un sonido a un cierto nivel y ejecute algún código en un evento cuando escuche el sonido. Hay dos rangos de sonido que puede detectar: alto o silencioso.
+
+Este bloque requiere hardware micro:bit V2. Si se utiliza este bloque con una placa micro:bit v1, aparecerá el código de error 927 en la pantalla.
+
+Vamos a ver un ejemplo en el que se ve una animación con iconos cuando el micrófono detecta sonido. El programa es:
+
+<center>
+
+![Ejemplo con bloque "al detectar sonido"](../img/programacion/mkcode/al_detec_sonido.png)  
+*Ejemplo con bloque "al detectar sonido"*
+
+</center>
+
+[Descargar el programa](../ejemplos/microbit-animacion_al_detectar_sonido.hex)
+
+* ```sound level```. Obtiene el nivel de sonido que escucha el micrófono. El bloque es:
+
+<center>
+
+![](../img/programacion/mkcode/bloq_sound_level.png)  
+
+</center>
+
+Devuelve un número entre 0 (sonido bajo) y 255 (sonido alto) que indica el volumen de los sonidos que escucha el micrófono.
+
+Este bloque requiere hardware micro:bit V2. Si se utiliza este bloque con una placa micro:bit v1, aparecerá el código de error 927 en la pantalla.
+
+Vamos a ver un ejemplo en el que se muestra en la pantalla un tablero de ajedrez cuando el micrófono detecta un sonido superior a 100. El programa es:
+
+<center>
+
+![Ejemplo con bloque "nivel de sonido"](../img/programacion/mkcode/nivel_sonido.png)  
+*Ejemplo con bloque "nivel de sonido"*
+
+</center>
+
+[Descargar el programa](../ejemplos/microbit-nivel_sonido.hex)
+
+* ```set Sound Threshold```. Indica el volumen para que la placa detecte un sonido fuerte. El bloque es:
+
+<center>
+
+![](../img/programacion/mkcode/bloq_set_Sound_Threshold.png)  
+
+</center>
+
+Cuando el micrófono escucha un sonido, establece un número para indicar lo alto que era el sonido en ese momento. Este número es el nivel de sonido y tiene un valor entre 0 (sonido bajo) a 255 (sonido alto). Puedemos utilizar un número de nivel de sonido como umbral para que se produzca el evento de activación del sonido. Para establecer un umbral, tenemos que elegir el tipo de sonido a detectar, alto o bajo, y luego el nivel de sonido para ese tipo.
+
+Este bloque requiere hardware micro:bit V2. Si se utiliza este bloque con una placa micro:bit v1, aparecerá el código de error 927 en la pantalla.
+
+Vamos a ver un ejemplo en el que se ve una animación con iconos cuando el micrófono detecta sonido superior al nivel sonoro indicado de 200. El programa es:
+
+<center>
+
+![Ejemplo con bloque "nivel de sonido con umbral"](../img/programacion/mkcode/nivel_sonido_umbral.png)  
+*Ejemplo con bloque "nivel de sonido con umbral"*
+
+</center>
+
+[Descargar el programa](../ejemplos/microbit-nivel_sonido_umbral.hex)
+
+## <FONT COLOR=#007575>**Radio**</font>
+Describimos los bloques disponibles en MakeCode para enviar y recibir datos mediante paquetes de radio.
+
+* ![](../img/programacion/mkcode/radio/r8.png). Establece el identificador (ID) de grupo para comunicaciones por radio. Dos micro:bit con el mismo ID pueden hablar entre ellas. El prámetro ID es un número entre 0 y 255. Si no se especifica un ID la micro:bit que actúe como emisor elegirá un valor aleatorio.
+* ![](../img/programacion/mkcode/radio/r1.png). Emite un número por radio a cualquier micro:bit conectada al grupo o dirección broadcast.
+
+En el ejemplo siguiente vemos como vemos parte de un programa en el que al pulsar el botón A emitimos el valor de la aceleración en x de nuestra micro:bit.
+
+<center>
+
+![Ejemplo transmisión aceleración x](../img/programacion/mkcode/radio/e_acelx.png)  
+*Ejemplo transmisión aceleración x*
+
+</center>
+
+A continuación vemos otro ejemplo en el que se transmite el nivel de luz. Este ejemplo junto con el que veremos en el de número recibido permite hacer cosas interesantes.
+
+<center>
+
+![Ejemplo transmisión nivel de luz](../img/programacion/mkcode/radio/e_nivel_luz.png)  
+*Ejemplo transmisión nivel de luz*
+
+</center>
+
+* ![](../img/programacion/mkcode/radio/r2.png). Envía un par de nombre/valor junto al número de serie del dispositivo y el tiempo de ejecución a cualquier micro:bit conectada en el grupo.
+
+Ejemplo donde se envia el par cadena/valor en un grupo de difusión o broadcast.
+
+<center>
+
+![Ejemplo transmisión del par nombre/valor](../img/programacion/mkcode/radio/e_par_acelx.png)  
+*Ejemplo transmisión del par nombre/valor*
+
+</center>
+
+Ejemplo de programa que además recibe la cadena y el número enviados por el programa anterior y los muestra en la pantalla LED.
+
+<center>
+
+![Ejemplo transmisión/recepción del par nombre/valor](../img/programacion/mkcode/radio/e_Trans_recep_acelx.png)  
+*Ejemplo transmisión/recepción del par nombre/valor*
+
+</center>
+
+En la animación siguiente vemos como funciona en el simulador.
+
+<center>
+
+![Simulación del ejemplo transmisión/recepción del par nombre/valor](../img/programacion/mkcode/radio/sim_e_Trans_recep_acelx.gif)  
+*Simulación del ejemplo transmisión/recepción del par nombre/valor*
+
+</center>
+
+* ![](../img/programacion/mkcode/radio/r3.png). Emite en una cadena junto con el número de serie del dispositivo y el tiempo de ejecución a cualquier micro:bit conectado en el grupo.
+
+El ejemplo siguiente es para hacer una radio bidireccional, de manera que si se carga este programa en dos o más micro:bits, se puede enviar una palabra clave desde una de ellas a las otras pulsando el botón A. Las otras micro:bits recibirán la palabra clave y la mostrarán. **Una radio que puede transmitir y recibir se llama transceptor.**
+
+<center>
+
+![Ejemplo de transceptor](../img/programacion/mkcode/radio/e_tranceptor.png)  
+*Ejemplo de transceptor*
+
+</center>
+
+A continuación vemos la simulación del tranceptor.
+
+<center>
+
+![Simulación del ejemplo de transceptor](../img/programacion/mkcode/radio/simu_e_tranceptor.gif)  
+*Simulación del ejemplo de transceptor*
+
+</center>
+
+* ![](../img/programacion/mkcode/radio/r4.png). Registra el código a ejecutar cuando la radio recibe un número.
+
+El siguiente programa muestra, como código de barras, en las micro:bits cercanas lo rápido que se está acelerando otra micro:bit.
+
+<center>
+
+![Ejemplo de recepción de un número](../img/programacion/mkcode/radio/e_recep_num.png)  
+*Ejemplo de recepción de un número*
+
+</center>
+
+A continuación vemos como se muestra en una micro:bit el movimiento de la otra.
+
+<center>
+
+![Simulación del ejemplo de recepción de un número](../img/programacion/mkcode/radio/simu_e_recep_num.gif)  
+*Simulación del ejemplo de recepción de un número*
+
+</center>
+
+* ![](../img/programacion/mkcode/radio/r5.png). Registra el código a ejecutar cuando la radio recibe un par nombre/valor.
+
+El ejemplo muestra, como código de barras, en las micro:bits cercanas lo rápido que se está acelerando otra micro:bit tras comprobar que el valor del nombre recibido coincide con el enviado.
+
+<center>
+
+![Ejemplo de recepción de un par nombre/valor](../img/programacion/mkcode/radio/e_recep_par.png)  
+*Ejemplo de recepción de un par nombre/valor*
+
+</center>
+
+A continuación vemos como se muestra en una micro:bit el movimiento de la otra cuando los nombres coinciden y como deja de hacerlo cuando no lo hacen.
+
+<center>
+
+![Simulación del ejemplo de recepción de un par nombre/valor](../img/programacion/mkcode/radio/simu_e_recep_par.gif)  
+*Simulación del ejemplo de recepción de un par nombre/valor*
+
+</center>
+
+* ![](../img/programacion/mkcode/radio/r6.png). Registra el código a ejecutar cuando la radio recibe una cadena.
+
+En el ejemplo vemos como se muestra en una micro:bit el mensaje tipo cadena enviado desde la otra.
+
+<center>
+
+![Simulación del ejemplo de envio y recepción de una cadena de texto](../img/programacion/mkcode/radio/simu_e_env_recep_cad.gif)  
+*Simulación del ejemplo de envio y recepción de una cadena de texto*
+
+</center>
+
+* ![](../img/programacion/mkcode/radio/r7.png). Devuelve propiedades del último paquete de radio recibido. Además de un número, o una cadena o un par nombre-valor, el paquete recibido también contiene información sobre la transmisión del paquete. Se puede obtener esta información adicional seleccionandola de entre los tipos pòsibles, que son: intensidad de la señal, número de serie de la placa que envia el paquete o la hora a la que se envió el paquete. Devuelve un número que es la propiedad seleccionada en el parámetro tipo; para intensidad de la señal el valor oscila entre -128 y -28 (-128 significa una señal débil y -28 una fuerte); para el número de serie el valor es el número de serie de la placa que envía el paquete y para la hora el valor es la hora del sistema, en microsegundos, del remitente en el momento en que se envió el paquete.
+
+En el ejemplo tenemos un programa que utiliza la intensidad de la señal de los paquetes recibidos para representar gráficamente la distancia aproximada entre dos micro:bits.
+
+<center>
+
+![Ejemplo de propiedad último paquete recibido](../img/programacion/mkcode/radio/e_recep_int_signal.png)  
+*Ejemplo de propiedad último paquete recibido*
+
+</center>
+
+* ![](../img/programacion/mkcode/radio/r9.png). Cambiar el nivel de potencia de salida del transmisor al valor especificado. Para hacer que la señal de radio sea más fuerte o más débil. Si la micro:bit está enviando con una intensidad de 7, y está en un área abierta sin muchos equipos informáticos alrededor, la señal puede alcanzar hasta 70 metros, pero lo habitual es unos 20 metros.
+* ![](../img/programacion/mkcode/radio/r10.png). Establece que la radio transmita el número de serie de la micro:bit en cada mensaje. Si se pone a ```True``` el número de serie de la placa se incrusta en el paquete de radio.
+* ![](../img/programacion/mkcode/radio/r11.png). Envía un evento por radio a dispositivos cercanos.
+* ![](../img/programacion/mkcode/radio/r12.png). Cambia la banda de transmisión y recepción de la radio al canal dado. El valor por defecto es 0. El parámetro ```Band``` es un número entre 0 y 83. Cada paso tiene un ancho de 1MHz, en base a los 2400MHz de referencia.
+
+
+## <FONT COLOR=#8B008B>tt</font>
