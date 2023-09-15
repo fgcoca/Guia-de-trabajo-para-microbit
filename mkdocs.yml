@@ -48,6 +48,7 @@ nav:
     - Componentes avanzados: conceptos/avanzados.md
     - Radio: conceptos/radio.md
     - Comunicación serie: conceptos/serie.md
+    - Data logging o registro de datos: conceptos/datalog.md
   - Conceptos de programación:
     - MakeCode: programacion/mkcode.md
     - Python: programacion/python.md
@@ -71,6 +72,7 @@ nav:
     - A16. Medidas de temperatura: actividades/A16.md
     - A17. Micrófono en V2: actividades/A17.md
     - A18. Radio: actividades/A18.md
+    - A19. Data Logging: actividades/A19.md
   - Listado de programas: programas/lista.md
   - Miscelanea:
     - Autor: Miscelanea/about.md 

@@ -58,9 +58,9 @@ Todos los programas han sido probados de forma práctica.
 |---|---|---|---|
 |[A18-Envio_temperatura](../programas/makecode/microbit-A18-Envio_temperatura.hex) |[A18-Envio_temperatura](../programas/ublocks/A18-Envio_temperatura.ubp) | [A18-Envio_temperatura](../programas/upy/A18-Envio_temperatura.hex)|[A18-Envio_temperatura](../programas/upy/A18-Envio_temperatura-main.py) |
 |[A18-Envio_agitar](../programas/makecode/microbit-A18-Envio_agitar.hex) |[A18-Envio_agitar](../programas/ublocks/A18-Envio_Agitar.ubp) | [A18-Envio_agitar](../programas/upy/A18-Envio_agitar.hex)|[A18-Envio_agitar](../programas/upy/A18-Envio_agitar-main.py) |
-| | | | |
-| | | | |
-| | | | |
+|[A19-Reg_datos_local](../programas/makecode/microbit-A19-Reg_datos_local.hex) |[A19-Reg_datos_local](../programas/ublocks/A19-Reg_datos_local.ubp) |[A19-Reg_datos_local](../programas/upy/A19-Reg_datos_local.hex) |[A19-Reg_datos_local](../programas/upy/A19-Reg_datos_local-main.py) |
+| |[A19-Reg_datos_remotoE](../programas/ublocks/A19-Reg_datos_remoto_Emisor.ubp) | | |
+| |[A19-Reg_datos_remotoR](../programas/ublocks/A19-Reg_datos_remoto_Receptor.ubp) | | |
 | | | | |
 | | | | |
 | | | | |

@@ -1622,3 +1622,69 @@ Los tres valores de la tupla representan:
 - el siguiente mensaje entrante en la cola de mensajes en bytes.
 - el RSSI (intensidad de la señal): un valor entre 0 (más fuerte) y -255 (más débil) medido en dBm.
 - una marca de tiempo en microsegundos: el valor devuelto por ```time.ticks_us()``` cuando se recibió el mensaje.
+
+## <FONT COLOR=#007575>**Resgistro de datos**</font>
+El proceso una vez grabados los datos en la micro:bit es el mismo que el descrito en la sección de MakeCode. Para utilizar el Registro de datos con micro:bit V2 tenemos disponibles en Python:
+
+* **```import log```**. Importamos el módulo, como siempre al principio del código, para tener disponibles las funciones de registro de datos.
+* **```log.set_labels()```**. Para configurar los encabezados de las columnas del registro de datos. Por ejemplo: ```log.set_labels('temperatura', 'sonido', 'luz')```.
+* **```log.add()```**. Añadir entradas al registro de datos. Por ejemplo:
+
+~~~py
+log.add({
+      'temperatura': temperature(),
+      'sonido': microphone.sound_level(),
+      'luz': display.read_light_level()
+    })
+~~~
+
+* **```run_every()```**. Programar entradas de registro en el intervalo especificado de tiempo. Puedes utilizar un programador para registrar datos automáticamente a intervalos regulares. ```run_every``` puede utilizarse de dos formas:
+
+    - Como **Decorador** - se coloca encima de la función a programar. Por ejemplo:
+
+~~~py
+@run_every(days=1, h=1, min=20, s=30, ms=50)
+def mi_funcion():
+    # Hacer lo que sea
+~~~
+
+  - Como una **función** - pasando la llamada de retorno como argumento posicional. Por ejemplo:
+
+~~~py
+def mi_funcion():
+    # Hacer lo que sea
+run_every(mi_funcion, s=30)
+~~~
+
+Cada argumento corresponde a una unidad de tiempo diferente y son aditivos. Así, ```run_every(min=1, s=30)``` programa la llamada de retorno cada minuto y medio.
+
+Cuando se lanza una excepción dentro de la función callback se desprograma la función. Para evitar esto puedes atrapar excepciones con ```try/except```.
+
+Los parámetros son:
+
+* ```callback``` – Function to call at the provided interval.
+* ```days``` – Establece la marca de días para la programación.
+* ```h``` – Establece la marca de horas para la programación.
+* ```min``` – Establece la marca de minutos para la programación.
+* ```s``` – Establece la marca de segundos para la programación.
+* ```ms``` – Establece la marca de milisegundos para la programación.
+
+A continuación vemos un ejemplo completo:
+
+~~~py
+from microbit import *
+import log
+
+@run_every(s=30)
+def log_data():
+    log.add({
+        'temperatura': temperature(),
+        'sonido': microphone.sound_level(),
+        'luz': display.read_light_level()
+    })
+       
+    while True:
+        sleep(100000)
+~~~
+
+Los datos se recuperan de la misma forma que se ha descrito para MakeCode.

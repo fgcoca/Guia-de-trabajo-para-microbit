@@ -1426,5 +1426,180 @@ En el ejemplo tenemos un programa que utiliza la intensidad de la señal de los 
 * ![](../img/programacion/mkcode/radio/r11.png). Envía un evento por radio a dispositivos cercanos.
 * ![](../img/programacion/mkcode/radio/r12.png). Cambia la banda de transmisión y recepción de la radio al canal dado. El valor por defecto es 0. El parámetro ```Band``` es un número entre 0 y 83. Cada paso tiene un ancho de 1MHz, en base a los 2400MHz de referencia.
 
+## <FONT COLOR=#8B008B>Registro de datos</font>
+Antes de nada debemos añadir la extensión por lo que hacemos clic en "Extensiones" y en la ventana que se abre podemos buscar si no nos aparece directamente la extensión.
+
+<center>
+
+![Extensión Datalogger](../img/programacion/mkcode/datalog/buscar.png)  
+*Extensión Datalogger*
+
+</center>
+
+Vamos a estudiar la extensión y posteriormente veremos como registrar datos en MakeCode.
+<hr width=100%  size=10 noshade="noshade">
+
+<a name="item0dlog"></a>
+
+[Extensión Data Logger](#item1dlog)
+<br> [Registro de datos en MakeCode](#item2dlog)</br>
+<br> [Lectura de datos](#item3dlog)</br>
+
+[Volver](#item0dlog)
+<a name="item1dlog"></a>
+
+<FONT COLOR=#BB00FF><font size="5"><b>Extensión Data Logger</font color></font size></b>
+
+La extensión Datalogger registra los datos en la memoria flash de la micro:bit. Cada dato se almacena en una columna o como parte de una fila de datos. Los datos se registran en el almacenamiento por filas. Las columnas pueden tener nombres para especificar el significado de los valores de los elementos de datos.
+
+>
+El uso de estos bloques requiere el hardware micro:bit V2. Si utilizamos cualquier bloque que intente acceder a la memoria flash en una placa micro:bit v1, veremos el código de error 927 en la pantalla.
+
+Un registro de datos representará una tabla de información como por ejemplo:
+
+|Temperatura|Aceleración|Nivel de luz|
+|:-:|:-:|:-:|
+|18|2|70|
+|23|3|125|
+|28|4|215|
+
+Un dato se compone del nombre del valor, que también es su columna asignada, y del valor del elemento. Se denominan elementos "columna-valor (CV)". La forma de crear un elemento columna-valor es:
+
+<center>
+
+![Creación de un elemento CV](../img/programacion/mkcode/datalog/crear_CV.png)  
+*Creación de un elemento CV*
+
+</center>
+
+El orden y los nombres de los elementos de datos se establecen mediante los títulos de las columnas.
+
+<center>
+
+![Orden y número de columnas](../img/programacion/mkcode/datalog/orden_colum.png)  
+*Orden y número de columnas*
+
+</center>
+
+Los datos se registran en el almacenamiento como una fila. Este es un ejemplo de registro de una fila de datos. Cada valor de datos diferente se asocia a su columna antes de ser registrado.
+
+<center>
+
+![Filas de datos](../img/programacion/mkcode/datalog/filas.png)  
+*Filas de datos*
+
+</center>
+
+Los bloque de esta extensión son:
+
+* ![](../img/programacion/mkcode/datalog/b1.png). ```CreateCV```. Una columna y un valor para registrar en el almacenamiento flash @returns Un nuevo valor que se puede almacenar en el almacenamiento flash utilizando los datos de registro.
+* ![](../img/programacion/mkcode/datalog/b2.png). ```setColumnTitles```. Configura las columnas para el registro de datos.
+* ![](../img/programacion/mkcode/datalog/b3.png). ```log```. Graba datos en el almacenamiento flash.
+* ![](../img/programacion/mkcode/datalog/b4.png). ```deleteLog```. Borra todos los registros existentes, incluidas las cabeceras de las columnas.
+* ![](../img/programacion/mkcode/datalog/b5.png). ```includeTimestamp```. Establece el formato de las marcas temporales.
+* ![](../img/programacion/mkcode/datalog/b6.png). ```onLogFull```. Registra un evento para que se ejecute cuando no se puedan registrar más datos.
+* ![](../img/programacion/mkcode/datalog/b7.png). ```mirrorToSerial```. Establece si los datos se reflejan en serie o no.
+
+<hr width=100%  size=10 noshade="noshade">
+
+[Volver](#item0dlog)
+<a name="item2dlog"></a>
+
+<FONT COLOR=#BB00FF><font size="5"><b>Registro de datos en MakeCode</font color></font size></b>
+
+Existen basicamente dos maneras de registrar datos en MakeCode, manual y automática.
+
+Siempre es una buena práctica poner nombre a las columnas antes de comenzar a registrar datos, ya que es la forma de saber que representan los números.
+
+* **Registro manual**. Se refiere a cuando nosotros tenemos que realizar alguna acción para que el dato quede registrado. Vamos a ver un ejemplo en el que registramos los niveles de luz y sonido existentes cuando pulsamos el botón A. Se mostrará en la pantalla de la micro:bit el signo de check.
+
+<center>
+
+![Ejemplo de registro manual de niveles de luz y sonido](../img/programacion/mkcode/datalog/ej_manual.png)  
+*Ejemplo de registro manual de niveles de luz y sonido*
+
+</center>
+
+Este ejemplo lo podemos simular y a continuación vemos una muestra de valores generados.
+
+<center>
+
+![Simulación del ejemplo de registro manual de niveles de luz y sonido](../img/programacion/mkcode/datalog/ej_manual_simu.png)  
+*Simulación del ejemplo de registro manual de niveles de luz y sonido*
+
+</center>
+
+Si exportamos los datos con el botón de descarga que tenemos a la derecha se nos creará un archivo en nuestro ordenador que podemos abrir con una hoja de cálculo utilizando como separador de campos la coma ",". A continuación vemos el resultado y en el archivo comprimido de descarga se incluyen tanto el csv como el de calc.
+
+<center>
+
+![Datos registrados de niveles de luz y sonido](../img/programacion/mkcode/datalog/ej_manual_dat_reg.png)  
+*Datos registrados de niveles de luz y sonido*
+
+</center>
+
+[Descargar todos los archivos del ejemplo](../ejemplos/datalog/manual/ej_registro_manual.zip)
+
+* **Resgistro automático**. Referido a utilizar el bloque "cada" del menú "Bucles" para capturar de forma automática datos con el intervalo de tiempo establecido. Vamos a hacer que se registren los valores de aceleración en los tres ejes cada 100 ms. Programamos el botón A para que inicie y pare el registro. Se establece como forma de borrar los datos la de presionar simultaneamente los botones A y B y tocar el logo. También hay un logo de aviso cuando el registro está lleno.
+
+<center>
+
+![Ejemplo registro automático aceleraciones](../img/programacion/mkcode/datalog/ej_auto_acel.png)  
+*Ejemplo registro automático aceleraciones*
+
+</center>
+
+En la animación siguiente vemos la simulación del programa en la que se ha sacado fuera del bloque "al presionar A+B" el condicional completo para quitar el logo de la forma de hacerlo porque no podemos accionar A+B y el logo a la vez. Para recuperar la versión completa basta con arrastrar este bloque fuera y meter el que ahora está sacado.
+
+<center>
+
+![Simulación del ejemplo registro automático aceleraciones](../img/programacion/mkcode/datalog/ej_auto_acel_simu.gif)  
+*Simulación del ejemplo registro automático aceleraciones*
+
+</center>
+
+[Descargar todos los archivos del ejemplo](../ejemplos/datalog/automatico/ej_registro_automatico.zip)
+
+<hr width=100%  size=10 noshade="noshade">
+
+[Volver](#item0dlog)
+<a name="item3dlog"></a>
+
+<FONT COLOR=#BB00FF><font size="5"><b>Lectura de datos</font color></font size></b>
+
+Para ver datos reales grabados en la micro:bit utilizaremos el ejemplo anterios de registro automáticos de aceleraciones.
+
+Una vez que tenemos datos registrados en la micro:bit, la conectamos a un ordenador y dejamos que se monte como una unidad USB de nombre MICROBIT. Si abrimos esta unidad nos vamos a encontrar con tres archivos, uno de ellos es "MY_DATA.HTM".
+
+<center>
+
+![Archivos en la micro:bit](../img/programacion/mkcode/datalog/archivos_unidad_microbit.png)  
+*Archivos en la micro:bit*
+
+</center>
+
+Si hacemos doble clic sobre el archivo "MY_DATA.HTM" se nos abrirá en una ventana de nuestro navegador por defecto.
+
+<center>
+
+![Archivo "MY_DATA.HTM" abierto en Chromium](../img/programacion/mkcode/datalog/archivo_navegador.png)  
+*Archivo "MY_DATA.HTM" abierto en Chromium*
+
+</center>
+
+Los botones nos muestran diferentes opciones que podemos realizar con estos datos:
+
+* **Descargarlos (Download)**. Se guardan los datos en formato CSV con los valores separados por comas. Estos datos se pueden importar a una hoja de cálculo y realizar todo tipo de análisis con los mismos.
+* **Copiarlos (Copy)**. Realiza una copia de los datos en el portapapeles para que podamos pegarlos donde queramos, como por ejemplo en una hoja de cálculo. De esta forma no tenemos que descargar el archivo CSV.
+* **Actualizarlos (Update data)**. Comprueba si los datos en la micro:bit han cambiado respecto a la lectura actual desconectando y conectando la micro:bit del puerto USB.
+* **Borrar registro (Clear log)**. Nos muestra un mensaje indicando que el registro se borra cuando regrabemos la micro:bit. El programa puede incluir código o bloques para borrar el registro cuando queramos, como es el caso del ejemplo. Por ahora este botón no borra los datos en la micro:bit.
+* **Previsualización (Visual preview)**. Muestra los datos obtenidos de forma gráfica. Se pueden mostrar y ocultar utilizando los iconos de la leyenda. En la imagen vemos estos gráficos.
+
+<center>
+
+![Previsualización del archivo "MY_DATA.HTM"](../img/programacion/mkcode/datalog/archivo_navegador_prev.png)  
+*Previsualización del archivo "MY_DATA.HTM"*
+
+</center>
 
 ## <FONT COLOR=#8B008B>tt</font>
