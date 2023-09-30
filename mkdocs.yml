@@ -73,6 +73,11 @@ nav:
     - A17. Micrófono en V2: actividades/A17.md
     - A18. Radio: actividades/A18.md
     - A19. Data Logging: actividades/A19.md
+    - A20. Joystick: actividades/A20.md
+    - A21. Registro de desplazamiento: actividades/A21.md
+    - A22. Control simple de un motor DC: actividades/A22.md
+    - A23. Control de un motor DC con potenciómetro: actividades/A23.md
+    - A24. Servomotor: actividades/A24.md
   - Listado de programas: programas/lista.md
   - Miscelanea:
     - Autor: Miscelanea/about.md 

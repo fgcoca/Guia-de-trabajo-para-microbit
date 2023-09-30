@@ -52,34 +52,50 @@ Todos los programas han sido probados de forma práctica.
 
 </center>
 
-## <FONT COLOR=#007575>**Actividades 18 a mmmmmmmmmmmmmmmmmmmmmmmmm**</font>
+## <FONT COLOR=#007575>**Actividades 18 a 24**</font>
 
 | MakeCode<br>microbit*.hex</br> | MicroBlocks (*.ubp)<br>Mu (*.py)</br>  | Python .hex<br>*.hex<br> |  Python .py<br>*.py</br> |
 |---|---|---|---|
 |[A18-Envio_temperatura](../programas/makecode/microbit-A18-Envio_temperatura.hex) |[A18-Envio_temperatura](../programas/ublocks/A18-Envio_temperatura.ubp) | [A18-Envio_temperatura](../programas/upy/A18-Envio_temperatura.hex)|[A18-Envio_temperatura](../programas/upy/A18-Envio_temperatura-main.py) |
 |[A18-Envio_agitar](../programas/makecode/microbit-A18-Envio_agitar.hex) |[A18-Envio_agitar](../programas/ublocks/A18-Envio_Agitar.ubp) | [A18-Envio_agitar](../programas/upy/A18-Envio_agitar.hex)|[A18-Envio_agitar](../programas/upy/A18-Envio_agitar-main.py) |
 |[A19-Reg_datos_local](../programas/makecode/microbit-A19-Reg_datos_local.hex) |[A19-Reg_datos_local](../programas/ublocks/A19-Reg_datos_local.ubp) |[A19-Reg_datos_local](../programas/upy/A19-Reg_datos_local.hex) |[A19-Reg_datos_local](../programas/upy/A19-Reg_datos_local-main.py) |
-| |[A19-Reg_datos_remotoE](../programas/ublocks/A19-Reg_datos_remoto_Emisor.ubp) | | |
-| |[A19-Reg_datos_remotoR](../programas/ublocks/A19-Reg_datos_remoto_Receptor.ubp) | | |
-| | | | |
-| | | | |
-| | | | |
-| | | | |
-| | | | |
-| | | | |
+|--- |[A19-Reg_datos_remotoE](../programas/ublocks/A19-Reg_datos_remoto_Emisor.ubp)<br>[A19-Reg_datos_remotoR](../programas/ublocks/A19-Reg_datos_remoto_Receptor.ubp)</br> |--- |--- |
+|[A20-Lectura del joystick](../programas/makecode/microbit-A20-lec_joystick.hex) | [A20-Lectura del joystick](../programas/ublocks/A20-lec_joystick.ubp)| [A20-Lectura del joystick](../programas/upy/A20-lec_joystick.hex)|[A20-Lectura del joystick](../programas/upy/A20-lec_joystick-main.py) |
+|[A20-Direcciones con joystick](../programas/makecode/microbit-A20-dir_joystick.hex) |[A20-Direcciones con joystick](../programas/ublocks/A20-dir_joystick.ubp) |[A20-Direcciones con joystick](../programas/upy/A20-dir_joystick.hex) |[A20-Direcciones con joystick](../programas/upy/A20-dir_joystick-main.py) |
+|[A21-LEDs_74HC595](../programas/makecode/microbit-A21_LEDs_74HC595.hex) |[A21-LEDs_74HC595 (Mu)](../programas/ublocks/A21_LEDs_74HC595.py) |[A21-LEDs_74HC595](../programas/upy/A21-LEDs_74HC595.hex) |[A21-LEDs_74HC595](../programas/upy/A21-LEDs_74HC595-main.py) |
+|[A21-7segmentos](../programas/makecode/microbit-A21-7segmentos.hex) |[A21-7segmentos (Mu)](../programas/ublocks/A21_7segmentos.py) | [A21-7segmentos](../programas/upy/A21-7segmentos.hex)| [A21-7segmentos](../programas/upy/A21-7segmentos-main.py)|
+|[A22-Control_Motor_DC](../programas/makecode/microbit-A22-Control_Motor_DC.hex) |[A22-Control_Motor_DC](../programas/ublocks/A22-Control_Motor_DC.ubp) |[A22-Control_Motor_DC](../programas/upy/A22-Control_Motor_DC.hex)|[A22-Control_Motor_DC](../programas/upy/A22-Control_Motor_DC-main.py) |
+|[A23-C_M_DC_Pot](../programas/makecode/microbit-A23-C_M_DC_Pot.hex) |[A23-C_M_DC_Pot](../programas/ublocks/A23-C_M_DC_Pot.ubp) |[A23-C_M_DC_Pot](../programas/upy/A23-C_M_DC_Pot.hex) |[A23-C_M_DC_Pot](../programas/upy/A23-C_M_DC_Pot-main.py) |
+|[A24-C_servo](../programas/makecode/microbit-A24-C_servo.hex) |[A24-C_servo](../programas/ublocks/A24-C_servo.ubp) |[A24-C_servo](../programas/upy/A24-C_servo.hex) |  [A24-C_servo](../programas/upy/A24-C_servo-main.py)|
+|[A24-C_servo_pot](../programas/makecode/microbit-A24-C_servo_pot.hex) | [A24-C_servo_pot](../programas/ublocks/A24-C_servo_pot.ubp)|[A24-C_servo_pot](../programas/upy/A24-C_servo_pot.hex) |[A24-C_servo_pot](../programas/upy/A24-C_servo_pot-main.py) |
+| [A18_24_MakeCode zip](../programas/makecode/A18_24_MC.zip) | [A18_24_MicroBlocks zip](../programas/ublocks/A18_24_uB.zip) |[A18_24_Python (.hex) zip](../programas/upy/A18_24_uP_hex.zip) | [A18_24_Python (.py) zip](../programas/upy/A18_24_uP_py.zip) |
 
-
-
-| [A11_20_MakeCode](../programas/makecode/A11_20_MC.zip) | [A11_20_MicroBlocks](../programas/ublocks/A11_20_uB.zip) |[A11_20_Python (.hex)](../programas/upy/A11_20_uP_hex.zip) | [A11_20_Python (.py)](../programas/upy/A11_20_uP_py.zip) |
+## <FONT COLOR=#007575>**Actividades 25 a aaaaaaaaaaaaaaaaaaaaaaaaa**</font>
 
 </center>
-
 
 | MakeCode<br>microbit*.hex</br> | MicroBlocks (*.ubp)<br>Mu (*.py)</br>  | Python .hex<br>*.hex<br> |  Python .py<br>*.py</br> |
-|[Comprimido de MakeCode]()|[Comprimido de MicroBlocks]()|[Comprimido de Python]()|
+|---|---|---|---|
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
 
 </center>
 
-</font size>
+</center>
 
-## <FONT COLOR=#007575>**t**</font>
+| MakeCode<br>microbit*.hex</br> | MicroBlocks (*.ubp)<br>Mu (*.py)</br>  | Python .hex<br>*.hex<br> |  Python .py<br>*.py</br> |
+|---|---|---|---|
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+
+</center>

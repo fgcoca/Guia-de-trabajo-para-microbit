@@ -454,7 +454,7 @@ Un ejemplo de uso.
 
 * ![](../img/programacion/ublocks/uB/listas/l28.png)  Convierte un byte, una lista o una cadena especificada en una matriz de bytes. Cada elemento es el valor unicode de las letras de la cadena en el rango de 0-255 (0-FF).
 
-## <FONT COLOR=#007575>**Operadores**</font>   
+## <FONT COLOR=#007575>**Mas operadores**</font>   
 Los operadores aún no vistos son:
 
 <center>

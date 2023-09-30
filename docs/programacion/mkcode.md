@@ -1602,4 +1602,11 @@ Los botones nos muestran diferentes opciones que podemos realizar con estos dato
 
 </center>
 
-## <FONT COLOR=#8B008B>tt</font>
+## <FONT COLOR=#8B008B>Registro de desplazamiento y display 7 segmentos</font>
+Cuando trabajamos el tema del termistor en la sección "Temperatura" de este mismo apartado, ya agregamos la librería ```Freenove``` y esta incluye una entrada denominada ```Shit Out``` que dispone de bloques tanto para el registro de desplazamiento como para el display de 7 segmentos. Vienen implementadas los siguientes bloques:
+
+* ![](../img/programacion/mkcode/registro_desplaza/config_pines.png). Configura los pines de entrada de datos serie y los relojes de registro y desplazamiento. En el bloque se nombran: data (entrada de datos), launch (desplazamiento) y clock (registro).
+* ![](../img/programacion/mkcode/registro_desplaza/write.png). Se escriben los datos 0 a 255 en serie en el 74HC595 y salen en paralelo. Se puede establecer el orden de escritura de los datos estableciendo el primero que entra como el bit mas significiativo del byte (MSBFIRST) o el bit menos significativo del byte (LSBFIRST).
+* ![](../img/programacion/mkcode/registro_desplaza/valor_hex.png). Control desde el 74HC595 de un display de 7 segmento los números y letras del sistema hexadecimal 0 a F.
+* ![](../img/programacion/mkcode/registro_desplaza/mostrar_hex.png). Escribe desde el 74HC595 en un display de 7 segmento los números y letras del sistema hexadecimal 0 a F.
+* ![](../img/programacion/mkcode/registro_desplaza/desplaza.png). Desplaza los datos un bit a la izquierda o a la derecha.

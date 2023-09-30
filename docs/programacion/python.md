@@ -1688,3 +1688,11 @@ def log_data():
 ~~~
 
 Los datos se recuperan de la misma forma que se ha descrito para MakeCode.
+
+## <FONT COLOR=#8B008B>Registro de desplazamiento y display 7 segmentos</font>
+Las funciones implementadas en la libreria ```Freenove``` son:
+
+* **```Freenove.Initialization(DS,ST_CP,SH_CP)```**. Configura los pines DS (entrada de datos serie), ST_CP (desplazamiento) y SH_CP (Registro) del 74HC595.
+* **```Freenove.Write_Data(Data,Order)```**. Se escriben los datos 0 a 255 en serie en el 74HC595 y salen en paralelo. Se puede establecer el orden de escritura de los datos estableciendo el primero que entra como el bit mas significiativo del byte (MSBFIRST) o el bit menos significativo del byte (LSBFIRST).
+* **```Freenove.Show_Number(Number)```**. Control desde el 74HC595 de un display de 7 segmento los números y letras del sistema hexadecimal 0 a F.
+* **```Freenove.Shift_Operators(Data,Shift Operator,Figure)```**  Desplaza los datos un bit a la izquierda o a la derecha.

@@ -319,7 +319,6 @@ En ese circuito es muy fácil saber el valor de la tensión en P0, ya que por te
 
 <center>$V_{P_0} = 3.3 \cdot\dfrac{R_t}{R+R_t} \Rightarrow R_t = \dfrac{R}{\dfrac{3.3}{V_{P_0}}-1}$</center>
 
-
 Podemos utilizar el valor analógico medido en el pin P0 para obtener el valor de resistencia del termistor poder obtener la temperatura a partir de la ecuación:
 
 <center>$T = (\dfrac{1}{T_0}+\dfrac{\ln(\dfrac{R}{R_0})}{\beta})^{-1}$</center>
@@ -361,6 +360,44 @@ Los termistores tienen diversas utilizaciones y algunas de ellas pueden ser:
 * Protección contra sobretensiones.
 * Control de temperatura en la carga de baterias.
 
+## <FONT COLOR=#007575>**La bobina**</font>
+La bobina o inductor es un elemento pasivo que almacena energía en el núcleo en forma de campo magnético y la devuelve al circuito cuando es necesario, convirtiendo la energía de la corriente eléctrica en energía del campo magnético o viceversa. Este fenomeno es lo que se conoce como autoinducción.
+
+Cuando la corriente que circula por la bobina cambia, el campo magnético variable con el tiempo induce una [fuerza electromotriz](https://es.wikipedia.org/wiki/Fuerza_electromotriz) (f.e.m. o tensión) en el conductor según describe la [ley de inducción electromagnética de Faraday, o ley de Faraday o ley de Faraday-Lenz](https://es.wikipedia.org/wiki/Ley_de_inducci%C3%B3n_de_Faraday), que no debe confundirse con las leyes de Faraday sobre la electrólisis. La tensión inducida (según la [ley de Lenz](https://es.wikipedia.org/wiki/Ley_de_Lenz)) tiene una determinada dirección (polaridad) que tiende a oponerse al cambio de la corriente que la ha creado. Se puede afirmar que una bobina se opone a cualquier cambio en la corriente que los atraviesa.
+
+Una bobina viene caracterizada por su inductancia, que es la relación entre la tensión y las variaciones de corriente. Su unidad de medida en el sistema internacional es el henrio (H). Se trata de una unidad muy grande por lo que se suelen utilizar los submúltiplos mH (mili henrio) y $\mu H$ (micro henrio).
+
+Si llamamos "e" a la fem en volrios, "i" a la corriente eléctrica que circula por la bobina y "L" a su inductancia medida en henrios, se puede expresar que:
+
+<center>
+
+$e=-L\dfrac{di}{dt} \Rightarrow i=\dfrac{1}{L} \int_0^T e \: \mathrm{d}t + i_0$
+
+</center>
+
+Indicando claramente la oposición a las variaciones de corriente dado que L es una constante.
+
+Una bobina se construye habitualmente con hilo de cobre esmaltado que se enrrolla alrededor de un núcleo (puede ser el aire) ferroso para incrementar su capacidad de magnetismo. A continuación podemos observar el aspecto real de diferentes bobinas y el símbolo electrónico del inductor.
+
+<center>
+
+![Bobina, aspecto real y símbolo](../img/conceptos/discretos/bobina_aspecto.png)  
+*Bobina, aspecto real y símbolo*
+
+</center>
+
+En el video de KEMET Electronics (*"Así que crees que entiendes los inductores"*):
+
+<center>
+
+[KEMET Webinar | So You Think You Understand Inductors](https://www.youtube.com/watch?v=ialxfpA-2ho)
+
+</center>
+
+En este webinar nos introducen las bobinas de una forma bastante clara.
+
+Además de como componente pasivo, las bobinas forman parte de elementos como transformadores, filtros, relés, etc.
+
 ## <FONT COLOR=#007575>**El diodo semiconductor**</font>
 Son dispositivos que permiten el paso de la corriente electrica en un solo sentido y la bloquean en el contrario. Se suelen conocer también como rectificadores por su capacidad de convertir la corriente alterna en corriente continua pulsatoria. Existen diferentes tipos de diodos y nos centraremos en describir como funcionan los diodos de estado sólido sin entrar en demasiados fundamentos científicos. El símbolo del diodo es un triángulo que viene a indicar el sentido permitido de circulación de corriente y la barrera que se opone en el contrario.
 
@@ -393,12 +430,14 @@ La simbología de los diferentes diodos gira en torno a variaciones del símbolo
 
 En la infografia [Funcionamiento y polarización del diodo semiconductor](../img/aux/infograf_func_diodo.svg) tenemos un resumen de sus características tensión/corriente y su funcionamiento. [Aquí está](../img/aux/infograf_func_diodo.pdf) el archivo en formato pdf.
 
-## <FONT COLOR=#007575>**El diodo LED**</font>
+## <FONT COLOR=#007575>**Diodo LED y elementos con LEDs**</font>
 
 <a name="item0LED"></a>
 
 [Matriz de de barras de LEDs](#item1LED)
 <br> [LED RGB](#item2LED)</br>
+<br> [Display de siete segmentos](#item3LED)</br>
+<br> [Control de display de siete segmentos con registro de desplazamiento](#item4LED)</br>
 
 El diodo LED (Light Emitting Diode) es un diodo semiconductor capaz de emitir luz, lo mas usuales dentro del espectro visible aunque también pueden ser de infrarrojos, laser, etc. Su uso mas habitual es como indicador y, últimamente cada vez mas frecuentes en iluminación. Sus principales ventajas frente a luces incandescentes son:
 
@@ -487,6 +526,111 @@ El pin mas largo es el común, el de su izquierda es el rojo (R), el de su derec
 
 Teóricamente, cada uno de los LEDs podría adoptar 256 (valores entre 0 y 255) colores diferentes, es decir, un total de 16.777.216 (256x3) posibles colores diferentes con un LED RGB. En realidad el ojo humano solamente puede ver unos 10 millones de colores definidos por lo que se conoce como **espacio de color**, que tiene como referencia estándar habitual el **espacio de color** el denominado **CIELAB** o **CIEXYZ**, diseñados especificamente para abarcar lo que el ojo humano ve.
 
+[Volver](#item0LED)
+<a name="item3LED"></a>
+
+<FONT COLOR=#AA0000>Display de siete segmentos</font>
+
+Son diodos LEDs encapsulados en una disposición en forma de 8 e interconectados entre si de una forma predeterminada que veremos a continuación. La denominación de segmento hay que atribuirla a que cuando se ilumina cada LED se destaca su segmento que forma parte del dígito que se muestra. Normalmente incorporan un octavo LED situado en forma de punto en la parte inferior derecha del dispositivo y que actuará como punto decimal (DP, de Decimal Point) en caso de conectar dos o mas displays de 7 segmentos.
+
+<center>
+
+![Aspecto de displays de 7 segmentos](../img/conceptos/discretos/7seg/aspecto_7seg.png)  
+*Aspecto de displays de 7 segmentos*
+
+</center>
+
+Los pines de estos dispositivos (nos referimos al de un elemento) se nombran y distribuyen de la forma siguiente:
+
+<center>
+
+![Asociación de pines y segmentos](../img/conceptos/discretos/7seg/nom_pines_7seg.png)  
+*Asociación de pines y segmentos*
+
+</center>
+
+Entre la patilla común y cada letra hay conectado un LED de manera que todos sus cátodos, o bien todos sus ánodos van a esa patilla común. El pin común se utiliza para indicar el tipo de display que serán de cátodo común (CC) o de ánodo común (CA). En la figura siguiente vemos el circuito de cada uno de los tipos.
+
+<center>
+
+![Esquemas circuitos internos displays 7 segmentos](../img/conceptos/discretos/7seg/con_pines_7seg.png)  
+*Esquemas circuitos internos displays 7 segmentos*
+
+</center>
+
+Polarizando adecuadamente cada segmento con su resistencia limitadora podemos activar o desactivar el encendido de cada LED y así formar números y caracteres. En la tabla siguiente podemos ver los números base del sistema decimal y su relación con los segmentos que deben encenderse.
+
+<center>
+
+|Dígito|a|b|c|d|e|f|g|
+|:|:|:|:|:|:|:|:|
+|![](../img/conceptos/discretos/7seg/0.png) |1|1|1|1|1|1|0|
+|![](../img/conceptos/discretos/7seg/1.png) |0|1|1|0|0|0|0|
+|![](../img/conceptos/discretos/7seg/2.png) |1|1|0|1|1|0|1|
+|![](../img/conceptos/discretos/7seg/3.png) |1|1|1|1|0|0|1|
+|![](../img/conceptos/discretos/7seg/4.png) |0|1|1|0|0|1|1|
+|![](../img/conceptos/discretos/7seg/5.png) |1|0|1|1|0|1|1|
+|![](../img/conceptos/discretos/7seg/6.png) |1|0|1|1|1|1|1|
+|![](../img/conceptos/discretos/7seg/7.png) |1|1|1|0|0|0|0|
+|![](../img/conceptos/discretos/7seg/8.png) |1|1|1|1|1|1|1|
+|![](../img/conceptos/discretos/7seg/9.png) |1|1|1|1|0|1|1|
+
+</center>
+
+Es evidente que conectando los segmentos a pines de la micro:bit a través de la correspondiente resistencia podríamos programar su encendido tal y como se ha reflejado en la tabla, incluso aumentando los caracteres hasta 16 para tener el sistema hexadecimal. Pero esto evidentemente va a resultar muy poco práctico. En la vida real existen decodificadores especializados en realizar esta tarea que utilizan menos entradas (4) para realizar la decodificación. Ejemplos de estos decodificadores son el 7447 en tecnología TTL y el 4511 en tecnología CMOS.
+
+[Volver](#item0LED)
+<a name="item4LED"></a>
+
+<FONT COLOR=#AA0000>Control de display de siete segmentos con registro de desplazamiento</font>
+
+Un display de 7 segmentos es un dispositivo electrónico de visualización digital el el que se representa la cifra "8" y un punto decimal. Consta de LEDs que pueden estar conectados en configuración de ánodo común (el que usaremos en las actividades) o aátodo Común. Su estructura interna y diagrama de designación de pines se muestra a continuación, donde podemos observar el segmento que le corresponde a cada pin.
+
+<center>
+
+![Diagrama interno y designación de pines en un displays 7 segmentos](../img/conceptos/discretos/7seg/dia_con_pines_7seg.png)  
+*Diagrama interno y designación de pines en un displays 7 segmentos*
+
+</center>
+
+Como podemos ver en el diagrama del circuito anterior, es posible controlar el estado de cada LED por separado y mostrar diferentes números y caracteres.
+
+Los 8 LEDs se pueden representar mediante un byte que permitirá mostrar el estado de los LEDs que están conectados a los pines 5, 10, 9, 1, 2, 4, 6, 7. Vamos a usar 0 para representar el estado de encendido y 1 para el estado de apagado. Entonces el número 0 se puede expresar como un número binario 11000000, o su equivalente en hexadecimal 0xC0.
+
+En la tabla que vemos a continuación se muestran los números y letras que se pueden mostrar y su equivalentes en distintos sistemas de numeración.
+
+<center>
+
+|Número/letra|Binario|Hexadecimal|Decimal|
+|:-:|:-:|:-:|:-:|
+|0|11000000|0xC0|192|
+|1|11111001|0xF9|249|
+|2|10100100|0xA4|164|
+|3|10110000|0xB0|176|
+|4|10011001|0x99|153|
+|5|10010010|0x92|146|
+|6|10000010|0x82|130|
+|7|11111000|0xF8|248|
+|8|10000000|0x80|128|
+|9|10010000|0x90|144|
+|A|10001000|0x88|136|
+|b|10000011|0x83|131|
+|C|11000110|0xC6|198|
+|d|10100001|0xA1|161|
+|E|10000110|0x86|134|
+|F|10001110|0x8E|142|
+
+</center>
+
+Un esquema como el siguiente nos va a permitir conectar diodos LEDs al registro de desplazamiento 74HC595 para entrar datos en serie y activar los diodos LEDs en paralelo.
+
+<center>
+
+![Control de diodos LEDs mediante 74HC595](../img/conceptos/discretos/7seg/control_con_74HC595.png)  
+*Control de diodos LEDs mediante 74HC595*
+
+</center>
+
 ## <FONT COLOR=#007575>**Pulsador**</font>
 Un botón pulsador o abreviadamente pulsador es un componente eléctrico que permite o impide el paso de la corriente eléctrica cuando se acciona. El pulsador solo permanece abierto o cerrado cuando lo presionamos y unicamente mientras lo mantenemos presionado. Al soltarlo vuelve a su posición inicial o de reposo.
 
@@ -571,6 +715,81 @@ Por su forma de accionamiento pueden ser: rotatorios, basculantes, deslizantes, 
 *Diversos tipos de interruptores*
 
 </center>
+
+## <FONT COLOR=#007575>Relés</font>
+Un relé es básicamente un interruptor mecánico controlado eléctricamente de forma que a través de una pequeña tensión y corriente se puede controlar la apertura y cierre de sus contactos mecánicos donde se puede trabajar con tensiones y corrientes elevadas.
+
+Esquemáticamente un relé de este tipo se puede parecer a la imagen siguiente:
+
+<center>
+
+![Un relé esquematizado](../img/conceptos/discretos/esquema-rele.png)  
+*Un relé esquematizado<br>Fuente: [wikipedia](https://es.wikipedia.org/wiki/Rel%C3%A9)</br>*
+
+</center>
+
+En la animación siguiente (obtenida de la misma fuente) podemos observar el principio básico de funcionamienbto de un relé:
+
+<center>
+
+![Funcionamiento de un relé](../img/conceptos/discretos/Func_rele.gif)  
+*Funcionamiento de un relé*
+
+</center>
+
+Básicamente un relé sirve para activar un circuito que tiene un consumo alto mediante un circuito de pequeña potencia. Por ejemplo, activación del funcionamiento de un refrigerador cuando la temperatura supera un valor establecido. Otro ejemplo donde se utilizan los relés es en automoción para poner en marcha ventiladores, limpiaparabrisas, elevalunas, etc. El relé de los intermitentes permite que la luz parpadee al activarla y que emita el sonido característico cuando está encendido.
+
+Existen muchos tipos de relés entre los que están:
+
+* **Electromecánicos**. Existen diferentes tipos de mecanismos de activación, como los de núcleo móvil, reed o de lengüeta, relés polarizados o relés tripolares.
+
+<center>
+
+![Relés electromecánicos](../img/conceptos/discretos/Reles_electromecanicos.png)  
+*Relés electromecánicos*
+
+</center>
+
+* **Estado sólido**. Cuando se requiere un uso intensivo de los contactos y es necesaria una velocidad de conmutación elevada.
+
+<center>
+
+![Relé de estado sólido](../img/conceptos/discretos/Reles_solido.png)  
+*Relé de estado sólido*
+
+</center>
+
+* **Corriente alterna**.
+* **Temporizadores o de acción retardada**. Permiten realizar la conexión o la desconexión pasado un tiempo establecido.
+
+<center>
+
+![Relé temporizador](../img/conceptos/discretos/Rele_temporizador.jpg)  
+*Relé temporizador*
+
+</center>
+
+* **Térmicos**. Se utilizan para proteger los motores de sobrecargas. Tienen unas láminas metálicas en su interior que se deforman más o menos según el calor. Si llegan a un punto de deformación determinado porque ha aumentado la temperatura, abren el circuito y no dejan pasar la corriente. Un ejemplo típico son los termostatos bimetálicos que tiene los braseros eléctricos.
+
+<center>
+
+![Relé térmico](../img/conceptos/discretos/Rele_termico.png)  
+*Relé térmico*
+
+</center>
+
+Los relés pueden tener los contactos normalmente cerrados (se abren al excitar la bobina) o normalmente abiertos (se cierran al excitar la bobina) o de ambos tipos respondiendo todos al la exictación de la bobina al mismo tiempo.
+
+Este tipo de elementos suelen venir de fábrica con la información técnica impresa en su carcasa informándonos así tanto de las características de la bobina como de los contactos.
+
+<center>
+
+![Características en un relé](../img/conceptos/discretos/Rele_caract.png)  
+*Características en un relé*
+
+</center>
+
+En este caso se trata de un relé de 5V para excitar la bobina con una corriente máxima de 10A en sus contactos para las diferentes tensiones continuas y alternas indicadas.
 
 ## <FONT COLOR=#007575>El transistor bipolar o BJT</font>
 Las siglas BJT corresponden a Bipolar Junction Transistor, haciendo el término bipolar referencia al hecho de que en la conducción de la
