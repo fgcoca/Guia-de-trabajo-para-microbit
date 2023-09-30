@@ -1,0 +1,24 @@
+module main
+author unknown
+version 1 0 
+description ''
+variables lectura_pot 
+
+script 89 50 {
+whenStarted
+forever {
+  lectura_pot = (analogReadOp 0)
+  sayIt lectura_pot
+  if (lectura_pot < 400) {
+    digitalWriteOp 2 false
+    analogWriteOp 1 (400 - (lectura_pot / (400 * 1023)))
+  } (lectura_pot > 600) {
+    digitalWriteOp 1 false
+    analogWriteOp 2 (lectura_pot - (600 / (400 * 1023)))
+  } else {
+    digitalWriteOp 1 true
+    digitalWriteOp 2 true
+  }
+}
+}
+

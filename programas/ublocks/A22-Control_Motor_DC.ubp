@@ -1,0 +1,19 @@
+module main
+author unknown
+version 1 0 
+description ''
+variables CAM_est 
+
+script 50 58 {
+whenStarted
+forever {
+  if (buttonA) {
+    sayIt (buttonA)
+    digitalWriteOp 0 true
+  } else {
+    sayIt (buttonA)
+    digitalWriteOp 0 false
+  }
+}
+}
+
