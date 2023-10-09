@@ -1,0 +1,42 @@
+module main
+author unknown
+version 1 0 
+description ''
+variables retardo 
+
+script 57 50 {
+whenStarted
+retardo = 2
+forever {
+  digitalWriteOp 0 true
+  digitalWriteOp 1 false
+  digitalWriteOp 2 false
+  digitalWriteOp 3 false
+  waitMillis retardo
+  digitalWriteOp 0 false
+  digitalWriteOp 1 true
+  digitalWriteOp 2 false
+  digitalWriteOp 3 false
+  waitMillis retardo
+  digitalWriteOp 0 false
+  digitalWriteOp 1 false
+  digitalWriteOp 2 true
+  digitalWriteOp 3 false
+  waitMillis retardo
+  digitalWriteOp 0 false
+  digitalWriteOp 1 false
+  digitalWriteOp 2 false
+  digitalWriteOp 3 true
+  waitMillis retardo
+}
+}
+
+script 299 99 {
+comment 'Con 2ms de retardo se aprecia el giro del motor pero apenas
+se ve el parpadeo de los LEDs.
+Para apreciar este parpadeo mejor podemos aumentar el retardo
+a 50ms. 
+En este caso 1ms de retardo puede provocar perdida de pasos
+ impidiendo que el motor gire.'
+}
+

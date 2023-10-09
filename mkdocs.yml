@@ -49,6 +49,11 @@ nav:
     - Radio: conceptos/radio.md
     - Comunicación serie: conceptos/serie.md
     - Data logging o registro de datos: conceptos/datalog.md
+    - Temperatura y humedad, como nos afectan: conceptos/dhtxx.md
+    - Teclado matricial de 4x4: conceptos/teclado.md
+    - Sensor de movimiento PIR: conceptos/pir.md
+    - Sensor de ultrasonidos HC-SR04: conceptos/HC-SR04.md
+    - Sensor de temperatura y presión barométrica MBP280: conceptos/bmp280.md
   - Conceptos de programación:
     - MakeCode: programacion/mkcode.md
     - Python: programacion/python.md
@@ -78,6 +83,12 @@ nav:
     - A22. Control simple de un motor DC: actividades/A22.md
     - A23. Control de un motor DC con potenciómetro: actividades/A23.md
     - A24. Servomotor: actividades/A24.md
+    - A25. Motor paso a paso: actividades/A25.md
+    - A26. Sensor de temperatura y humedad DHT11: actividades/A26.md
+    - A27. Teclado matricial de 4x4: actividades/A27.md
+    - A28. Sensor de movimiento PIR HC-SR501: actividades/A28.md
+    - A29. Sensor de ultrasonidos HC-SR04: actividades/A29.md
+    - A30. Sensor de temperatura y presión barométrica MBP280: actividades/A30.md
   - Listado de programas: programas/lista.md
   - Miscelanea:
     - Autor: Miscelanea/about.md 
@@ -109,6 +120,9 @@ theme:
   # Página 404
   static_templates:
     - 404.html
+  # Carga instantanea de la pagina creo que en beta. Quitar si da errores en busqueda
+  feature:
+    instant: true
   # No incluir los JavaScript de MkDocs
   #include_search_page: false
   #search_index_only: true

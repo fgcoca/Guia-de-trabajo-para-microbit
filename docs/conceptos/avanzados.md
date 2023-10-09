@@ -1368,7 +1368,7 @@ El diagrama esquemático de las bobinas del motor es:
 
 </center>
 
-La carcasa exterior del motor es el estator y en el interior del estator está el rotor. Hay un número específico de bobinas individuales, por lo general un múltiplo entero del número de fases que tiene el motor. El estator del motor paso a paso tiene 32 polos magnéticos. Por lo tanto, para completar una vuelta completa requiere 32 pasos completos. El rotor (o eje de salida) del motor paso a paso está conectado a un conjunto de engranajes de reducción de velocidad con relación 1/64. Por lo tanto, el eje de salida final (que sale de la carcasa del motor paso a paso) requiere 32 X 64 = 2048 pasos para hacer una revolución completa.
+La carcasa exterior del motor es el estator y en el interior del estator está el rotor. Hay un número específico de bobinas individuales, por lo general un múltiplo entero del número de fases que tiene el motor. El rotor (o eje de salida) del motor paso a paso está conectado a un conjunto de engranajes de reducción de velocidad con relación 1/64.
 
 Si realizamos una secuencia de excitación de las bobinas que sea A -> B -> C -> D -> A ->... el motor gira en sentido horario a pasos completos. Si la secuencia es A -> AB -> B -> BC -> C -> CD -> D -> DA -> A ->... el motor gira en sentido horario a medios pasos. Si invertimos la secuencia de excitación el motor gira en sentido antihorario.
 
@@ -1382,6 +1382,14 @@ La placa de control que incorpora el controlador ULN2003 proporciona una interfa
 </center>
 
 Se necesitan 4096 pasos para girar el husillo o eje 360°. Es imposible apreciar un solo paso. Para realizar pruebas, se aconseja poner un distintivo en el eje del motor para apreciar que está girando. Un trozo de cinta asilante a modo de banderola puede valer.
+
+Recordemos que $1 \space vuelta = \space360^o\space= \alpha \cdot pasos$ y que el datasheet nos indica que el Ángulo de paso ($\alpha$ en nuestro caso) es de 5.625°/64. Con estos datos podemos decir que:
+
+<center>
+
+$pasos = \dfrac{360}{\alpha}=\dfrac{360}{\dfrac{5.625}{64}}=4096 \space pasos$
+
+</center>
 
 Una vez cableados los pines GPIO a la placa es fácil probar la interfaz, basta poner el pin GPIO a nivel alto y el LED correspondiente de la placa se iluminará. Si se pone a nivel bajo el LED se apagará.
 

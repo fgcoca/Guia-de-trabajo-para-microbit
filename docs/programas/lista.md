@@ -70,32 +70,19 @@ Todos los programas han sido probados de forma práctica.
 |[A24-C_servo_pot](../programas/makecode/microbit-A24-C_servo_pot.hex) | [A24-C_servo_pot](../programas/ublocks/A24-C_servo_pot.ubp)|[A24-C_servo_pot](../programas/upy/A24-C_servo_pot.hex) |[A24-C_servo_pot](../programas/upy/A24-C_servo_pot-main.py) |
 | [A18_24_MakeCode zip](../programas/makecode/A18_24_MC.zip) | [A18_24_MicroBlocks zip](../programas/ublocks/A18_24_uB.zip) |[A18_24_Python (.hex) zip](../programas/upy/A18_24_uP_hex.zip) | [A18_24_Python (.py) zip](../programas/upy/A18_24_uP_py.zip) |
 
-## <FONT COLOR=#007575>**Actividades 25 a aaaaaaaaaaaaaaaaaaaaaaaaa**</font>
+## <FONT COLOR=#007575>**Actividades 25 a 30**</font>
 
 </center>
 
 | MakeCode<br>microbit*.hex</br> | MicroBlocks (*.ubp)<br>Mu (*.py)</br>  | Python .hex<br>*.hex<br> |  Python .py<br>*.py</br> |
 |---|---|---|---|
-| | | | |
-| | | | |
-| | | | |
-| | | | |
-| | | | |
-| | | | |
-| | | | |
-
-</center>
-
-</center>
-
-| MakeCode<br>microbit*.hex</br> | MicroBlocks (*.ubp)<br>Mu (*.py)</br>  | Python .hex<br>*.hex<br> |  Python .py<br>*.py</br> |
-|---|---|---|---|
-| | | | |
-| | | | |
-| | | | |
-| | | | |
-| | | | |
-| | | | |
-| | | | |
+|[A25-C_28BYJ-48](../programas/makecode/microbit-A25-C_28BYJ-48.hex) |[A25-C_28BYJ-48](../programas/ublocks/A25-C_28BYJ-48.ubp) | [A25-C_28BYJ-48](../programas/upy/A25-C_28BYJ-48.hex)| [A25-C_28BYJ-48](../programas/upy/A25-C_28BYJ-48-main.py)|
+|[A26-DHT11](../programas/makecode/microbit-A26_DHT11.hex) |[A26-DHT11](../programas/ublocks/A26_DHT11.ubp) |--- | [A26-DHT11](../programas/upy/A26-DHT11.py)|
+|[A27-Test](../programas/makecode/microbit-A27-Test.hex) |[A27-Test (Mu)](../programas/ublocks/A27-Test_Mu.py) |[A27-Test](../programas/upy/A27-Test.hex) | [A27-Test](../programas/upy/A27-Test-main.py)|
+|[A27-temporizador](../programas/makecode/microbit-A27-Temp.hex) |--- | [A27-temporizador](../programas/upy/A27-Temp.hex)| [A27-temporizador](../programas/upy/A27-Temp-main.py)|
+|[A28-Sensor PIR](../programas/makecode/microbit-A28-Sensor_PIR_HC-SR501.hex) | [A28-Sensor PIR](../programas/ublocks/A28-Sensor_PIR_HC-SR501.ubp)| [A28-Sensor PIR](../programas/upy/A28-Sensor_PIR_HC-SR501.hex)|[A28-Sensor PIR](../programas/upy/A28-Sensor_PIR_HC-SR501-main.py) |
+|[A29-Sensor HC-SR04](../programas/makecode/microbit-A29-Sensor_HC-SR04.hex) |[A29-Sensor HC-SR04](../programas/ublocks/A29-Sensor_HC-SR04.ubp) |[A29-Sensor HC-SR04](../programas/upy/A29-Sensor_HC-SR04.hex) | [A29-Sensor HC-SR04](../programas/upy/A29-Sensor_HC-SR04-main.py)|
+|[A30-Sensor BMP280](../programas/makecode/microbit-A30-Sensor_BMP280.hex) |--- |--- |  [A30-Sensor BMP280](../programas/upy/A30-Sensor_BMP280.py)|
+| [A25_30_MakeCode zip](../programas/makecode/A25_30_MC.zip) | [A25_30_MicroBlocks zip](../programas/ublocks/A25_30_uB.zip) |[A25_30_Python (.hex) zip](../programas/upy/A25_30_uP_hex.zip) | [A25_30_Python (.py) zip](../programas/upy/A25_30_uP_py.zip) |
 
 </center>
