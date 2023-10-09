@@ -1,0 +1,12 @@
+module main
+author unknown
+version 1 0 
+description ''
+
+script 76 76 {
+whenStarted
+forever {
+  digitalWriteOp 1 (digitalReadOp 0)
+}
+}
+
